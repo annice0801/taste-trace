@@ -1,0 +1,724 @@
+{
+  "Landing": {
+    "meta": {
+      "title": "Taste-Trace｜依心情與天氣，找到今天想做的菜",
+      "description": "告訴主廚你的心情或分享當地天氣，Taste-Trace 推薦適合的料理，附在地替代食材、份量換算、採買清單，還有以傳奇名廚風格為靈感的料理。"
+    },
+    "hero": {
+      "title": "今天的心情，<br></br>決定今天的菜。",
+      "body": "告訴主廚你現在的感受，或讓我們看看你那邊的天氣。Taste-Trace 會推薦三道剛剛好的料理，附上在地買得到的替代食材，以及依人數換算好的份量。",
+      "how": "看看怎麼運作",
+      "note": "Google 帳號登入・可自備 OpenAI 金鑰・做法生成一次即永久保存"
+    },
+    "sample": {
+      "eyebrow": "今日推薦・微雨 18°C",
+      "title": "想被療癒的晚上，來碗熱湯。",
+      "dish1": "香菇雞湯",
+      "dish1Time": "45 分鐘",
+      "dish2": "南瓜濃湯",
+      "dish2Time": "30 分鐘",
+      "dish3": "蓮藕排骨湯",
+      "dish3Time": "90 分鐘"
+    },
+    "stats": {
+      "categories": {
+        "label": "個料理類別",
+        "note": "依國家、料理類型與名廚"
+      },
+      "chefs": {
+        "label": "位傳奇名廚",
+        "note": "從 Escoffier 到傅培梅"
+      },
+      "servings": {
+        "label": "人份自由調整",
+        "note": "左減右加，分數、「半」都能正確換算"
+      },
+      "local": {
+        "value": "在地",
+        "label": "替代食材",
+        "note": "超市買不到時的替代方案"
+      }
+    },
+    "how": {
+      "title": "從一句心情，<br></br>到端上桌的一道菜。",
+      "steps": {
+        "mood": {
+          "title": "說出心情，或分享天氣",
+          "body": "選一個心情、寫一句話，或允許定位讓主廚看看你那邊的天氣。"
+        },
+        "recommend": {
+          "title": "主廚為你推薦三道菜",
+          "body": "每個類別都有自己的主廚：辦桌阿嬤、京都料理長、托斯卡尼奶奶……用他們的口吻告訴你，為什麼這道菜適合現在的你。"
+        },
+        "save": {
+          "title": "收藏、採買、上傳成品",
+          "body": "依人數換算份量，把多道菜的食材合併成一張採買清單。做完拍張照，收進你的作品集。"
+        }
+      }
+    },
+    "chefs": {
+      "title": "靈感來自傳奇名廚，<br></br>學會料理背後的原理。",
+      "body": "以傳奇名廚的料理風格為靈感，每道菜都分成兩個部分：先理解經典技法為什麼這樣做，再用家裡的廚具與在地食材完成它。",
+      "masterTitle": "大師精髓",
+      "masterBody": "核心科學原理與技法特徵：梅納反應、乳化、膠質萃取……理解每一步背後的為什麼。",
+      "homeTitle": "現代家庭實踐版",
+      "homeBody": "換成家裡有的器材與在地食材，保留原理、省去繁複，附時間與替代食材。",
+      "disclaimer": "名廚頭像皆為原創插畫，非本人肖像。食譜是以其料理風格為靈感的原創內容，並非本人食譜，也未經本人或其遺產授權。"
+    },
+    "features": {
+      "title": "從推薦到採買，<br></br>每一步都替你想好。",
+      "items": {
+        "scale": {
+          "title": "份量換算",
+          "body": "左減右加，1 到 20 人份隨時調整，「1 又 1/2 杯」「半顆」也能正確換算。"
+        },
+        "basket": {
+          "title": "合併採買清單",
+          "body": "勾選幾道想做的菜，相同食材自動合併，逛超市時逐項勾掉。"
+        },
+        "substitute": {
+          "title": "在地替代食材",
+          "body": "依你所在的地區，標出買不到的食材可以用什麼代替。"
+        },
+        "notes": {
+          "title": "收藏與隨手記",
+          "body": "想試試、成功做過、最愛、要再改良；再加上甜鹹標記與一行筆記。"
+        },
+        "works": {
+          "title": "作品集",
+          "body": "上傳自己做的成品照，寫下做的過程；可以公開分享，也能留下只有自己看得到的備註。"
+        },
+        "key": {
+          "title": "自帶 OpenAI 金鑰",
+          "body": "貼上自己的金鑰，只存在你的瀏覽器，我們不會保存。"
+        }
+      }
+    },
+    "band": {
+      "title": "好的料理，<br></br>從理解手上的食材開始。"
+    },
+    "produce": {
+      "title": "這個月，<br></br>市場上最好吃的是什麼？",
+      "body": "依你所在的地方，整理在地蔬菜與水果的盛產月份、產地、挑選訣竅和吃法。出國旅行時換個地點，就能逛懂當地的市場。",
+      "cta": "看當季蔬果",
+      "sampleLabel": "產季示意・台灣",
+      "monthRange": "1 — 12 月",
+      "peakLabel": "盛產：{months} 月",
+      "samples": {
+        "cabbage": "高麗菜",
+        "bamboo": "竹筍",
+        "mango": "芒果",
+        "pomelo": "文旦柚",
+        "persimmon": "柿子"
+      }
+    },
+    "cta": {
+      "title": "今晚吃什麼，<br></br><em>交給</em> Taste-Trace。",
+      "start": "開始使用",
+      "chefs": "名廚靈感"
+    },
+    "alt": {
+      "bread": "剛出爐的手作酸種麵包",
+      "asparagusSoup": "一碗蘆筍濃湯與新鮮蘆筍",
+      "beetroots": "木箱裡剛採收的甜菜根",
+      "ramen": "叉燒溏心蛋拉麵",
+      "chocolateCake": "淋上巧克力醬的巧克力蛋糕",
+      "appleCake": "附香草冰淇淋的蘋果蛋糕"
+    }
+  },
+  "Categories": {
+    "groups": {
+      "chef": "靈感來自名廚",
+      "country": "依國家",
+      "course": "依料理類型"
+    },
+    "items": {
+      "escoffier": {
+        "label": "Auguste Escoffier",
+        "description": "🇫🇷 埃斯科菲耶・現代法式料理之父",
+        "personaName": "埃斯科菲耶風格導讀",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "歡迎。我們以 Escoffier 的法式料理系統為靈感，替你設計一道在家做得到的菜。先說說你今天的心情，或讓我看看你那邊的天氣。",
+        "chefName": "埃斯科菲耶",
+        "country": "法國",
+        "knownFor": "現代法式料理之父，整理五大母醬體系並建立廚房分工制度",
+        "signatureDishes": "法式清湯、貝亞恩醬、蜜桃梅爾巴"
+      },
+      "julia-child": {
+        "label": "Julia Child",
+        "description": "🇺🇸 茱莉亞・柴爾德・把法式料理帶進美國家庭廚房",
+        "personaName": "茱莉亞・柴爾德風格導讀",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "嗨！我們以 Julia Child 的法式家常風格為靈感，讓法式料理在你家也做得到。今天心情怎麼樣？或讓我看看你那邊的天氣。",
+        "chefName": "茱莉亞・柴爾德",
+        "country": "美國",
+        "knownFor": "把法式料理帶進美國家庭廚房，著有《精通法式烹飪藝術》",
+        "signatureDishes": "勃艮第紅酒燉牛肉、法式烤雞、法式歐姆蛋"
+      },
+      "marcella-hazan": {
+        "label": "Marcella Hazan",
+        "description": "🇮🇹 瑪契拉・哈贊・把道地義大利家常菜介紹給英語世界",
+        "personaName": "瑪契拉・哈贊風格導讀",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "Benvenuti！我們以 Marcella Hazan 的義大利家常風格為靈感：少少的好食材，深刻的味道。今天心情如何？或讓我看看你那邊的天氣。",
+        "chefName": "瑪契拉・哈贊",
+        "country": "義大利",
+        "knownFor": "把道地義大利家常菜介紹給英語世界，以簡潔精準的食譜聞名",
+        "signatureDishes": "奶油洋蔥番茄醬、波隆那肉醬、牛奶燉豬肉"
+      },
+      "paul-bocuse": {
+        "label": "Paul Bocuse",
+        "description": "🇫🇷 保羅・博庫斯・新派法國料理的代表人物",
+        "personaName": "保羅・博庫斯風格導讀",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "Bienvenue！我們以 Paul Bocuse 的里昂料理風格為靈感，重視當季市場的新鮮食材。說說你今天的心情，或讓我看看你那邊的天氣。",
+        "chefName": "保羅・博庫斯",
+        "country": "法國",
+        "knownFor": "新派法國料理的代表人物，里昂料理的象徵",
+        "signatureDishes": "黑松露酥皮湯、里昂風味料理、布雷斯雞"
+      },
+      "fu-pei-mei": {
+        "label": "Fu Pei-mei",
+        "description": "🇹🇼 傅培梅・台灣電視烹飪節目先驅",
+        "personaName": "傅培梅風格導讀",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "你好！我們以傅培梅老師的中華家常菜風格為靈感，做一道家家戶戶都學得會的菜。今天心情怎麼樣？或讓我看看你那邊的天氣。",
+        "chefName": "傅培梅",
+        "country": "台灣",
+        "knownFor": "台灣電視烹飪節目先驅，《培梅食譜》影響了好幾代家庭廚房",
+        "signatureDishes": "宮保雞丁、紅燒獅子頭、糖醋排骨"
+      },
+      "shizuo-tsuji": {
+        "label": "Shizuo Tsuji",
+        "description": "🇯🇵 辻靜雄・辻調理師專門學校創辦人",
+        "personaName": "辻靜雄風格導讀",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "歡迎。我們以辻靜雄先生向世界介紹的和食「簡單之美」為靈感。先說說你今天的心情，或讓我看看你那邊的季節與天氣。",
+        "chefName": "辻靜雄",
+        "country": "日本",
+        "knownFor": "辻調理師專門學校創辦人，以《Japanese Cooking: A Simple Art》向世界介紹和食",
+        "signatureDishes": "一番高湯、茶碗蒸、照燒魚"
+      },
+      "antonin-careme": {
+        "label": "Antonin Carême",
+        "description": "🇫🇷 安東尼・卡漢姆・高級料理（haute cuisine）的奠基者",
+        "personaName": "安東尼・卡漢姆風格導讀",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "歡迎。我們以 Carême 的法式高級料理為靈感，把宮廷級的技法化繁為簡。先說說你今天的心情，或讓我看看你那邊的天氣。",
+        "chefName": "安東尼・卡漢姆",
+        "country": "法國",
+        "knownFor": "高級料理（haute cuisine）的奠基者，系統化整理法式醬汁與糕點，被稱為「廚師之王」",
+        "signatureDishes": "天鵝絨醬、千層酥盒、夏洛特蛋糕"
+      },
+      "elizabeth-david": {
+        "label": "Elizabeth David",
+        "description": "🇬🇧 伊莉莎白・大衛・把地中海與法國鄉村料理帶進戰後英國家庭",
+        "personaName": "伊莉莎白・大衛風格導讀",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "你好。我們以 Elizabeth David 的地中海料理風格為靈感：好食材、香草與橄欖油。今天心情如何？或讓我看看你那邊的天氣。",
+        "chefName": "伊莉莎白・大衛",
+        "country": "英國",
+        "knownFor": "把地中海與法國鄉村料理帶進戰後英國家庭，著有《地中海料理之書》",
+        "signatureDishes": "普羅旺斯燉菜、香草烤魚、法式鄉村燉肉"
+      },
+      "taiwanese": {
+        "label": "台灣",
+        "description": "家常菜、小吃與古早味",
+        "personaName": "阿嬤",
+        "personaTitle": "辦桌五十年的台灣阿嬤",
+        "greeting": "乖孫，今天過得好嗎？跟阿嬤說說你現在的心情，還是讓阿嬤看看你那邊的天氣，幫你想想今天煮什麼。"
+      },
+      "japanese": {
+        "label": "日本",
+        "description": "和食、丼飯與家庭料理",
+        "personaName": "健太師傅",
+        "personaTitle": "京都料亭的料理長",
+        "greeting": "歡迎光臨。在決定今天的料理之前，想先請教您現在的心情，或是讓我看看您那裡的天氣與季節。"
+      },
+      "korean": {
+        "label": "韓國",
+        "description": "鍋物、拌飯與小菜",
+        "personaName": "智妍歐尼",
+        "personaTitle": "首爾巷弄食堂老闆娘",
+        "greeting": "歡迎歡迎！今天心情怎麼樣？累了的話，姐姐煮點熱呼呼的給你。也可以讓我看看你那邊的天氣喔！"
+      },
+      "italian": {
+        "label": "義大利",
+        "description": "義大利麵、燉飯與披薩",
+        "personaName": "Nonna Lucia",
+        "personaTitle": "托斯卡尼的義大利奶奶",
+        "greeting": "Ciao, tesoro! 今天心情如何呀？告訴 Nonna，或讓我看看你那邊的天氣，我來幫你挑一道最適合的菜。"
+      },
+      "thai": {
+        "label": "泰國",
+        "description": "酸辣開胃的南洋風味",
+        "personaName": "Somchai",
+        "personaTitle": "曼谷街頭攤販大廚",
+        "greeting": "Sawasdee! 今天感覺怎麼樣？想吃辣一點醒腦，還是清爽一點？也可以讓我看看你那邊的天氣喔。"
+      },
+      "french": {
+        "label": "法國",
+        "description": "小酒館菜、燉煮與經典醬汁",
+        "personaName": "Chef Louis",
+        "personaTitle": "巴黎小酒館主廚",
+        "greeting": "Bonsoir！今天心情如何？告訴我，或讓我看看你那邊的天氣，我替你挑一道小酒館的拿手菜。"
+      },
+      "vietnamese": {
+        "label": "越南",
+        "description": "清爽湯麵、香草與魚露",
+        "personaName": "阿蘭姐",
+        "personaTitle": "河內老街的湯河粉攤老闆娘",
+        "greeting": "Xin chào！今天過得怎麼樣？想吃清爽一點還是熱呼呼的？也可以讓我看看你那邊的天氣。"
+      },
+      "indian": {
+        "label": "印度",
+        "description": "香料咖哩、豆類與烤餅",
+        "personaName": "Priya",
+        "personaTitle": "孟買家常菜教室老師",
+        "greeting": "Namaste！今天心情怎麼樣？告訴我，或讓我看看你那邊的天氣，我們用香料煮一道適合你的菜。"
+      },
+      "mexican": {
+        "label": "墨西哥",
+        "description": "塔可、莎莎醬與燉肉",
+        "personaName": "Don Miguel",
+        "personaTitle": "瓦哈卡市場的塔可師傅",
+        "greeting": "¡Hola, amigo! 今天心情怎麼樣？想吃辣的還是溫和的？也可以讓我看看你那邊的天氣。"
+      },
+      "dessert": {
+        "label": "甜點",
+        "description": "蛋糕、甜湯與療癒點心",
+        "personaName": "Chef Amélie",
+        "personaTitle": "巴黎甜點主廚",
+        "greeting": "Bonjour～今天想用什麼樣的甜點犒賞自己呢？告訴我你的心情，或讓我看看窗外的天氣吧。"
+      },
+      "appetizer": {
+        "label": "開胃菜",
+        "description": "沙拉、涼拌與小點",
+        "personaName": "Marco",
+        "personaTitle": "小酒館的前菜達人",
+        "greeting": "嘿！先來點開胃的吧。今天心情如何？或讓我看看你那邊的天氣，我幫你配一道剛剛好的前菜。"
+      },
+      "main-rice-noodle": {
+        "label": "主餐・麵飯",
+        "description": "吃得飽的飯麵主食",
+        "personaName": "老陳",
+        "personaTitle": "開了三十年的麵飯館老闆",
+        "greeting": "來啦！今天想吃飽一點還是清淡一點？說說你的心情，或讓我看看外面天氣，老陳幫你配一碗。"
+      },
+      "soup": {
+        "label": "湯品",
+        "description": "暖心燉湯與清爽湯品",
+        "personaName": "媽媽",
+        "personaTitle": "最懂養生的家常湯達人",
+        "greeting": "回來啦～今天累不累？跟媽媽說說心情，或讓我看看天氣，幫你煲一鍋合適的湯。"
+      },
+      "brunch": {
+        "label": "早午餐",
+        "description": "蛋料理、鬆餅與輕食",
+        "personaName": "Mia",
+        "personaTitle": "街角早午餐店主廚",
+        "greeting": "早安～（或午安！）今天想怎麼開始這一天？說說你的心情，或讓我看看窗外的天氣。"
+      },
+      "vegetarian": {
+        "label": "蔬食",
+        "description": "蔬菜、豆腐與全穀",
+        "personaName": "小禾",
+        "personaTitle": "有機農場餐廳主廚",
+        "greeting": "你好～今天想吃點清爽的蔬食嗎？說說你的心情，或讓我看看你那邊的天氣，我看看田裡有什麼當季好菜。"
+      },
+      "bento": {
+        "label": "便當",
+        "description": "冷了也好吃的帶便當菜",
+        "personaName": "美惠姐",
+        "personaTitle": "準備了二十年便當的上班族媽媽",
+        "greeting": "辛苦啦！明天要帶便當嗎？說說你現在的心情，或讓我看看天氣，幫你配一份冷了也好吃的菜。"
+      }
+    }
+  },
+  "Nav": {
+    "explore": "探索食譜",
+    "chefs": "名廚靈感",
+    "produce": "當季蔬果",
+    "favorites": "我的收藏",
+    "works": "我的作品"
+  },
+  "Header": {
+    "home": "Taste-Trace 首頁",
+    "mainNav": "主要導覽",
+    "mobileNav": "行動版導覽",
+    "signIn": "登入",
+    "signOut": "登出",
+    "signInGoogle": "用 Google 登入",
+    "start": "開始使用",
+    "openMenu": "開啟選單",
+    "closeMenu": "關閉選單",
+    "language": "介面語言：{current}",
+    "languageMenu": "選擇介面語言"
+  },
+  "Footer": {
+    "about": "依你的心情與當地天氣推薦料理，附在地替代食材、份量換算與採買清單。從家常小吃到傳奇名廚的經典，都能在自己的廚房完成。",
+    "services": "服務",
+    "copyright": "© Taste-Trace・個人料理專案",
+    "aiNotice": "食譜內容由 AI 產生，烹調前請留意過敏原與食材安全。"
+  },
+  "Basket": {
+    "title": "採買籃",
+    "button": "採買籃，{count} 項待買",
+    "close": "關閉採買籃",
+    "empty": "採買籃是空的。<br></br>在食譜的食材旁按「＋」就能加入。",
+    "sep": "、",
+    "substitute": "買不到可用：{items}",
+    "usedIn": "用於：{recipes}",
+    "bought": "{name}已買",
+    "remove": "移除",
+    "removeItem": "移除{name}",
+    "copy": "複製清單",
+    "copied": "已複製",
+    "copyTitle": "採買清單",
+    "clearDone": "清除已買",
+    "clearAll": "全部清空"
+  },
+  "KeyPanel": {
+    "button": "API 金鑰",
+    "buttonShort": "金鑰",
+    "statusSet": "（已設定）",
+    "statusUnset": "（未設定）",
+    "title": "你的 OpenAI 金鑰",
+    "intro": "推薦菜單與產生做法會使用這把金鑰，費用由你的 OpenAI 帳戶支付。",
+    "set": "已設定",
+    "remove": "移除",
+    "placeholderReplace": "貼上新的金鑰以更換",
+    "showKey": "顯示金鑰",
+    "hideKey": "隱藏金鑰",
+    "show": "顯示",
+    "hide": "隱藏",
+    "verifying": "驗證中…",
+    "save": "驗證並儲存",
+    "saved": "金鑰有效，已存在這個瀏覽器，下次回來不用重貼。",
+    "privacy": "我們不會保存你的金鑰：它只存在你這個瀏覽器裡，使用時才轉交給 OpenAI。",
+    "getKey": "還沒有金鑰？到 OpenAI 申請",
+    "errorFormat": "格式不正確，OpenAI 金鑰應該是 sk- 開頭的一長串文字",
+    "errorVerify": "驗證失敗",
+    "errorNetwork": "無法連線驗證，請稍後再試",
+    "errorStorage": "瀏覽器不允許儲存（可能是無痕模式），金鑰無法保留到下次"
+  },
+  "Explore": {
+    "metaTitle": "探索食譜",
+    "title": "今天想吃哪一種？",
+    "intro": "選一個類別，主廚會先問問你的心情或當地天氣，再推薦三道適合的料理。",
+    "chefNote": "以名廚風格為靈感的原創食譜・分為「大師精髓」與「現代家庭實踐版」",
+    "signature": "代表料理",
+    "count": "{count} 個類別"
+  },
+  "CategoryPage": {
+    "back": "所有類別",
+    "inspiredBy": "靈感來自",
+    "signature": "代表料理",
+    "period": "。",
+    "disclaimer": "以 {name} 的料理風格為靈感的原創食譜，由 AI 依公開資料整理，並非本人食譜。"
+  },
+  "Recommender": {
+    "setKey": "設定 OpenAI 金鑰",
+    "moodLabel": "你現在的心情",
+    "moods": {
+      "happy": "開心",
+      "tired": "有點累",
+      "stressed": "壓力好大",
+      "comfort": "想被療癒",
+      "celebrate": "想慶祝",
+      "noAppetite": "沒什麼胃口"
+    },
+    "moodPlaceholder": "或直接說說你現在的心情…",
+    "send": "送出",
+    "or": "或是",
+    "weatherLabel": "你那邊的天氣",
+    "weatherButton": "用我當地的天氣推薦",
+    "weatherWithMood": "加上我當地的天氣一起推薦",
+    "locationPrivacy": "只用來查詢當下天氣，不會儲存你的位置。",
+    "moodWithWeather": "{mood}，也看看我這邊的天氣",
+    "weatherOnly": "看看我這邊的天氣",
+    "locationError": "無法取得你的位置，請允許瀏覽器定位，或改用心情試試看。",
+    "recommendError": "推薦失敗，請再試一次",
+    "locating": "正在看看你那邊的天氣…",
+    "thinking": "{name}正在想菜單…",
+    "restart": "重新開始",
+    "temperature": "{temperature}°C（體感 {feelsLike}°C）",
+    "weatherSource": "天氣資料：",
+    "askAgain": "換個心情再問一次",
+    "detailError": "載入食譜失敗，請再試一次",
+    "showDetail": "看食材與做法",
+    "hideDetail": "收起食材與做法",
+    "writing": "{name}正在寫食譜…",
+    "retry": "重試",
+    "weatherCodes": {
+      "0": "晴朗",
+      "1": "大致晴朗",
+      "2": "局部多雲",
+      "3": "陰天",
+      "45": "有霧",
+      "48": "霧淞",
+      "51": "毛毛雨",
+      "53": "毛毛雨",
+      "55": "較大的毛毛雨",
+      "61": "小雨",
+      "63": "中雨",
+      "65": "大雨",
+      "66": "凍雨",
+      "67": "強凍雨",
+      "71": "小雪",
+      "73": "中雪",
+      "75": "大雪",
+      "77": "雪粒",
+      "80": "陣雨",
+      "81": "較強陣雨",
+      "82": "猛烈陣雨",
+      "85": "陣雪",
+      "86": "較強陣雪",
+      "95": "雷雨",
+      "96": "雷雨伴隨冰雹",
+      "99": "強雷雨伴隨冰雹"
+    }
+  },
+  "Tags": {
+    "minutes": "{count} 分鐘",
+    "difficulty": {
+      "easy": "簡單",
+      "medium": "中等",
+      "hard": "進階"
+    },
+    "scenes": {
+      "home": "家常",
+      "party": "宴客",
+      "bento": "便當",
+      "late-night": "宵夜",
+      "afternoon-tea": "下午茶",
+      "brunch": "早午餐",
+      "quick-meal": "快速上桌"
+    },
+    "roles": {
+      "main": "主菜",
+      "side": "配菜",
+      "staple": "主食",
+      "soup": "湯品",
+      "dessert": "甜點",
+      "snack": "小點",
+      "drink": "飲品"
+    },
+    "mainIngredients": {
+      "pork": "豬肉",
+      "chicken": "雞肉",
+      "beef": "牛肉",
+      "lamb": "羊肉",
+      "seafood": "海鮮",
+      "egg": "蛋",
+      "tofu-soy": "豆腐豆製品",
+      "vegetable": "蔬菜",
+      "mushroom": "菇類",
+      "rice": "米飯",
+      "noodle": "麵",
+      "flour-bread": "麵粉烘焙",
+      "dairy": "乳製品",
+      "fruit": "水果"
+    },
+    "favoriteLabels": {
+      "want-to-try": "想試試",
+      "cooked": "成功做過",
+      "loved": "最愛",
+      "to-improve": "要再改良"
+    },
+    "tasteNotes": {
+      "too-sweet": "太甜",
+      "too-salty": "太鹹",
+      "too-bland": "太淡",
+      "just-right": "剛好",
+      "too-spicy": "太辣"
+    }
+  },
+  "Photo": {
+    "recipeAlt": "{title}示意照片",
+    "illustrative": "示意照片",
+    "photoBy": "攝影：",
+    "avatarLabel": "以 {name} 為靈感的原創插畫頭像"
+  },
+  "Errors": {
+    "generic": "發生錯誤，請稍後再試",
+    "photoUnreadable": "讀不到這張照片，請改用 JPG 或 PNG（iPhone 可在「設定 > 相機 > 格式」選「最相容」）",
+    "photoUnsupported": "瀏覽器無法處理這張照片",
+    "photoCompress": "照片壓縮失敗，請換一張試試",
+    "uploadFailed": "上傳失敗，請稍後再試",
+    "saveFailed": "儲存失敗",
+    "deleteFailed": "刪除失敗",
+    "notImage": "請選擇照片檔"
+  },
+  "Creations": {
+    "caption": "做的過程與心得",
+    "captionPublic": "大家看得到",
+    "captionPrivate": "目前只有你看得到",
+    "captionPlaceholder": "例：洋蔥炒到深褐色多花了 10 分鐘，湯頭甜很多；最後用手持攪拌棒打得很滑順。",
+    "note": "私人備註",
+    "onlyYou": "只有你看得到",
+    "notePlaceholder": "例：下次鹽少放半匙、家裡烤箱要多烤 5 分鐘",
+    "share": "公開分享到食譜頁",
+    "shareHint": "其他人會看到照片、做的過程和你的名稱；私人備註不會公開。",
+    "confirmDelete": "確定要刪除「{title}」的這張作品照嗎？",
+    "photoAlt": "{title}的作品照",
+    "public": "公開",
+    "private": "私人",
+    "you": "你",
+    "saving": "儲存中…",
+    "save": "儲存",
+    "cancel": "取消",
+    "edit": "編輯",
+    "delete": "刪除",
+    "loading": "載入大家的作品…",
+    "loadError": "暫時無法載入大家的作品。",
+    "sectionTitle": "大家的作品",
+    "sharedCount": "{count} 份分享",
+    "noneShared": "還沒有人分享",
+    "mineCount": "你的 {count} 張",
+    "full": "作品照已滿",
+    "shareMine": "分享我的作品",
+    "signInToShare": "登入後分享作品",
+    "emptyHint": "做了這道菜嗎？拍張照、寫下過程，讓下一個人做得更順手。",
+    "previewAlt": "準備上傳的作品照預覽",
+    "pickPhoto": "選一張成品照",
+    "pickPhotoHint": "會自動壓縮並移除拍攝位置",
+    "upload": "上傳作品",
+    "pickFirst": "先選一張照片",
+    "autoSaveHint": "上傳後會自動收藏這道菜，並標記為「成功做過」。",
+    "status": {
+      "compressing": "壓縮照片中…",
+      "uploading": "上傳中…"
+    }
+  },
+  "Recipe": {
+    "servingsLabel": "份量",
+    "servings": "{count} 人份",
+    "decrease": "減少一人份",
+    "increase": "增加一人份",
+    "master": "大師精髓",
+    "principles": "核心科學原理",
+    "techniques": "技法特徵",
+    "home": "現代家庭實踐版",
+    "adaptations": "原版 → 家庭版的調整",
+    "ingredients": "食材",
+    "steps": "做法",
+    "addToBasket": "把{name}加入採買籃",
+    "removeFromBasket": "從採買籃移除{name}",
+    "substitute": "買不到可用：{item}",
+    "scaledNote": "已從原本 {count} 人份換算，「適量」「少許」等不換算。",
+    "viewBasket": "查看採買籃",
+    "addAll": "全部加入採買籃",
+    "tip": "{name}的小撇步"
+  },
+  "Save": {
+    "saved": "已收藏",
+    "save": "收藏",
+    "signInToSave": "登入後收藏",
+    "error": "操作失敗，請再試一次"
+  },
+  "Favorites": {
+    "title": "我的收藏",
+    "loading": "載入收藏中…",
+    "allCategories": "全部類別",
+    "allSaved": "全部收藏",
+    "labelCount": "{label}（{count}）",
+    "empty": "還沒有收藏的食譜",
+    "pickDish": "去挑一道菜",
+    "searchPlaceholder": "搜尋菜名、食材、口味、場景或筆記…",
+    "count": "共 {count} 道",
+    "ofTotal": "（全部 {count} 道）",
+    "defaultPersona": "主廚",
+    "saveError": "儲存失敗",
+    "quickNotes": "隨手記",
+    "notePlaceholder": "一句話筆記，例：醬油少放一點、小孩很愛",
+    "creationAlt": "作品照",
+    "creationsMore": "{count} 張作品照・再上傳一張",
+    "creationsFirst": "做好了嗎？上傳作品照",
+    "addToShopping": "加入採買清單",
+    "noDetail": "尚無食材資料",
+    "collapse": "收起"
+  },
+  "Shopping": {
+    "title": "採買清單",
+    "copyHeader": "採買清單（{count} 人份）：{recipes}",
+    "remaining": "還有 {remaining} / {total} 項",
+    "clear": "清空",
+    "mergeNote": "同名食材已合併加總；「適量」「少許」等無法加總的會並列顯示。"
+  },
+  "Login": {
+    "title": "先登入，再繼續",
+    "favorites": "登入後就能收藏食譜，之後隨時回來查看。",
+    "works": "登入後就能上傳作品照，收進你的作品集。",
+    "google": "用 Google 登入"
+  },
+  "Works": {
+    "title": "我的作品",
+    "intro": "把自己做的成品拍下來，寫下做的過程。設為公開的作品會出現在食譜頁和大家分享；私人備註只有你看得到。",
+    "loading": "載入作品中…",
+    "emptyTitle": "先收藏一道想做的菜",
+    "emptyBody": "作品照會跟收藏的食譜放在一起。先去挑一道菜收藏起來，做完再回來上傳。",
+    "pickDish": "去挑一道菜",
+    "uploadSection": "上傳作品照",
+    "stepPhoto": "照片",
+    "dropzone": "選擇或拖曳照片",
+    "formats": "JPG、PNG、WebP 或 iPhone 照片",
+    "change": "換一張",
+    "compressNote": "上傳前會自動壓縮，並移除照片中的拍攝位置等資訊。",
+    "stepRecipe": "是哪一道菜",
+    "usedCount": "這道菜已上傳 {used} / {max} 張",
+    "stepNotes": "過程與備註（選填）",
+    "markCooked": "同時把這道菜標記為「成功做過」",
+    "full": "這道菜的作品照已滿",
+    "done": "已加入你的作品集",
+    "journal": "作品集",
+    "all": "全部",
+    "noCreations": "還沒有作品照，做完第一道菜就拍一張吧。"
+  },
+  "Produce": {
+    "title": "當季蔬果",
+    "intro": "這個月在地盛產什麼？看看蔬菜與水果的產季、挑選訣竅和吃法。出門旅行時，換成所在地就能看當地的市場。",
+    "loadError": "暫時無法載入，請稍後再試",
+    "networkError": "無法連線，請稍後再試",
+    "chooseLocation": "選擇地點",
+    "manual": "旅行中・手動選擇",
+    "auto": "依你的時區自動判斷",
+    "detecting": "偵測所在地…",
+    "locationLabel": "所在地",
+    "placeholder": "輸入所在地，例：京都",
+    "go": "查看",
+    "locationHint": "輸入城市或國家，會改成顯示當地的盛產蔬果",
+    "myLocation": "我的所在地",
+    "presets": {
+      "taiwan": "台灣",
+      "tokyo": "日本・東京",
+      "seoul": "韓國・首爾",
+      "bangkok": "泰國・曼谷",
+      "hanoi": "越南・河內",
+      "italy": "義大利",
+      "paris": "法國・巴黎",
+      "california": "美國・加州",
+      "sydney": "澳洲・雪梨"
+    },
+    "monthGroup": "月份",
+    "thisMonth": "本月",
+    "typeGroup": "類別",
+    "types": {
+      "all": "全部",
+      "vegetable": "蔬菜",
+      "fruit": "水果"
+    },
+    "loading": "整理當地的蔬果與產季中…第一次查詢一個地點大約需要 15 秒。",
+    "setKey": "設定 OpenAI 金鑰",
+    "retry": "重試",
+    "disclaimer": "產季由 AI 依公開農產資訊整理，實際上市時間會因當年天氣與產地而前後變動。",
+    "inSeasonTitle": "{month}正當季",
+    "kinds": "{count} 種",
+    "noneThisMonth": "這個月沒有列入的盛產蔬果，換個月份看看。",
+    "otherMonths": "其他月份",
+    "areas": "產地",
+    "choose": "挑選",
+    "eat": "吃法",
+    "peakMonths": "盛產月份：{months}"
+  }
+}

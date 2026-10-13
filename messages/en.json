@@ -1,0 +1,724 @@
+{
+  "Landing": {
+    "meta": {
+      "title": "Taste-Trace | Let your mood and the weather pick tonight's dish",
+      "description": "Tell the chef how you feel or share your local weather. Taste-Trace recommends dishes with local ingredient swaps, serving scaling, a shopping list, and recipes inspired by legendary chefs."
+    },
+    "hero": {
+      "title": "Today's mood<br></br>decides today's dish.",
+      "body": "Tell the chef how you're feeling, or let us check the weather where you are. Taste-Trace suggests three dishes that fit just right, with ingredient swaps you can find locally and amounts scaled to your table.",
+      "how": "See how it works",
+      "note": "Sign in with Google · Bring your own OpenAI key · Recipes are generated once and kept for good"
+    },
+    "sample": {
+      "eyebrow": "Today's picks · Light rain 18°C",
+      "title": "A night for comfort — have a warm soup.",
+      "dish1": "Shiitake chicken soup",
+      "dish1Time": "45 min",
+      "dish2": "Pumpkin soup",
+      "dish2Time": "30 min",
+      "dish3": "Lotus root & pork rib soup",
+      "dish3Time": "90 min"
+    },
+    "stats": {
+      "categories": {
+        "label": "cuisine categories",
+        "note": "By country, course and chef"
+      },
+      "chefs": {
+        "label": "legendary chefs",
+        "note": "From Escoffier to Fu Pei-mei"
+      },
+      "servings": {
+        "label": "servings, your call",
+        "note": "Tap − or +; fractions and halves scale correctly"
+      },
+      "local": {
+        "value": "Local",
+        "label": "ingredient swaps",
+        "note": "For when the store doesn't stock it"
+      }
+    },
+    "how": {
+      "title": "From a single mood<br></br>to a dish on the table.",
+      "steps": {
+        "mood": {
+          "title": "Share your mood or your weather",
+          "body": "Pick a mood, write a line, or allow location so the chef can check the weather where you are."
+        },
+        "recommend": {
+          "title": "The chef suggests three dishes",
+          "body": "Every category has its own chef — a Taiwanese banquet grandma, a Kyoto head chef, a Tuscan nonna — telling you in their own voice why each dish suits you right now."
+        },
+        "save": {
+          "title": "Save, shop, share your result",
+          "body": "Scale servings, merge ingredients from several dishes into one shopping list, then snap a photo of what you made for your journal."
+        }
+      }
+    },
+    "chefs": {
+      "title": "Inspired by legendary chefs,<br></br>learn the why behind the cooking.",
+      "body": "Inspired by the styles of legendary chefs, every dish comes in two parts: first understand why the classic technique works, then make it with your own kitchen tools and local ingredients.",
+      "masterTitle": "Master's Principle",
+      "masterBody": "The core science and signature techniques — Maillard reaction, emulsification, gelatin extraction — the why behind every step.",
+      "homeTitle": "Home Kitchen Adaptation",
+      "homeBody": "Adapted to the tools you have and ingredients you can buy: the principles stay, the fuss goes, with timings and swaps included.",
+      "disclaimer": "All chef portraits are original illustrations, not likenesses. Recipes are original works inspired by each chef's style — not the chef's own recipes, and not endorsed by the chefs or their estates."
+    },
+    "features": {
+      "title": "From suggestion to shopping,<br></br>every step is taken care of.",
+      "items": {
+        "scale": {
+          "title": "Serving scaling",
+          "body": "Adjust from 1 to 20 servings anytime; amounts like “1 1/2 cups” and “half an onion” scale correctly."
+        },
+        "basket": {
+          "title": "Merged shopping list",
+          "body": "Pick a few dishes; matching ingredients merge automatically so you can tick them off in the store."
+        },
+        "substitute": {
+          "title": "Local substitutes",
+          "body": "Based on where you are, see what to use when an ingredient is hard to find."
+        },
+        "notes": {
+          "title": "Favorites & quick notes",
+          "body": "Want to try, nailed it, favorite, needs work — plus taste tags and a one-line note."
+        },
+        "works": {
+          "title": "Cooking journal",
+          "body": "Upload photos of what you made and how you made it. Share publicly, or keep private notes only you can see."
+        },
+        "key": {
+          "title": "Bring your own OpenAI key",
+          "body": "Paste your own key. It stays in your browser — we never store it."
+        }
+      }
+    },
+    "band": {
+      "title": "Good cooking starts<br></br>with knowing your ingredients."
+    },
+    "produce": {
+      "title": "This month,<br></br>what's best at the market?",
+      "body": "For wherever you are: local vegetables and fruit, their peak months, growing regions, how to pick them and how to eat them. Traveling? Change the location and read the local market like a pro.",
+      "cta": "See what's in season",
+      "sampleLabel": "Seasons · Taiwan (sample)",
+      "monthRange": "Jan — Dec",
+      "peakLabel": "Peak months: {months}",
+      "samples": {
+        "cabbage": "Cabbage",
+        "bamboo": "Bamboo shoots",
+        "mango": "Mango",
+        "pomelo": "Pomelo",
+        "persimmon": "Persimmon"
+      }
+    },
+    "cta": {
+      "title": "What's for dinner?<br></br><em>Leave it to</em> Taste-Trace.",
+      "start": "Get started",
+      "chefs": "Chef inspiration"
+    },
+    "alt": {
+      "bread": "Freshly baked homemade sourdough bread",
+      "asparagusSoup": "A bowl of asparagus soup with fresh asparagus",
+      "beetroots": "Freshly harvested beetroots in a wooden crate",
+      "ramen": "Ramen with chashu pork and soft-boiled egg",
+      "chocolateCake": "Chocolate cake drizzled with chocolate sauce",
+      "appleCake": "Apple cake with vanilla ice cream"
+    }
+  },
+  "Categories": {
+    "groups": {
+      "chef": "Inspired by legendary chefs",
+      "country": "By country",
+      "course": "By course"
+    },
+    "items": {
+      "escoffier": {
+        "label": "Auguste Escoffier",
+        "description": "🇫🇷 Auguste Escoffier · Father of modern French cuisine",
+        "personaName": "Escoffier Style Guide",
+        "personaTitle": "Taste-Trace culinary researcher",
+        "greeting": "Welcome. Inspired by Escoffier's system of French cooking, let's design a dish you can make at home. Tell me how you feel today, or let me check the weather where you are.",
+        "chefName": "Auguste Escoffier",
+        "country": "France",
+        "knownFor": "Father of modern French cuisine; codified the five mother sauces and the kitchen brigade system",
+        "signatureDishes": "Consommé, béarnaise sauce, peach Melba"
+      },
+      "julia-child": {
+        "label": "Julia Child",
+        "description": "🇺🇸 Julia Child · Brought French cooking into American home kitchens",
+        "personaName": "Julia Child Style Guide",
+        "personaTitle": "Taste-Trace culinary researcher",
+        "greeting": "Hi! Inspired by Julia Child's French home cooking, let's make French food doable in your kitchen. How are you feeling today? Or let me check the weather where you are.",
+        "chefName": "Julia Child",
+        "country": "United States",
+        "knownFor": "Brought French cooking into American home kitchens; author of Mastering the Art of French Cooking",
+        "signatureDishes": "Boeuf bourguignon, French roast chicken, French omelette"
+      },
+      "marcella-hazan": {
+        "label": "Marcella Hazan",
+        "description": "🇮🇹 Marcella Hazan · Introduced authentic Italian home cooking to the English-speaking world",
+        "personaName": "Marcella Hazan Style Guide",
+        "personaTitle": "Taste-Trace culinary researcher",
+        "greeting": "Benvenuti! Inspired by Marcella Hazan's Italian home cooking: a few good ingredients, deep flavor. How are you feeling today? Or let me check the weather where you are.",
+        "chefName": "Marcella Hazan",
+        "country": "Italy",
+        "knownFor": "Introduced authentic Italian home cooking to the English-speaking world, known for simple, precise recipes",
+        "signatureDishes": "Tomato sauce with onion and butter, Bolognese, pork braised in milk"
+      },
+      "paul-bocuse": {
+        "label": "Paul Bocuse",
+        "description": "🇫🇷 Paul Bocuse · A leading figure of nouvelle cuisine",
+        "personaName": "Paul Bocuse Style Guide",
+        "personaTitle": "Taste-Trace culinary researcher",
+        "greeting": "Bienvenue! Inspired by Paul Bocuse's Lyonnaise cooking, we focus on fresh seasonal market produce. Tell me how you feel today, or let me check the weather where you are.",
+        "chefName": "Paul Bocuse",
+        "country": "France",
+        "knownFor": "A leading figure of nouvelle cuisine and the symbol of Lyonnaise cooking",
+        "signatureDishes": "Black truffle soup en croûte, Lyonnaise dishes, Bresse chicken"
+      },
+      "fu-pei-mei": {
+        "label": "Fu Pei-mei",
+        "description": "🇹🇼 Fu Pei-mei · Pioneer of Taiwanese TV cooking shows",
+        "personaName": "Fu Pei-mei Style Guide",
+        "personaTitle": "Taste-Trace culinary researcher",
+        "greeting": "Hello! Inspired by Fu Pei-mei's Chinese home cooking, let's make a dish every household can learn. How are you feeling today? Or let me check the weather where you are.",
+        "chefName": "Fu Pei-mei",
+        "country": "Taiwan",
+        "knownFor": "Pioneer of Taiwanese TV cooking shows; her Pei Mei's Chinese Cook Book shaped generations of home kitchens",
+        "signatureDishes": "Kung pao chicken, braised lion's head meatballs, sweet and sour ribs"
+      },
+      "shizuo-tsuji": {
+        "label": "Shizuo Tsuji",
+        "description": "🇯🇵 Shizuo Tsuji · Founder of the Tsuji Culinary Institute",
+        "personaName": "Shizuo Tsuji Style Guide",
+        "personaTitle": "Taste-Trace culinary researcher",
+        "greeting": "Welcome. We take inspiration from the “simple art” of Japanese cooking that Shizuo Tsuji introduced to the world. Tell me how you feel today, or let me see the season and weather where you are.",
+        "chefName": "Shizuo Tsuji",
+        "country": "Japan",
+        "knownFor": "Founder of the Tsuji Culinary Institute; introduced washoku to the world with Japanese Cooking: A Simple Art",
+        "signatureDishes": "Ichiban dashi, chawanmushi, teriyaki fish"
+      },
+      "antonin-careme": {
+        "label": "Antonin Carême",
+        "description": "🇫🇷 Antonin Carême · Founder of haute cuisine",
+        "personaName": "Antonin Carême Style Guide",
+        "personaTitle": "Taste-Trace culinary researcher",
+        "greeting": "Welcome. Inspired by Carême's haute cuisine, we simplify palace-level technique. Tell me how you feel today, or let me check the weather where you are.",
+        "chefName": "Antonin Carême",
+        "country": "France",
+        "knownFor": "Founder of haute cuisine who systematized French sauces and pastry; called “the king of chefs”",
+        "signatureDishes": "Velouté sauce, vol-au-vent, charlotte"
+      },
+      "elizabeth-david": {
+        "label": "Elizabeth David",
+        "description": "🇬🇧 Elizabeth David · Brought Mediterranean and French country cooking to postwar Britain",
+        "personaName": "Elizabeth David Style Guide",
+        "personaTitle": "Taste-Trace culinary researcher",
+        "greeting": "Hello. Inspired by Elizabeth David's Mediterranean cooking: good ingredients, herbs and olive oil. How are you feeling today? Or let me check the weather where you are.",
+        "chefName": "Elizabeth David",
+        "country": "United Kingdom",
+        "knownFor": "Brought Mediterranean and French country cooking into postwar British homes; author of A Book of Mediterranean Food",
+        "signatureDishes": "Ratatouille, herb-roasted fish, French country stew"
+      },
+      "taiwanese": {
+        "label": "Taiwan",
+        "description": "Home cooking, street snacks and old-time flavors",
+        "personaName": "A-má",
+        "personaTitle": "Taiwanese grandma with 50 years of banquet cooking",
+        "greeting": "Hello, dear! How was your day? Tell Grandma how you're feeling, or let me see the weather where you are, and I'll figure out what to cook today."
+      },
+      "japanese": {
+        "label": "Japan",
+        "description": "Washoku, donburi and home cooking",
+        "personaName": "Chef Kenta",
+        "personaTitle": "Head chef of a Kyoto ryotei",
+        "greeting": "Welcome. Before we decide on today's dish, may I ask how you are feeling, or see the weather and season where you are?"
+      },
+      "korean": {
+        "label": "Korea",
+        "description": "Stews, bibimbap and banchan",
+        "personaName": "Ji-yeon unnie",
+        "personaTitle": "Owner of a Seoul back-alley diner",
+        "greeting": "Welcome, welcome! How are you feeling today? If you're tired, I'll make you something warm. You can also show me the weather where you are!"
+      },
+      "italian": {
+        "label": "Italy",
+        "description": "Pasta, risotto and pizza",
+        "personaName": "Nonna Lucia",
+        "personaTitle": "Italian grandmother from Tuscany",
+        "greeting": "Ciao, tesoro! How are you feeling today? Tell Nonna, or let me see the weather where you are, and I'll pick the perfect dish for you."
+      },
+      "thai": {
+        "label": "Thailand",
+        "description": "Hot, sour and appetizing Southeast Asian flavors",
+        "personaName": "Somchai",
+        "personaTitle": "Bangkok street-food chef",
+        "greeting": "Sawasdee! How are you feeling today? Something spicy to wake you up, or something light? You can also show me the weather where you are."
+      },
+      "french": {
+        "label": "France",
+        "description": "Bistro classics, braises and sauces",
+        "personaName": "Chef Louis",
+        "personaTitle": "Chef of a Paris bistro",
+        "greeting": "Bonsoir! How are you feeling today? Tell me, or let me see the weather where you are, and I'll pick a bistro specialty for you."
+      },
+      "vietnamese": {
+        "label": "Vietnam",
+        "description": "Light noodle soups, herbs and fish sauce",
+        "personaName": "Chị Lan",
+        "personaTitle": "Owner of a pho stall in Hanoi's Old Quarter",
+        "greeting": "Xin chào! How was your day? Something light or something warm? You can also show me the weather where you are."
+      },
+      "indian": {
+        "label": "India",
+        "description": "Spiced curries, lentils and flatbreads",
+        "personaName": "Priya",
+        "personaTitle": "Home-cooking teacher in Mumbai",
+        "greeting": "Namaste! How are you feeling today? Tell me, or let me see the weather where you are, and we'll cook something with spices just for you."
+      },
+      "mexican": {
+        "label": "Mexico",
+        "description": "Tacos, salsas and braised meats",
+        "personaName": "Don Miguel",
+        "personaTitle": "Taquero at an Oaxaca market",
+        "greeting": "¡Hola, amigo! How are you feeling today? Spicy or mild? You can also show me the weather where you are."
+      },
+      "dessert": {
+        "label": "Desserts",
+        "description": "Cakes, sweet soups and comfort treats",
+        "personaName": "Chef Amélie",
+        "personaTitle": "Paris pastry chef",
+        "greeting": "Bonjour! What kind of dessert would you like to treat yourself to today? Tell me your mood, or let me see the weather outside your window."
+      },
+      "appetizer": {
+        "label": "Appetizers",
+        "description": "Salads, cold dishes and small bites",
+        "personaName": "Marco",
+        "personaTitle": "Bistro appetizer expert",
+        "greeting": "Hey! Let's start with something to whet the appetite. How are you feeling today? Or let me see the weather where you are, and I'll pair you with the right starter."
+      },
+      "main-rice-noodle": {
+        "label": "Mains · Rice & noodles",
+        "description": "Filling rice and noodle dishes",
+        "personaName": "Old Chen",
+        "personaTitle": "Owner of a 30-year-old noodle and rice shop",
+        "greeting": "Come on in! Something hearty or something light today? Tell me your mood, or let me see the weather outside, and Old Chen will fix you a bowl."
+      },
+      "soup": {
+        "label": "Soups",
+        "description": "Warming stews and light soups",
+        "personaName": "Mom",
+        "personaTitle": "Home soup expert who knows nourishing food best",
+        "greeting": "You're home! Tired today? Tell Mom how you feel, or let me see the weather, and I'll simmer the right pot of soup for you."
+      },
+      "brunch": {
+        "label": "Brunch",
+        "description": "Egg dishes, pancakes and light bites",
+        "personaName": "Mia",
+        "personaTitle": "Chef at a corner brunch café",
+        "greeting": "Good morning (or afternoon)! How do you want to start your day? Tell me your mood, or let me see the weather outside."
+      },
+      "vegetarian": {
+        "label": "Vegetarian",
+        "description": "Vegetables, tofu and whole grains",
+        "personaName": "Xiao He",
+        "personaTitle": "Chef at an organic farm restaurant",
+        "greeting": "Hello! In the mood for some fresh vegetables? Tell me how you feel, or let me see the weather where you are, and I'll check what's in season in the fields."
+      },
+      "bento": {
+        "label": "Bento",
+        "description": "Lunchbox dishes that taste great cold",
+        "personaName": "Auntie Mei-hui",
+        "personaTitle": "Working mom with 20 years of bento-making",
+        "greeting": "Long day? Packing a bento tomorrow? Tell me your mood, or let me see the weather, and I'll suggest something that's still delicious cold."
+      }
+    }
+  },
+  "Nav": {
+    "explore": "Explore",
+    "chefs": "Chefs",
+    "produce": "In season",
+    "favorites": "Saved",
+    "works": "My dishes"
+  },
+  "Header": {
+    "home": "Taste-Trace home",
+    "mainNav": "Main navigation",
+    "mobileNav": "Mobile navigation",
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "signInGoogle": "Sign in with Google",
+    "start": "Get started",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language: {current}",
+    "languageMenu": "Choose language"
+  },
+  "Footer": {
+    "about": "Dish suggestions based on your mood and local weather, with local ingredient swaps, serving scaling and a shopping list. From home-style snacks to legendary chefs' classics, all made in your own kitchen.",
+    "services": "Explore",
+    "copyright": "© Taste-Trace · A personal cooking project",
+    "aiNotice": "Recipes are AI-generated. Please check for allergens and food safety before cooking."
+  },
+  "Basket": {
+    "title": "Shopping basket",
+    "button": "Shopping basket, {count} to buy",
+    "close": "Close shopping basket",
+    "empty": "Your basket is empty.<br></br>Tap “+” next to an ingredient in a recipe to add it.",
+    "sep": ", ",
+    "substitute": "If unavailable: {items}",
+    "usedIn": "For: {recipes}",
+    "bought": "{name} bought",
+    "remove": "Remove",
+    "removeItem": "Remove {name}",
+    "copy": "Copy list",
+    "copied": "Copied",
+    "copyTitle": "Shopping list",
+    "clearDone": "Clear bought",
+    "clearAll": "Clear all"
+  },
+  "KeyPanel": {
+    "button": "API key",
+    "buttonShort": "Key",
+    "statusSet": "(set)",
+    "statusUnset": "(not set)",
+    "title": "Your OpenAI key",
+    "intro": "Dish suggestions and recipe generation use this key; usage is billed to your OpenAI account.",
+    "set": "Set",
+    "remove": "Remove",
+    "placeholderReplace": "Paste a new key to replace it",
+    "showKey": "Show key",
+    "hideKey": "Hide key",
+    "show": "Show",
+    "hide": "Hide",
+    "verifying": "Verifying…",
+    "save": "Verify and save",
+    "saved": "Key is valid and saved in this browser — no need to paste it again next time.",
+    "privacy": "We never store your key: it lives only in this browser and is passed to OpenAI only when used.",
+    "getKey": "No key yet? Get one from OpenAI",
+    "errorFormat": "Invalid format. OpenAI keys are a long string starting with sk-",
+    "errorVerify": "Verification failed",
+    "errorNetwork": "Couldn't connect to verify. Please try again later.",
+    "errorStorage": "Your browser doesn't allow saving (private mode?), so the key won't be kept for next time."
+  },
+  "Explore": {
+    "metaTitle": "Explore recipes",
+    "title": "What are you in the mood for?",
+    "intro": "Pick a category. The chef will ask about your mood or local weather first, then suggest three dishes that fit.",
+    "chefNote": "Original recipes inspired by chefs' styles · Split into “Master's Principle” and “Home Kitchen Adaptation”",
+    "signature": "Signature dishes",
+    "count": "{count, plural, one {# category} other {# categories}}"
+  },
+  "CategoryPage": {
+    "back": "All categories",
+    "inspiredBy": "Inspired by",
+    "signature": "Signature dishes",
+    "period": ".",
+    "disclaimer": "Original recipes inspired by {name}'s cooking style, compiled by AI from public sources. These are not the chef's own recipes."
+  },
+  "Recommender": {
+    "setKey": "Set OpenAI key",
+    "moodLabel": "How are you feeling?",
+    "moods": {
+      "happy": "Happy",
+      "tired": "A bit tired",
+      "stressed": "Stressed out",
+      "comfort": "Need comfort",
+      "celebrate": "Celebrating",
+      "noAppetite": "Not very hungry"
+    },
+    "moodPlaceholder": "Or tell me how you feel in your own words…",
+    "send": "Send",
+    "or": "or",
+    "weatherLabel": "Your local weather",
+    "weatherButton": "Suggest based on my local weather",
+    "weatherWithMood": "Add my local weather to the suggestion",
+    "locationPrivacy": "Only used to check the current weather. Your location is never stored.",
+    "moodWithWeather": "{mood} — and check the weather where I am",
+    "weatherOnly": "Check the weather where I am",
+    "locationError": "Couldn't get your location. Please allow location access, or try with your mood instead.",
+    "recommendError": "Couldn't get suggestions. Please try again.",
+    "locating": "Checking the weather where you are…",
+    "thinking": "{name} is planning the menu…",
+    "restart": "Start over",
+    "temperature": "{temperature}°C (feels like {feelsLike}°C)",
+    "weatherSource": "Weather data: ",
+    "askAgain": "Try a different mood",
+    "detailError": "Couldn't load the recipe. Please try again.",
+    "showDetail": "Ingredients & steps",
+    "hideDetail": "Hide ingredients & steps",
+    "writing": "{name} is writing the recipe…",
+    "retry": "Retry",
+    "weatherCodes": {
+      "0": "Clear",
+      "1": "Mostly clear",
+      "2": "Partly cloudy",
+      "3": "Overcast",
+      "45": "Fog",
+      "48": "Rime fog",
+      "51": "Drizzle",
+      "53": "Drizzle",
+      "55": "Heavy drizzle",
+      "61": "Light rain",
+      "63": "Rain",
+      "65": "Heavy rain",
+      "66": "Freezing rain",
+      "67": "Heavy freezing rain",
+      "71": "Light snow",
+      "73": "Snow",
+      "75": "Heavy snow",
+      "77": "Snow grains",
+      "80": "Showers",
+      "81": "Heavy showers",
+      "82": "Violent showers",
+      "85": "Snow showers",
+      "86": "Heavy snow showers",
+      "95": "Thunderstorm",
+      "96": "Thunderstorm with hail",
+      "99": "Severe thunderstorm with hail"
+    }
+  },
+  "Tags": {
+    "minutes": "{count} min",
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Advanced"
+    },
+    "scenes": {
+      "home": "Everyday",
+      "party": "For guests",
+      "bento": "Lunchbox",
+      "late-night": "Late-night",
+      "afternoon-tea": "Afternoon tea",
+      "brunch": "Brunch",
+      "quick-meal": "Quick"
+    },
+    "roles": {
+      "main": "Main",
+      "side": "Side",
+      "staple": "Staple",
+      "soup": "Soup",
+      "dessert": "Dessert",
+      "snack": "Snack",
+      "drink": "Drink"
+    },
+    "mainIngredients": {
+      "pork": "Pork",
+      "chicken": "Chicken",
+      "beef": "Beef",
+      "lamb": "Lamb",
+      "seafood": "Seafood",
+      "egg": "Egg",
+      "tofu-soy": "Tofu & soy",
+      "vegetable": "Vegetables",
+      "mushroom": "Mushrooms",
+      "rice": "Rice",
+      "noodle": "Noodles",
+      "flour-bread": "Baking",
+      "dairy": "Dairy",
+      "fruit": "Fruit"
+    },
+    "favoriteLabels": {
+      "want-to-try": "Want to try",
+      "cooked": "Nailed it",
+      "loved": "Favorite",
+      "to-improve": "Needs work"
+    },
+    "tasteNotes": {
+      "too-sweet": "Too sweet",
+      "too-salty": "Too salty",
+      "too-bland": "Too bland",
+      "just-right": "Just right",
+      "too-spicy": "Too spicy"
+    }
+  },
+  "Photo": {
+    "recipeAlt": "Illustrative photo of {title}",
+    "illustrative": "Illustrative photo",
+    "photoBy": "Photo: ",
+    "avatarLabel": "Original illustrated avatar inspired by {name}"
+  },
+  "Errors": {
+    "generic": "Something went wrong. Please try again later.",
+    "photoUnreadable": "Can't read this photo. Please use JPG or PNG (on iPhone: Settings > Camera > Formats > Most Compatible).",
+    "photoUnsupported": "Your browser can't process this photo.",
+    "photoCompress": "Couldn't compress the photo. Please try another one.",
+    "uploadFailed": "Upload failed. Please try again later.",
+    "saveFailed": "Couldn't save",
+    "deleteFailed": "Couldn't delete",
+    "notImage": "Please choose a photo file"
+  },
+  "Creations": {
+    "caption": "How you made it",
+    "captionPublic": "Visible to everyone",
+    "captionPrivate": "Only you can see this for now",
+    "captionPlaceholder": "e.g. Browning the onions took 10 extra minutes and made the soup much sweeter; an immersion blender got it silky smooth.",
+    "note": "Private note",
+    "onlyYou": "Only you can see this",
+    "notePlaceholder": "e.g. Half a teaspoon less salt next time; my oven needs 5 more minutes",
+    "share": "Share publicly on the recipe page",
+    "shareHint": "Others will see the photo, how you made it, and your name. Private notes are never shared.",
+    "confirmDelete": "Delete this photo of “{title}”?",
+    "photoAlt": "Photo of {title} made by a cook",
+    "public": "Public",
+    "private": "Private",
+    "you": "You",
+    "saving": "Saving…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading everyone's dishes…",
+    "loadError": "Couldn't load everyone's dishes right now.",
+    "sectionTitle": "Cooked by the community",
+    "sharedCount": "{count, plural, one {# shared} other {# shared}}",
+    "noneShared": "Nobody has shared yet",
+    "mineCount": "{count, plural, one {# of yours} other {# of yours}}",
+    "full": "Photo limit reached",
+    "shareMine": "Share my dish",
+    "signInToShare": "Sign in to share",
+    "emptyHint": "Made this dish? Snap a photo and write down how it went to help the next cook.",
+    "previewAlt": "Preview of the photo to upload",
+    "pickPhoto": "Choose a photo of your dish",
+    "pickPhotoHint": "Automatically compressed; location data removed",
+    "upload": "Upload",
+    "pickFirst": "Choose a photo first",
+    "autoSaveHint": "Uploading also saves this dish and marks it as “Nailed it”.",
+    "status": {
+      "compressing": "Compressing photo…",
+      "uploading": "Uploading…"
+    }
+  },
+  "Recipe": {
+    "servingsLabel": "Servings",
+    "servings": "{count, plural, one {# serving} other {# servings}}",
+    "decrease": "One serving fewer",
+    "increase": "One serving more",
+    "master": "Master's Principle",
+    "principles": "Core science",
+    "techniques": "Signature techniques",
+    "home": "Home Kitchen Adaptation",
+    "adaptations": "Classic → home adjustments",
+    "ingredients": "Ingredients",
+    "steps": "Steps",
+    "addToBasket": "Add {name} to shopping basket",
+    "removeFromBasket": "Remove {name} from shopping basket",
+    "substitute": "If unavailable: {item}",
+    "scaledNote": "Scaled from the original {count} servings. Amounts like “to taste” aren't scaled.",
+    "viewBasket": "View basket",
+    "addAll": "Add all to basket",
+    "tip": "Tip from {name}"
+  },
+  "Save": {
+    "saved": "Saved",
+    "save": "Save",
+    "signInToSave": "Sign in to save",
+    "error": "Something went wrong. Please try again."
+  },
+  "Favorites": {
+    "title": "Saved",
+    "loading": "Loading your saved recipes…",
+    "allCategories": "All categories",
+    "allSaved": "All saved",
+    "labelCount": "{label} ({count})",
+    "empty": "No saved recipes yet",
+    "pickDish": "Find a dish",
+    "searchPlaceholder": "Search dishes, ingredients, flavors, occasions or notes…",
+    "count": "{count, plural, one {# dish} other {# dishes}}",
+    "ofTotal": " (of {count})",
+    "defaultPersona": "Chef",
+    "saveError": "Couldn't save",
+    "quickNotes": "Quick notes",
+    "notePlaceholder": "One-line note, e.g. less soy sauce, kids loved it",
+    "creationAlt": "Dish photo",
+    "creationsMore": "{count, plural, one {# photo} other {# photos}} · Upload another",
+    "creationsFirst": "Made it? Upload a photo",
+    "addToShopping": "Add to shopping list",
+    "noDetail": "No ingredient details yet",
+    "collapse": "Hide"
+  },
+  "Shopping": {
+    "title": "Shopping list",
+    "copyHeader": "Shopping list ({count, plural, one {# serving} other {# servings}}): {recipes}",
+    "remaining": "{remaining} of {total} left",
+    "clear": "Clear",
+    "mergeNote": "Matching ingredients are merged and added up; amounts like “to taste” are listed side by side."
+  },
+  "Login": {
+    "title": "Sign in to continue",
+    "favorites": "Sign in to save recipes and come back to them anytime.",
+    "works": "Sign in to upload photos of your dishes to your journal.",
+    "google": "Sign in with Google"
+  },
+  "Works": {
+    "title": "My dishes",
+    "intro": "Photograph what you cook and write down how you made it. Public dishes appear on the recipe page for everyone; private notes are only visible to you.",
+    "loading": "Loading your dishes…",
+    "emptyTitle": "Save a dish you want to make first",
+    "emptyBody": "Dish photos are kept with your saved recipes. Save a dish, cook it, then come back to upload.",
+    "pickDish": "Find a dish",
+    "uploadSection": "Upload a dish photo",
+    "stepPhoto": "Photo",
+    "dropzone": "Choose or drop a photo",
+    "formats": "JPG, PNG, WebP or iPhone photos",
+    "change": "Choose another",
+    "compressNote": "Photos are compressed before upload and location data is removed.",
+    "stepRecipe": "Which dish?",
+    "usedCount": "{used} / {max} photos uploaded for this dish",
+    "stepNotes": "Process & notes (optional)",
+    "markCooked": "Also mark this dish as “Nailed it”",
+    "full": "Photo limit reached for this dish",
+    "done": "Added to your journal",
+    "journal": "Journal",
+    "all": "All",
+    "noCreations": "No dish photos yet. Snap one after your first dish!"
+  },
+  "Produce": {
+    "title": "In season",
+    "intro": "What's at its best locally this month? See peak seasons, how to pick and how to eat vegetables and fruit. Traveling? Switch to where you are to explore the local market.",
+    "loadError": "Couldn't load right now. Please try again later.",
+    "networkError": "Couldn't connect. Please try again later.",
+    "chooseLocation": "Choose a location",
+    "manual": "Traveling · Chosen manually",
+    "auto": "Detected from your time zone",
+    "detecting": "Detecting your location…",
+    "locationLabel": "Location",
+    "placeholder": "Enter a place, e.g. Kyoto",
+    "go": "Show",
+    "locationHint": "Enter a city or country to see what's in season there",
+    "myLocation": "My location",
+    "presets": {
+      "taiwan": "Taiwan",
+      "tokyo": "Tokyo, Japan",
+      "seoul": "Seoul, Korea",
+      "bangkok": "Bangkok, Thailand",
+      "hanoi": "Hanoi, Vietnam",
+      "italy": "Italy",
+      "paris": "Paris, France",
+      "california": "California, USA",
+      "sydney": "Sydney, Australia"
+    },
+    "monthGroup": "Month",
+    "thisMonth": "Now",
+    "typeGroup": "Type",
+    "types": {
+      "all": "All",
+      "vegetable": "Vegetables",
+      "fruit": "Fruit"
+    },
+    "loading": "Gathering local produce and seasons… The first lookup for a place takes about 15 seconds.",
+    "setKey": "Set OpenAI key",
+    "retry": "Retry",
+    "disclaimer": "Seasons are compiled by AI from public agricultural information. Actual availability shifts with each year's weather and growing region.",
+    "inSeasonTitle": "In season in {month}",
+    "kinds": "{count} items",
+    "noneThisMonth": "Nothing listed is at its peak this month. Try another month.",
+    "otherMonths": "Other months",
+    "areas": "Grown in",
+    "choose": "Picking",
+    "eat": "Eating",
+    "peakMonths": "Peak months: {months}"
+  }
+}

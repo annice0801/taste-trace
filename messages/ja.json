@@ -1,0 +1,724 @@
+{
+  "Landing": {
+    "meta": {
+      "title": "Taste-Trace｜気分と天気で、今日つくる料理を見つける",
+      "description": "シェフに今の気分を伝えるか、現地の天気を共有するだけ。Taste-Trace がぴったりの料理を提案します。現地で買える代替食材、人数に合わせた分量換算、買い物リスト、伝説のシェフに着想を得たレシピも。"
+    },
+    "hero": {
+      "title": "今日の気分が、<br></br>今日の一皿を決める。",
+      "body": "今の気持ちをシェフに伝えるか、あなたの街の天気を見せてください。Taste-Trace がちょうどいい三皿を提案し、現地で手に入る代替食材と人数分に換算した分量を添えてお届けします。",
+      "how": "使い方を見る",
+      "note": "Google アカウントでログイン・OpenAI キーの持ち込み可・レシピは一度生成すればずっと保存"
+    },
+    "sample": {
+      "eyebrow": "今日のおすすめ・小雨 18°C",
+      "title": "癒やされたい夜は、温かいスープを。",
+      "dish1": "椎茸の鶏スープ",
+      "dish1Time": "45 分",
+      "dish2": "かぼちゃのポタージュ",
+      "dish2Time": "30 分",
+      "dish3": "れんこんとスペアリブのスープ",
+      "dish3Time": "90 分"
+    },
+    "stats": {
+      "categories": {
+        "label": "の料理カテゴリー",
+        "note": "国・料理の種類・シェフ別"
+      },
+      "chefs": {
+        "label": "人の伝説のシェフ",
+        "note": "エスコフィエから傅培梅まで"
+      },
+      "servings": {
+        "label": "人分まで自由に調整",
+        "note": "−と＋で調整、分数や「半分」も正しく換算"
+      },
+      "local": {
+        "value": "現地",
+        "label": "の代替食材",
+        "note": "スーパーで見つからないときの代わり"
+      }
+    },
+    "how": {
+      "title": "ひと言の気分から、<br></br>食卓の一皿へ。",
+      "steps": {
+        "mood": {
+          "title": "気分を伝える、または天気を共有",
+          "body": "気分を選ぶ、ひと言書く、または位置情報を許可して、シェフにあなたの街の天気を見てもらいます。"
+        },
+        "recommend": {
+          "title": "シェフが三皿を提案",
+          "body": "カテゴリーごとに専属のシェフがいます。台湾の宴席料理のおばあちゃん、京都の料理長、トスカーナのおばあちゃん……それぞれの語り口で、なぜ今のあなたにこの料理なのかを伝えます。"
+        },
+        "save": {
+          "title": "保存・買い物・作品を記録",
+          "body": "人数に合わせて分量を換算し、複数の料理の食材を一枚の買い物リストにまとめます。作ったら写真を撮って作品集へ。"
+        }
+      }
+    },
+    "chefs": {
+      "title": "伝説のシェフに着想を得て、<br></br>料理の原理を学ぶ。",
+      "body": "伝説のシェフの料理スタイルに着想を得て、各料理を二つのパートで紹介します。まず古典技法がなぜそうなのかを理解し、次に家庭の道具と現地の食材で仕上げます。",
+      "masterTitle": "巨匠のエッセンス",
+      "masterBody": "核となる科学原理と技法の特徴。メイラード反応、乳化、ゼラチンの抽出……一つひとつの工程の「なぜ」を理解します。",
+      "homeTitle": "現代の家庭向けアレンジ",
+      "homeBody": "家にある道具と現地の食材に置き換え、原理は残して手間は省きます。所要時間と代替食材つき。",
+      "disclaimer": "シェフの肖像はすべてオリジナルのイラストで、本人の肖像ではありません。レシピは各シェフの料理スタイルに着想を得たオリジナルであり、本人のレシピではなく、本人または遺族の承認を受けたものでもありません。"
+    },
+    "features": {
+      "title": "提案から買い物まで、<br></br>すべての手順をサポート。",
+      "items": {
+        "scale": {
+          "title": "分量の換算",
+          "body": "1〜20 人分までいつでも調整。「1 と 1/2 カップ」「半個」も正しく換算します。"
+        },
+        "basket": {
+          "title": "まとめ買い物リスト",
+          "body": "作りたい料理を選ぶと同じ食材を自動でまとめます。お店で一つずつチェックできます。"
+        },
+        "substitute": {
+          "title": "現地の代替食材",
+          "body": "あなたのいる地域に合わせて、手に入らない食材の代わりを提案します。"
+        },
+        "notes": {
+          "title": "お気に入りとひと言メモ",
+          "body": "作ってみたい・作れた・お気に入り・要改良。味のタグとひと言メモも残せます。"
+        },
+        "works": {
+          "title": "作品集",
+          "body": "作った料理の写真と作り方を記録。公開して共有することも、自分だけが見られるメモを残すこともできます。"
+        },
+        "key": {
+          "title": "自分の OpenAI キーを使う",
+          "body": "自分のキーを貼り付けるだけ。キーはブラウザにのみ保存され、私たちは保管しません。"
+        }
+      }
+    },
+    "band": {
+      "title": "おいしい料理は、<br></br>手もとの食材を知ることから。"
+    },
+    "produce": {
+      "title": "今月、<br></br>市場でいちばんおいしいものは？",
+      "body": "あなたのいる場所に合わせて、地元の野菜と果物の旬の月、産地、選び方、食べ方をまとめます。旅行中は場所を変えれば、現地の市場がもっと楽しくなります。",
+      "cta": "旬の野菜と果物を見る",
+      "sampleLabel": "旬の例・台湾",
+      "monthRange": "1 — 12 月",
+      "peakLabel": "旬：{months} 月",
+      "samples": {
+        "cabbage": "キャベツ",
+        "bamboo": "たけのこ",
+        "mango": "マンゴー",
+        "pomelo": "文旦",
+        "persimmon": "柿"
+      }
+    },
+    "cta": {
+      "title": "今夜なに食べる？<br></br><em>Taste-Trace に</em>おまかせ。",
+      "start": "はじめる",
+      "chefs": "シェフに学ぶ"
+    },
+    "alt": {
+      "bread": "焼きたての手作りサワードウ",
+      "asparagusSoup": "アスパラガスのスープと新鮮なアスパラガス",
+      "beetroots": "木箱に入った採れたてのビーツ",
+      "ramen": "チャーシューと半熟卵のラーメン",
+      "chocolateCake": "チョコレートソースをかけたチョコレートケーキ",
+      "appleCake": "バニラアイスを添えたアップルケーキ"
+    }
+  },
+  "Categories": {
+    "groups": {
+      "chef": "伝説のシェフに着想を得て",
+      "country": "国から選ぶ",
+      "course": "料理の種類から選ぶ"
+    },
+    "items": {
+      "escoffier": {
+        "label": "Auguste Escoffier",
+        "description": "🇫🇷 エスコフィエ・近代フランス料理の父",
+        "personaName": "エスコフィエ・スタイル案内",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "ようこそ。エスコフィエのフランス料理体系に着想を得て、家庭で作れる一皿を考えます。まず今日の気分を教えてください。あなたの街の天気を見せていただくこともできます。",
+        "chefName": "オーギュスト・エスコフィエ",
+        "country": "フランス",
+        "knownFor": "近代フランス料理の父。五大母ソースを体系化し、厨房の分業制度を確立",
+        "signatureDishes": "コンソメ、ベアルネーズソース、ピーチ・メルバ"
+      },
+      "julia-child": {
+        "label": "Julia Child",
+        "description": "🇺🇸 ジュリア・チャイルド・フランス料理をアメリカの家庭へ",
+        "personaName": "ジュリア・チャイルド・スタイル案内",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "こんにちは！ジュリア・チャイルドのフランス家庭料理に着想を得て、フランス料理をあなたの家でも作れるようにします。今日の気分はいかが？天気を見せていただくこともできます。",
+        "chefName": "ジュリア・チャイルド",
+        "country": "アメリカ",
+        "knownFor": "フランス料理をアメリカの家庭の台所に広めた。『Mastering the Art of French Cooking』の著者",
+        "signatureDishes": "ブフ・ブルギニョン、フランス風ローストチキン、オムレツ"
+      },
+      "marcella-hazan": {
+        "label": "Marcella Hazan",
+        "description": "🇮🇹 マルチェッラ・ハザン・本場のイタリア家庭料理を英語圏へ",
+        "personaName": "マルチェッラ・ハザン・スタイル案内",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "Benvenuti！マルチェッラ・ハザンのイタリア家庭料理に着想を得て。少しの良い食材で、深い味わいを。今日の気分はいかが？天気を見せていただくこともできます。",
+        "chefName": "マルチェッラ・ハザン",
+        "country": "イタリア",
+        "knownFor": "本場のイタリア家庭料理を英語圏に紹介。簡潔で正確なレシピで知られる",
+        "signatureDishes": "玉ねぎとバターのトマトソース、ボロネーゼ、豚肉のミルク煮"
+      },
+      "paul-bocuse": {
+        "label": "Paul Bocuse",
+        "description": "🇫🇷 ポール・ボキューズ・ヌーヴェル・キュイジーヌの代表的人物",
+        "personaName": "ポール・ボキューズ・スタイル案内",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "Bienvenue！ポール・ボキューズのリヨン料理に着想を得て、旬の市場の新鮮な食材を大切にします。今日の気分を教えてください。天気を見せていただくこともできます。",
+        "chefName": "ポール・ボキューズ",
+        "country": "フランス",
+        "knownFor": "ヌーヴェル・キュイジーヌの代表的人物で、リヨン料理の象徴",
+        "signatureDishes": "黒トリュフのスープ・パイ包み焼き、リヨン風料理、ブレス鶏"
+      },
+      "fu-pei-mei": {
+        "label": "Fu Pei-mei",
+        "description": "🇹🇼 傅培梅・台湾のテレビ料理番組の先駆者",
+        "personaName": "傅培梅スタイル案内",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "こんにちは！傅培梅先生の中華家庭料理に着想を得て、どの家庭でも覚えられる一皿を作りましょう。今日の気分はいかが？天気を見せていただくこともできます。",
+        "chefName": "傅培梅（フー・ペイメイ）",
+        "country": "台湾",
+        "knownFor": "台湾のテレビ料理番組の先駆者。『培梅食譜』は何世代もの家庭の台所に影響を与えた",
+        "signatureDishes": "宮保鶏丁、獅子頭の醤油煮込み、酢豚風スペアリブ"
+      },
+      "shizuo-tsuji": {
+        "label": "Shizuo Tsuji",
+        "description": "🇯🇵 辻静雄・辻調理師専門学校の創設者",
+        "personaName": "辻静雄スタイル案内",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "ようこそ。辻静雄氏が世界に紹介した和食の「簡素の美」に着想を得ています。まず今日の気分を教えてください。あなたの街の季節や天気を見せていただくこともできます。",
+        "chefName": "辻静雄",
+        "country": "日本",
+        "knownFor": "辻調理師専門学校の創設者。『Japanese Cooking: A Simple Art』で和食を世界に紹介",
+        "signatureDishes": "一番だし、茶碗蒸し、魚の照り焼き"
+      },
+      "antonin-careme": {
+        "label": "Antonin Carême",
+        "description": "🇫🇷 アントナン・カレーム・オート・キュイジーヌの礎を築いた人",
+        "personaName": "アントナン・カレーム・スタイル案内",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "ようこそ。カレームのフランス高級料理に着想を得て、宮廷級の技法をシンプルにします。まず今日の気分を教えてください。天気を見せていただくこともできます。",
+        "chefName": "アントナン・カレーム",
+        "country": "フランス",
+        "knownFor": "オート・キュイジーヌの礎を築き、フランスのソースと菓子を体系化。「シェフの王」と呼ばれる",
+        "signatureDishes": "ヴルーテソース、ヴォロヴァン、シャルロット"
+      },
+      "elizabeth-david": {
+        "label": "Elizabeth David",
+        "description": "🇬🇧 エリザベス・デイヴィッド・地中海とフランスの田舎料理を戦後の英国家庭へ",
+        "personaName": "エリザベス・デイヴィッド・スタイル案内",
+        "personaTitle": "Taste-Trace 料理研究員",
+        "greeting": "こんにちは。エリザベス・デイヴィッドの地中海料理に着想を得て。良い食材、ハーブ、そしてオリーブオイル。今日の気分はいかが？天気を見せていただくこともできます。",
+        "chefName": "エリザベス・デイヴィッド",
+        "country": "イギリス",
+        "knownFor": "地中海とフランスの田舎料理を戦後の英国家庭に広めた。『A Book of Mediterranean Food』の著者",
+        "signatureDishes": "ラタトゥイユ、魚のハーブ焼き、フランス風田舎煮込み"
+      },
+      "taiwanese": {
+        "label": "台湾",
+        "description": "家庭料理、屋台の味、懐かしの味",
+        "personaName": "阿嬤（アマー）",
+        "personaTitle": "宴席料理50年の台湾のおばあちゃん",
+        "greeting": "今日はどうだった？おばあちゃんに今の気分を話してごらん。天気を見せてくれたら、今日なにを作るか一緒に考えるよ。"
+      },
+      "japanese": {
+        "label": "日本",
+        "description": "和食、丼もの、家庭料理",
+        "personaName": "健太親方",
+        "personaTitle": "京都の料亭の料理長",
+        "greeting": "いらっしゃいませ。本日の料理を決める前に、今のお気持ちか、そちらの天気と季節をお聞かせいただけますか。"
+      },
+      "korean": {
+        "label": "韓国",
+        "description": "鍋もの、ビビンバ、おかず",
+        "personaName": "ジヨンオンニ",
+        "personaTitle": "ソウルの路地裏食堂の女将",
+        "greeting": "いらっしゃい！今日の気分はどう？疲れてたら、あったかいものを作ってあげるね。そっちの天気を見せてくれてもいいよ！"
+      },
+      "italian": {
+        "label": "イタリア",
+        "description": "パスタ、リゾット、ピザ",
+        "personaName": "Nonna Lucia",
+        "personaTitle": "トスカーナのイタリアのおばあちゃん",
+        "greeting": "Ciao, tesoro! 今日の気分はどう？ノンナに教えて。そっちの天気を見せてくれたら、ぴったりの一皿を選んであげる。"
+      },
+      "thai": {
+        "label": "タイ",
+        "description": "甘辛酸っぱい東南アジアの味",
+        "personaName": "Somchai",
+        "personaTitle": "バンコクの屋台の料理人",
+        "greeting": "Sawasdee! 今日の調子はどう？辛いものでシャキッとする？それともさっぱり系？そっちの天気を見せてくれてもいいよ。"
+      },
+      "french": {
+        "label": "フランス",
+        "description": "ビストロ料理、煮込み、定番ソース",
+        "personaName": "Chef Louis",
+        "personaTitle": "パリのビストロのシェフ",
+        "greeting": "Bonsoir！今日の気分はいかが？教えてください。天気を見せていただければ、ビストロの得意料理を選びます。"
+      },
+      "vietnamese": {
+        "label": "ベトナム",
+        "description": "さっぱり麺、ハーブ、ヌクマム",
+        "personaName": "ランさん",
+        "personaTitle": "ハノイ旧市街のフォー屋台の女将",
+        "greeting": "Xin chào！今日はどうだった？さっぱりしたもの？それとも温かいもの？天気を見せてくれてもいいよ。"
+      },
+      "indian": {
+        "label": "インド",
+        "description": "スパイスカレー、豆料理、ナン",
+        "personaName": "Priya",
+        "personaTitle": "ムンバイの家庭料理教室の先生",
+        "greeting": "Namaste！今日の気分はどう？教えてください。天気を見せてくれたら、スパイスであなたにぴったりの一皿を作りましょう。"
+      },
+      "mexican": {
+        "label": "メキシコ",
+        "description": "タコス、サルサ、煮込み肉",
+        "personaName": "Don Miguel",
+        "personaTitle": "オアハカの市場のタコス職人",
+        "greeting": "¡Hola, amigo! 今日の気分はどう？辛いのがいい？マイルドがいい？天気を見せてくれてもいいよ。"
+      },
+      "dessert": {
+        "label": "デザート",
+        "description": "ケーキ、甘いスープ、癒やしのおやつ",
+        "personaName": "Chef Amélie",
+        "personaTitle": "パリのパティシエ",
+        "greeting": "Bonjour～今日はどんなスイーツで自分にごほうびをあげましょう？気分を教えてください。窓の外の天気を見せてくれてもいいですよ。"
+      },
+      "appetizer": {
+        "label": "前菜",
+        "description": "サラダ、和え物、小皿料理",
+        "personaName": "Marco",
+        "personaTitle": "ビストロの前菜の達人",
+        "greeting": "やあ！まずは食欲をそそる一皿から。今日の気分はどう？天気を見せてくれたら、ちょうどいい前菜を合わせるよ。"
+      },
+      "main-rice-noodle": {
+        "label": "主食・ご飯と麺",
+        "description": "お腹いっぱいになるご飯と麺",
+        "personaName": "陳さん",
+        "personaTitle": "30年続く麺とご飯の店の店主",
+        "greeting": "いらっしゃい！今日はがっつり？それともあっさり？気分を教えて。外の天気を見せてくれたら、陳さんが一杯用意するよ。"
+      },
+      "soup": {
+        "label": "スープ",
+        "description": "体が温まる煮込みスープとさっぱりスープ",
+        "personaName": "お母さん",
+        "personaTitle": "養生に詳しい家庭のスープ名人",
+        "greeting": "おかえり～今日は疲れた？お母さんに気分を話して。天気を見せてくれたら、ぴったりのスープを煮込むね。"
+      },
+      "brunch": {
+        "label": "ブランチ",
+        "description": "卵料理、パンケーキ、軽食",
+        "personaName": "Mia",
+        "personaTitle": "街角のブランチカフェのシェフ",
+        "greeting": "おはよう～（それともこんにちは！）今日はどんなふうに一日を始めたい？気分を教えて。窓の外の天気を見せてくれてもいいよ。"
+      },
+      "vegetarian": {
+        "label": "ベジタリアン",
+        "description": "野菜、豆腐、全粒穀物",
+        "personaName": "小禾（シャオホー）",
+        "personaTitle": "有機農園レストランのシェフ",
+        "greeting": "こんにちは～さっぱりした野菜料理はいかが？気分を教えてください。天気を見せてくれたら、畑の旬の野菜を見てみますね。"
+      },
+      "bento": {
+        "label": "お弁当",
+        "description": "冷めてもおいしいお弁当のおかず",
+        "personaName": "美恵さん",
+        "personaTitle": "20年お弁当を作り続ける働くお母さん",
+        "greeting": "お疲れさま！明日はお弁当？今の気分を教えて。天気を見せてくれたら、冷めてもおいしいおかずを考えるね。"
+      }
+    }
+  },
+  "Nav": {
+    "explore": "レシピ",
+    "chefs": "名シェフ",
+    "produce": "旬の食材",
+    "favorites": "お気に入り",
+    "works": "作品"
+  },
+  "Header": {
+    "home": "Taste-Trace ホーム",
+    "mainNav": "メインナビゲーション",
+    "mobileNav": "モバイルナビゲーション",
+    "signIn": "ログイン",
+    "signOut": "ログアウト",
+    "signInGoogle": "Google でログイン",
+    "start": "はじめる",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "language": "表示言語：{current}",
+    "languageMenu": "表示言語を選択"
+  },
+  "Footer": {
+    "about": "気分と現地の天気に合わせて料理を提案。現地で買える代替食材、分量換算、買い物リストつき。家庭の味から伝説のシェフの名作まで、自分の台所で作れます。",
+    "services": "サービス",
+    "copyright": "© Taste-Trace・個人の料理プロジェクト",
+    "aiNotice": "レシピは AI が生成しています。調理前にアレルゲンと食材の安全性をご確認ください。"
+  },
+  "Basket": {
+    "title": "買い物かご",
+    "button": "買い物かご、残り {count} 件",
+    "close": "買い物かごを閉じる",
+    "empty": "買い物かごは空です。<br></br>レシピの食材の横にある「＋」で追加できます。",
+    "sep": "、",
+    "substitute": "代わりに：{items}",
+    "usedIn": "使う料理：{recipes}",
+    "bought": "{name}を購入済み",
+    "remove": "削除",
+    "removeItem": "{name}を削除",
+    "copy": "リストをコピー",
+    "copied": "コピーしました",
+    "copyTitle": "買い物リスト",
+    "clearDone": "購入済みを消す",
+    "clearAll": "すべて消す"
+  },
+  "KeyPanel": {
+    "button": "API キー",
+    "buttonShort": "キー",
+    "statusSet": "（設定済み）",
+    "statusUnset": "（未設定）",
+    "title": "あなたの OpenAI キー",
+    "intro": "料理の提案とレシピの生成にこのキーを使います。料金はあなたの OpenAI アカウントに請求されます。",
+    "set": "設定済み",
+    "remove": "削除",
+    "placeholderReplace": "新しいキーを貼り付けて変更",
+    "showKey": "キーを表示",
+    "hideKey": "キーを隠す",
+    "show": "表示",
+    "hide": "隠す",
+    "verifying": "確認中…",
+    "save": "確認して保存",
+    "saved": "有効なキーです。このブラウザに保存したので、次回は貼り付け不要です。",
+    "privacy": "キーは私たちのサーバーには保存されません。このブラウザにのみ保存され、使用時だけ OpenAI に送られます。",
+    "getKey": "キーをお持ちでない方は OpenAI で取得",
+    "errorFormat": "形式が正しくありません。OpenAI のキーは sk- で始まる長い文字列です",
+    "errorVerify": "確認に失敗しました",
+    "errorNetwork": "確認のために接続できませんでした。しばらくしてから再度お試しください",
+    "errorStorage": "ブラウザが保存を許可していません（プライベートモード？）。キーは次回まで保持されません"
+  },
+  "Explore": {
+    "metaTitle": "レシピを探す",
+    "title": "今日は何を食べたい？",
+    "intro": "カテゴリーを選ぶと、シェフがまず気分や現地の天気をたずね、ぴったりの三皿を提案します。",
+    "chefNote": "シェフのスタイルに着想を得たオリジナルレシピ・「巨匠のエッセンス」と「現代の家庭向けアレンジ」の二部構成",
+    "signature": "代表的な料理",
+    "count": "{count} カテゴリー"
+  },
+  "CategoryPage": {
+    "back": "すべてのカテゴリー",
+    "inspiredBy": "着想元",
+    "signature": "代表的な料理",
+    "period": "。",
+    "disclaimer": "{name} の料理スタイルに着想を得たオリジナルレシピです。AI が公開情報をもとにまとめたもので、本人のレシピではありません。"
+  },
+  "Recommender": {
+    "setKey": "OpenAI キーを設定",
+    "moodLabel": "今の気分",
+    "moods": {
+      "happy": "うれしい",
+      "tired": "ちょっと疲れた",
+      "stressed": "ストレスがたまってる",
+      "comfort": "癒やされたい",
+      "celebrate": "お祝いしたい",
+      "noAppetite": "あまり食欲がない"
+    },
+    "moodPlaceholder": "または今の気分を自由に書いてください…",
+    "send": "送信",
+    "or": "または",
+    "weatherLabel": "あなたの街の天気",
+    "weatherButton": "現地の天気でおすすめ",
+    "weatherWithMood": "現地の天気も合わせておすすめ",
+    "locationPrivacy": "現在の天気を調べるためだけに使い、位置情報は保存しません。",
+    "moodWithWeather": "{mood}。こちらの天気も見てください",
+    "weatherOnly": "こちらの天気を見てください",
+    "locationError": "位置情報を取得できませんでした。ブラウザの位置情報を許可するか、気分で試してください。",
+    "recommendError": "提案に失敗しました。もう一度お試しください。",
+    "locating": "あなたの街の天気を確認しています…",
+    "thinking": "{name}が献立を考えています…",
+    "restart": "最初からやり直す",
+    "temperature": "{temperature}°C（体感 {feelsLike}°C）",
+    "weatherSource": "天気データ：",
+    "askAgain": "別の気分でもう一度",
+    "detailError": "レシピを読み込めませんでした。もう一度お試しください。",
+    "showDetail": "材料と作り方を見る",
+    "hideDetail": "材料と作り方を閉じる",
+    "writing": "{name}がレシピを書いています…",
+    "retry": "再試行",
+    "weatherCodes": {
+      "0": "快晴",
+      "1": "おおむね晴れ",
+      "2": "晴れ時々くもり",
+      "3": "くもり",
+      "45": "霧",
+      "48": "着氷性の霧",
+      "51": "霧雨",
+      "53": "霧雨",
+      "55": "強い霧雨",
+      "61": "小雨",
+      "63": "雨",
+      "65": "大雨",
+      "66": "着氷性の雨",
+      "67": "強い着氷性の雨",
+      "71": "小雪",
+      "73": "雪",
+      "75": "大雪",
+      "77": "霧雪",
+      "80": "にわか雨",
+      "81": "強いにわか雨",
+      "82": "激しいにわか雨",
+      "85": "にわか雪",
+      "86": "強いにわか雪",
+      "95": "雷雨",
+      "96": "ひょうを伴う雷雨",
+      "99": "ひょうを伴う激しい雷雨"
+    }
+  },
+  "Tags": {
+    "minutes": "{count} 分",
+    "difficulty": {
+      "easy": "かんたん",
+      "medium": "ふつう",
+      "hard": "上級"
+    },
+    "scenes": {
+      "home": "家庭料理",
+      "party": "おもてなし",
+      "bento": "お弁当",
+      "late-night": "夜食",
+      "afternoon-tea": "ティータイム",
+      "brunch": "ブランチ",
+      "quick-meal": "時短"
+    },
+    "roles": {
+      "main": "主菜",
+      "side": "副菜",
+      "staple": "主食",
+      "soup": "汁物",
+      "dessert": "デザート",
+      "snack": "軽食",
+      "drink": "飲み物"
+    },
+    "mainIngredients": {
+      "pork": "豚肉",
+      "chicken": "鶏肉",
+      "beef": "牛肉",
+      "lamb": "羊肉",
+      "seafood": "魚介",
+      "egg": "卵",
+      "tofu-soy": "豆腐・大豆製品",
+      "vegetable": "野菜",
+      "mushroom": "きのこ",
+      "rice": "ご飯",
+      "noodle": "麺",
+      "flour-bread": "粉もの・パン",
+      "dairy": "乳製品",
+      "fruit": "果物"
+    },
+    "favoriteLabels": {
+      "want-to-try": "作ってみたい",
+      "cooked": "作れた",
+      "loved": "お気に入り",
+      "to-improve": "要改良"
+    },
+    "tasteNotes": {
+      "too-sweet": "甘すぎ",
+      "too-salty": "しょっぱすぎ",
+      "too-bland": "薄すぎ",
+      "just-right": "ちょうどいい",
+      "too-spicy": "辛すぎ"
+    }
+  },
+  "Photo": {
+    "recipeAlt": "{title}のイメージ写真",
+    "illustrative": "イメージ写真",
+    "photoBy": "撮影：",
+    "avatarLabel": "{name} に着想を得たオリジナルのイラスト"
+  },
+  "Errors": {
+    "generic": "エラーが発生しました。しばらくしてから再度お試しください",
+    "photoUnreadable": "この写真を読み込めません。JPG か PNG をお使いください（iPhone は「設定 > カメラ > フォーマット」で「互換性優先」を選択）",
+    "photoUnsupported": "ブラウザがこの写真を処理できません",
+    "photoCompress": "写真の圧縮に失敗しました。別の写真でお試しください",
+    "uploadFailed": "アップロードに失敗しました。しばらくしてから再度お試しください",
+    "saveFailed": "保存に失敗しました",
+    "deleteFailed": "削除に失敗しました",
+    "notImage": "写真ファイルを選んでください"
+  },
+  "Creations": {
+    "caption": "作り方と感想",
+    "captionPublic": "みんなに公開",
+    "captionPrivate": "今は自分だけが見られます",
+    "captionPlaceholder": "例：玉ねぎを濃いきつね色まで炒めるのに 10 分余計にかかったけど、スープがぐっと甘くなった。仕上げはハンドブレンダーでなめらかに。",
+    "note": "非公開メモ",
+    "onlyYou": "自分だけが見られます",
+    "notePlaceholder": "例：次回は塩を小さじ半分減らす、うちのオーブンは 5 分長めに",
+    "share": "レシピページで公開する",
+    "shareHint": "写真、作り方、あなたの名前が公開されます。非公開メモは公開されません。",
+    "confirmDelete": "「{title}」のこの作品写真を削除しますか？",
+    "photoAlt": "{title}の作品写真",
+    "public": "公開",
+    "private": "非公開",
+    "you": "あなた",
+    "saving": "保存中…",
+    "save": "保存",
+    "cancel": "キャンセル",
+    "edit": "編集",
+    "delete": "削除",
+    "loading": "みんなの作品を読み込み中…",
+    "loadError": "みんなの作品を読み込めませんでした。",
+    "sectionTitle": "みんなの作品",
+    "sharedCount": "{count} 件の投稿",
+    "noneShared": "まだ投稿はありません",
+    "mineCount": "あなたの {count} 枚",
+    "full": "作品写真の上限です",
+    "shareMine": "作品を投稿する",
+    "signInToShare": "ログインして投稿",
+    "emptyHint": "この料理を作りましたか？写真と作り方を残して、次に作る人の参考に。",
+    "previewAlt": "アップロードする作品写真のプレビュー",
+    "pickPhoto": "料理の写真を選ぶ",
+    "pickPhotoHint": "自動で圧縮し、撮影場所の情報を削除します",
+    "upload": "アップロード",
+    "pickFirst": "先に写真を選んでください",
+    "autoSaveHint": "アップロードするとこの料理がお気に入りに保存され、「作れた」が付きます。",
+    "status": {
+      "compressing": "写真を圧縮中…",
+      "uploading": "アップロード中…"
+    }
+  },
+  "Recipe": {
+    "servingsLabel": "分量",
+    "servings": "{count} 人分",
+    "decrease": "1 人分減らす",
+    "increase": "1 人分増やす",
+    "master": "巨匠のエッセンス",
+    "principles": "核となる科学原理",
+    "techniques": "技法の特徴",
+    "home": "現代の家庭向けアレンジ",
+    "adaptations": "原版 → 家庭版の調整",
+    "ingredients": "材料",
+    "steps": "作り方",
+    "addToBasket": "{name}を買い物かごに追加",
+    "removeFromBasket": "{name}を買い物かごから削除",
+    "substitute": "代わりに：{item}",
+    "scaledNote": "元の {count} 人分から換算しています。「適量」「少々」などは換算しません。",
+    "viewBasket": "買い物かごを見る",
+    "addAll": "すべて買い物かごへ",
+    "tip": "{name}のひと工夫"
+  },
+  "Save": {
+    "saved": "保存済み",
+    "save": "保存",
+    "signInToSave": "ログインして保存",
+    "error": "操作に失敗しました。もう一度お試しください"
+  },
+  "Favorites": {
+    "title": "お気に入り",
+    "loading": "お気に入りを読み込み中…",
+    "allCategories": "すべてのカテゴリー",
+    "allSaved": "すべてのお気に入り",
+    "labelCount": "{label}（{count}）",
+    "empty": "まだお気に入りのレシピはありません",
+    "pickDish": "料理を探す",
+    "searchPlaceholder": "料理名、食材、味、シーン、メモで検索…",
+    "count": "{count} 品",
+    "ofTotal": "（全 {count} 品）",
+    "defaultPersona": "シェフ",
+    "saveError": "保存に失敗しました",
+    "quickNotes": "ひと言メモ",
+    "notePlaceholder": "ひと言メモ。例：醤油を少し控えめに、子どもに大好評",
+    "creationAlt": "作品写真",
+    "creationsMore": "作品写真 {count} 枚・もう一枚アップロード",
+    "creationsFirst": "できあがった？写真をアップロード",
+    "addToShopping": "買い物リストに追加",
+    "noDetail": "材料の情報がまだありません",
+    "collapse": "閉じる"
+  },
+  "Shopping": {
+    "title": "買い物リスト",
+    "copyHeader": "買い物リスト（{count} 人分）：{recipes}",
+    "remaining": "残り {remaining} / {total} 件",
+    "clear": "クリア",
+    "mergeNote": "同じ食材はまとめて合計しています。「適量」「少々」など合計できないものは並べて表示します。"
+  },
+  "Login": {
+    "title": "ログインして続ける",
+    "favorites": "ログインするとレシピを保存して、いつでも見返せます。",
+    "works": "ログインすると作品写真をアップロードして作品集に残せます。",
+    "google": "Google でログイン"
+  },
+  "Works": {
+    "title": "作品",
+    "intro": "作った料理の写真を撮って、作り方を書き残しましょう。公開した作品はレシピページでみんなと共有され、非公開メモは自分だけが見られます。",
+    "loading": "作品を読み込み中…",
+    "emptyTitle": "まず作りたい料理をお気に入りに",
+    "emptyBody": "作品写真はお気に入りのレシピと一緒に保存されます。料理をお気に入りに入れて、作ったらアップロードしましょう。",
+    "pickDish": "料理を探す",
+    "uploadSection": "作品写真をアップロード",
+    "stepPhoto": "写真",
+    "dropzone": "写真を選ぶかドラッグ",
+    "formats": "JPG、PNG、WebP、iPhone の写真",
+    "change": "別の写真にする",
+    "compressNote": "アップロード前に自動で圧縮し、撮影場所などの情報を削除します。",
+    "stepRecipe": "どの料理？",
+    "usedCount": "この料理は {used} / {max} 枚アップロード済み",
+    "stepNotes": "作り方とメモ（任意）",
+    "markCooked": "この料理に「作れた」も付ける",
+    "full": "この料理の作品写真は上限です",
+    "done": "作品集に追加しました",
+    "journal": "作品集",
+    "all": "すべて",
+    "noCreations": "まだ作品写真はありません。最初の一皿ができたら撮ってみましょう。"
+  },
+  "Produce": {
+    "title": "旬の野菜と果物",
+    "intro": "今月、地元で旬を迎えるのは？野菜と果物の旬、選び方、食べ方をチェック。旅行中は場所を切り替えれば、現地の市場がわかります。",
+    "loadError": "読み込めませんでした。しばらくしてから再度お試しください",
+    "networkError": "接続できませんでした。しばらくしてから再度お試しください",
+    "chooseLocation": "場所を選ぶ",
+    "manual": "旅行中・手動で選択",
+    "auto": "タイムゾーンから自動判定",
+    "detecting": "現在地を判定中…",
+    "locationLabel": "場所",
+    "placeholder": "場所を入力（例：京都）",
+    "go": "表示",
+    "locationHint": "都市名や国名を入力すると、その土地の旬の野菜と果物を表示します",
+    "myLocation": "現在地",
+    "presets": {
+      "taiwan": "台湾",
+      "tokyo": "日本・東京",
+      "seoul": "韓国・ソウル",
+      "bangkok": "タイ・バンコク",
+      "hanoi": "ベトナム・ハノイ",
+      "italy": "イタリア",
+      "paris": "フランス・パリ",
+      "california": "アメリカ・カリフォルニア",
+      "sydney": "オーストラリア・シドニー"
+    },
+    "monthGroup": "月",
+    "thisMonth": "今月",
+    "typeGroup": "種類",
+    "types": {
+      "all": "すべて",
+      "vegetable": "野菜",
+      "fruit": "果物"
+    },
+    "loading": "現地の野菜と果物、旬を調べています…初めての場所は 15 秒ほどかかります。",
+    "setKey": "OpenAI キーを設定",
+    "retry": "再試行",
+    "disclaimer": "旬の情報は AI が公開されている農産物情報をもとにまとめたものです。実際の出回り時期はその年の天候や産地によって前後します。",
+    "inSeasonTitle": "{month}が旬",
+    "kinds": "{count} 種類",
+    "noneThisMonth": "今月が旬のものは載っていません。別の月を見てみましょう。",
+    "otherMonths": "ほかの月",
+    "areas": "産地",
+    "choose": "選び方",
+    "eat": "食べ方",
+    "peakMonths": "旬：{months}"
+  }
+}

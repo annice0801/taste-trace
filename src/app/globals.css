@@ -1,26 +1,151 @@
 @import "tailwindcss";
 
+/* 色彩：紙張米白 + 墨色文字 + 紅椒色點綴 + 深橄欖綠區塊 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f5f0e8;
+  --foreground: #1d1a16;
+  --surface: #fbf8f3;
+  --muted: #6b6157;
+  --border: #ddd3c5;
+  --accent: #9c3d1c;
+  --accent-soft: #f1e2d6;
+  --olive: #2f3a2b;
+  --olive-soft: #e4e7da;
+  --on-olive: #f2ede3;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #151310;
+    --foreground: #efe8dd;
+    --surface: #1d1a16;
+    --muted: #a59b8e;
+    --border: #352f28;
+    --accent: #e0875f;
+    --accent-soft: #352219;
+    --olive: #1f271c;
+    --olive-soft: #232a20;
+    --on-olive: #efe8dd;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-olive: var(--olive);
+  --color-olive-soft: var(--olive-soft);
+  --color-on-olive: var(--on-olive);
+  --font-sans: var(--font-geist-sans), "PingFang TC", "Noto Sans TC",
+    "Microsoft JhengHei", sans-serif;
+  --font-serif: var(--font-display-latin), var(--font-serif-tc), "Songti TC",
+    "PMingLiU", serif;
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* 小標：全大寫、加寬字距 */
+@utility eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* 細線分隔的編號，例：01 —— */
+@utility section-number {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* 主要按鈕與次要按鈕 */
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: var(--background);
+  padding: 0.7rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s, opacity 0.2s;
+  &:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+@utility btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--foreground);
+  padding: 0.7rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+  &:hover {
+    background: var(--foreground);
+    color: var(--background);
+  }
+  &:disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+/* 選項膠囊（心情、篩選、份量） */
+@utility chip {
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.95rem;
+  font-size: 0.85rem;
+  transition: border-color 0.2s, background-color 0.2s, color 0.2s;
+  &:hover {
+    border-color: var(--foreground);
+  }
+  &[aria-pressed="true"] {
+    border-color: var(--foreground);
+    background: var(--foreground);
+    color: var(--background);
+  }
+}
+
+/* 輸入框 */
+@utility field {
+  width: 100%;
+  min-width: 0;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 0.65rem 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  &:focus {
+    border-color: var(--foreground);
+  }
+}
+
+/* 日文標題依詞組換行，避免「決め／る」這種斷在字中間的情況（不支援的瀏覽器維持原樣） */
+:lang(ja) :is(h1, h2, h3) {
+  word-break: auto-phrase;
 }
