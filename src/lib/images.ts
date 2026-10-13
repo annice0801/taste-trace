@@ -138,7 +138,11 @@ const DRINK_WORDS =
 // 主角是人的照片不採用（除非描述裡同時明確提到食物）
 const PEOPLE_WORDS = /\b(man|men|woman|women|person|people|boy|girl|child|children|portrait|smiling|selfie|model|crowd|group of people)\b/;
 
-export type PhotoKind = "food" | "drink";
+export type PhotoKind = "food" | "drink" | "produce";
+
+// 食材、蔬果照片不能出現這些：動物、加工包裝、人
+const NOT_PRODUCE_WORDS =
+  /\b(bird|parrot|parakeet|animal|dog|cat|insect|butterfly|bee|squirrel|monkey|jar|jars|bottle|bottles|package|packaging|packaged|label|labels|can|cans|box|boxes|brand|product|products|pickle|pickles|jam|sauce|cocktail|drink|juice|smoothie|cake|pie|tart|dessert|dish|plate of|soup|person|man|woman|people|hand holding|girl|boy)\b/;
 
 // 用 Unsplash 的照片描述給照片打分數：
 //   2：描述提到搜尋詞本身（例：yuzu、highball）且種類相符
@@ -154,8 +158,14 @@ export function photoRelevance(
   const queryWords = query
     .toLowerCase()
     .split(/[^a-z]+/)
-    .filter((word) => word.length >= 4 && word !== "food" && word !== "drink");
+    .filter((word) => word.length >= 3 && !["food", "drink", "fresh", "raw"].includes(word));
   const mentionsQuery = queryWords.some((word) => text.includes(word));
+  // 食材、當季蔬果：照片要是這個蔬果本身，描述一定要提到它，而且不能是動物、加工品或料理
+  //（名稱有好幾個字時每個字都要出現，例：garlic chive 不能配到只有 garlic 的照片）
+  if (kind === "produce") {
+    const mentionsAll = queryWords.length > 0 && queryWords.every((word) => text.includes(word));
+    return mentionsAll && !NOT_PRODUCE_WORDS.test(text) ? 2 : 0;
+  }
   if (PEOPLE_WORDS.test(text) && !mentionsQuery) return 0;
   // 飲料一定要看得出是飲料（例：麵、拉麵的照片不能當調酒的圖）
   const rightKind = kind === "drink" ? DRINK_WORDS.test(text) : FOOD_WORDS.test(text) || DRINK_WORDS.test(text);

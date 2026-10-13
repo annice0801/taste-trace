@@ -95,7 +95,8 @@ export async function resolveIngredientImages(
     if (lookups > 0) await sleep(LOOKUP_INTERVAL_MS);
     lookups++;
     try {
-      const photo = await findUnsplashImage(doc.englishName, "squarish", 400);
+      // 只採用蔬果、食材本身的照片（排除動物、果醬罐之類的加工品）
+      const photo = await findUnsplashImage(`fresh ${doc.englishName}`, "squarish", 400, "produce");
       const image = photo && {
         url: photo.url,
         author: photo.author ?? "Unsplash",
