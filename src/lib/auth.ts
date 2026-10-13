@@ -15,7 +15,21 @@ const client = (globalForAuth.authMongoClient ??= new MongoClient(
   process.env.MONGODB_URI ?? "mongodb://127.0.0.1:27017/taste-trace",
 ));
 
+// 登入回呼網址的根網址。部署到 Vercel 時若 BETTER_AUTH_URL 沒設定或誤設成 localhost
+// （例如直接複製 .env.local），改用 Vercel 提供的網址，避免 Google 登入後被導回本機
+function authBaseURL(): string | undefined {
+  const configured = process.env.BETTER_AUTH_URL;
+  const vercelHost =
+    process.env.VERCEL_ENV === "production"
+      ? process.env.VERCEL_PROJECT_PRODUCTION_URL
+      : process.env.VERCEL_URL;
+  const pointsToLocalhost = !configured || /localhost|127\.0\.0\.1/.test(configured);
+  if (process.env.VERCEL && vercelHost && pointsToLocalhost) return `https://${vercelHost}`;
+  return configured;
+}
+
 export const auth = betterAuth({
+  baseURL: authBaseURL(),
   database: mongodbAdapter(client.db(), { client }),
   user: {
     // 後台停權：被停權的帳號不能登入，現有的登入也會失效
