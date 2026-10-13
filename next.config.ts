@@ -6,6 +6,8 @@ const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const nextConfig: NextConfig = {
   /* config options here */
   cacheComponents: true,
+  // 關掉開發模式左下角的「N」浮動按鈕（只在 npm run dev 出現；錯誤畫面仍會顯示）
+  devIndicators: false,
   partialPrefetching: true,
   images: {
     // 食譜照片來源：Unsplash、Wikimedia Commons、透過 Openverse 找到的 Flickr 照片；
