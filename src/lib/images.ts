@@ -117,15 +117,52 @@ async function findWikimediaImage(
   return null;
 }
 
-type UnsplashSearchResponse = {
-  results: {
-    id: string;
-    premium?: boolean; // Unsplash+ 付費照片，不能免費使用
-    urls: { raw: string };
-    links: { html: string; download_location: string };
-    user: { name: string; links: { html: string } };
-  }[];
+type UnsplashPhoto = {
+  id: string;
+  premium?: boolean; // Unsplash+ 付費照片，不能免費使用
+  alt_description: string | null;
+  description: string | null;
+  urls: { raw: string };
+  links: { html: string; download_location: string };
+  user: { name: string; links: { html: string } };
 };
+
+type UnsplashSearchResponse = { results: UnsplashPhoto[] };
+
+// 照片描述裡出現這些字，才算是食物照片
+const FOOD_WORDS =
+  /\b(food|foods|dish|dishes|meal|cuisine|cook|cooked|cooking|recipe|plate|plated|bowl|soup|stew|broth|noodles?|ramen|pasta|spaghetti|rice|salad|sandwich|burger|pizza|bread|toast|cake|dessert|pastry|cookie|pie|tart|pudding|ice cream|chocolate|fruit|fruits|vegetables?|meat|beef|pork|chicken|lamb|fish|seafood|shrimp|prawn|crab|squid|egg|eggs|tofu|curry|sauce|dumplings?|sushi|taco|breakfast|lunch|dinner|brunch|snack|kitchen|ingredients?|spices?|herbs?|garnish|tea|coffee|drink|beverage|juice|cheese|butter|grilled|fried|roasted|baked|steamed|served|delicious|tasty)\b/;
+// 飲料、調酒的照片要有這些字
+const DRINK_WORDS =
+  /\b(drink|drinks|cocktail|cocktails|mocktail|beverage|glass|glasses|cup|mug|tea|coffee|latte|espresso|juice|smoothie|milkshake|lemonade|soda|highball|martini|mojito|wine|beer|whisky|whiskey|gin|rum|vodka|sangria|bubble tea|boba|iced|ice cubes|straw|bar|bartender)\b/;
+// 主角是人的照片不採用（除非描述裡同時明確提到食物）
+const PEOPLE_WORDS = /\b(man|men|woman|women|person|people|boy|girl|child|children|portrait|smiling|selfie|model|crowd|group of people)\b/;
+
+export type PhotoKind = "food" | "drink";
+
+// 用 Unsplash 的照片描述給照片打分數：
+//   2：描述提到搜尋詞本身（例：yuzu、highball）且種類相符
+//   1：只是同類型的照片（食物照、飲料照）
+//   0：不相關（以人為主角、種類不符、沒有描述）
+export function photoRelevance(
+  photo: { alt_description: string | null; description: string | null },
+  query: string,
+  kind: PhotoKind = "food",
+): 0 | 1 | 2 {
+  const text = `${photo.alt_description ?? ""} ${photo.description ?? ""}`.toLowerCase();
+  if (!text.trim()) return 0; // 沒有描述就無法判斷，寧可不用
+  const queryWords = query
+    .toLowerCase()
+    .split(/[^a-z]+/)
+    .filter((word) => word.length >= 4 && word !== "food" && word !== "drink");
+  const mentionsQuery = queryWords.some((word) => text.includes(word));
+  if (PEOPLE_WORDS.test(text) && !mentionsQuery) return 0;
+  // 飲料一定要看得出是飲料（例：麵、拉麵的照片不能當調酒的圖）
+  const rightKind = kind === "drink" ? DRINK_WORDS.test(text) : FOOD_WORDS.test(text) || DRINK_WORDS.test(text);
+  if (kind === "drink" && !rightKind) return 0;
+  if (mentionsQuery) return 2;
+  return rightKind ? 1 : 0;
+}
 
 // Unsplash API 規範：連回 Unsplash 的網址要帶上來源參數
 const UNSPLASH_REFERRAL = "utm_source=taste_trace&utm_medium=referral";
@@ -137,6 +174,7 @@ export async function findUnsplashImage(
   query: string,
   orientation: "landscape" | "squarish" = "landscape",
   width = 1200,
+  kind: PhotoKind = "food",
 ): Promise<RecipeImage | null> {
   const accessKey = process.env.UNSPLASH_ACCESS_KEY;
   if (!accessKey) return null;
@@ -145,13 +183,17 @@ export async function findUnsplashImage(
   const url = new URL("https://api.unsplash.com/search/photos");
   url.search = new URLSearchParams({
     query,
-    per_page: "5",
+    per_page: "10",
     orientation,
     content_filter: "high",
   }).toString();
   const data = await getJson<UnsplashSearchResponse>(url, headers);
 
-  const photo = data.results.find((result) => !result.premium);
+  // 優先採用描述提到這道菜的照片，其次是同類型的照片；全部不相關就回傳 null，交給下一個圖庫
+  const candidates = data.results.filter((result) => !result.premium);
+  const photo =
+    candidates.find((result) => photoRelevance(result, query, kind) === 2) ??
+    candidates.find((result) => photoRelevance(result, query, kind) === 1);
   if (!photo) return null;
 
   // 採用照片時通知 Unsplash（計入攝影師的下載數）；失敗不影響使用
@@ -245,6 +287,7 @@ export async function findRecipeImage(
   title: string,
   englishName: string | null,
   imageKeywords: string | null,
+  kind: PhotoKind = "food",
 ): Promise<RecipeImage | null> {
   let failed = false;
   const shortKeywords = imageKeywords?.split(/\s+/).slice(0, 2).join(" ");
@@ -252,7 +295,8 @@ export async function findRecipeImage(
   // Unsplash 測試額度每小時只有 50 次，所以最多查兩次：英文菜名、食材關鍵字
   for (const query of [...new Set([englishName, imageKeywords].filter(Boolean))] as string[]) {
     try {
-      const unsplash = await findUnsplashImage(query);
+      // 加上 food／drink，避免像「Hiyayakko」這種少見的菜名搜到人像
+      const unsplash = await findUnsplashImage(`${query} ${kind}`, "landscape", 1200, kind);
       if (unsplash) return unsplash;
     } catch (error) {
       // 額度用完或連線失敗時改用其他來源

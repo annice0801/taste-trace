@@ -66,6 +66,13 @@ async function CategoryContent({ params }: { params: Params }) {
         </header>
       )}
 
+      {/* 酒類內容依法標示警語 */}
+      {category.slug === "cocktail" && (
+        <p className="-mt-6 mb-8 rounded-xl border border-border bg-surface px-4 py-3 text-center text-sm font-medium">
+          {(await getTranslations("CategoryPage"))("alcoholNotice")}
+        </p>
+      )}
+
       <Recommender
         categorySlug={category.slug}
         persona={persona}

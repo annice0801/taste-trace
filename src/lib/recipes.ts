@@ -189,6 +189,10 @@ export async function resolveRecipeImages(
         recipe.title,
         recipe.englishName ?? null,
         recipe.imageKeywords ?? null,
+        // 調酒、飲料類別或角色是飲品時，要找飲料的照片
+        recipe.category === "cocktail" || recipe.category === "drinks" || recipe.attributes?.role === "drink"
+          ? "drink"
+          : "food",
       );
       await RecipeModel.updateOne(
         { _id: recipe._id },

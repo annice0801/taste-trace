@@ -332,6 +332,20 @@
         "personaName": "美惠姐",
         "personaTitle": "準備了二十年便當的上班族媽媽",
         "greeting": "辛苦啦！明天要帶便當嗎？說說你現在的心情，或讓我看看天氣，幫你配一份冷了也好吃的菜。"
+      },
+      "cocktail": {
+        "label": "調酒",
+        "description": "經典與創意調酒，附無酒精版本",
+        "personaName": "Leo",
+        "personaTitle": "台北巷弄酒吧的調酒師",
+        "greeting": "晚安，歡迎光臨。今天想來杯什麼樣的？說說你的心情，或讓我看看你那邊的天氣。也可以做無酒精的版本喔。"
+      },
+      "drinks": {
+        "label": "飲料",
+        "description": "茶飲、咖啡、果汁與氣泡飲",
+        "personaName": "小葵",
+        "personaTitle": "飲品研究家・前手搖店店長",
+        "greeting": "嗨～今天想喝點什麼？冰的、熱的、甜的還是清爽的？說說你的心情，或讓我看看你那邊的天氣。"
       }
     }
   },
@@ -415,7 +429,8 @@
     "inspiredBy": "靈感來自",
     "signature": "代表料理",
     "period": "。",
-    "disclaimer": "以 {name} 的料理風格為靈感的原創食譜，由 AI 依公開資料整理，並非本人食譜。"
+    "disclaimer": "以 {name} 的料理風格為靈感的原創食譜，由 AI 依公開資料整理，並非本人食譜。",
+    "alcoholNotice": "飲酒過量，有害健康。未滿 18 歲請勿飲酒，喝酒不開車。"
   },
   "Recommender": {
     "setKey": "設定 OpenAI 金鑰",

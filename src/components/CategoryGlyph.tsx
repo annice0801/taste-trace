@@ -161,6 +161,27 @@ const GLYPHS: Record<string, Glyph> = {
       <path d="M36 44c4-6 12-6 16 0" />
     </>,
   },
+  cocktail: {
+    color: "#e6d3ee", blob: 2, offset: [6, 6],
+    body: <>
+      <path d="M12 14h40L32 36z" />
+      <path d="M19 21h26" />
+      <path d="M32 36v17M22 55h20" />
+      <circle cx="38" cy="22" r="3.5" />
+      <path d="M46 8L36 26" />
+    </>,
+  },
+  drinks: {
+    color: "#cfe6dc", blob: 3, offset: [-6, 7],
+    body: <>
+      <path d="M19 18h26l-4 35a3 3 0 0 1-3 3H26a3 3 0 0 1-3-3z" />
+      <path d="M16 18h32" />
+      <path d="M35 18l8-14" />
+      <rect x="25" y="25" width="6" height="6" rx="1.5" />
+      <rect x="33" y="29" width="6" height="6" rx="1.5" />
+      {[dot(28, 50, 1.8), dot(33, 51, 1.8), dot(37, 48, 1.8), dot(30, 45, 1.8), dot(35, 44, 1.8)]}
+    </>,
+  },
 };
 
 export default function CategoryGlyph({

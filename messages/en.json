@@ -332,6 +332,20 @@
         "personaName": "Auntie Mei-hui",
         "personaTitle": "Working mom with 20 years of bento-making",
         "greeting": "Long day? Packing a bento tomorrow? Tell me your mood, or let me see the weather, and I'll suggest something that's still delicious cold."
+      },
+      "cocktail": {
+        "label": "Cocktails",
+        "description": "Classic and creative cocktails, with alcohol-free versions",
+        "personaName": "Leo",
+        "personaTitle": "Bartender at a Taipei alley bar",
+        "greeting": "Good evening, welcome in. What kind of drink are you in the mood for? Tell me how you feel, or let me check the weather where you are. I can make an alcohol-free version too."
+      },
+      "drinks": {
+        "label": "Drinks",
+        "description": "Tea, coffee, juices and sparkling drinks",
+        "personaName": "Kui",
+        "personaTitle": "Drinks researcher and former bubble tea shop manager",
+        "greeting": "Hi! What would you like to drink today — iced, hot, sweet or refreshing? Tell me your mood, or let me check the weather where you are."
       }
     }
   },
@@ -415,7 +429,8 @@
     "inspiredBy": "Inspired by",
     "signature": "Signature dishes",
     "period": ".",
-    "disclaimer": "Original recipes inspired by {name}'s cooking style, compiled by AI from public sources. These are not the chef's own recipes."
+    "disclaimer": "Original recipes inspired by {name}'s cooking style, compiled by AI from public sources. These are not the chef's own recipes.",
+    "alcoholNotice": "Drink responsibly. Excessive drinking is harmful to your health. Not for anyone under the legal drinking age. Never drink and drive."
   },
   "Recommender": {
     "setKey": "Set OpenAI key",
