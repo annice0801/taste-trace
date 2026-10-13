@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import CategoryGlyph from "@/components/CategoryGlyph";
 import ChefAvatar from "@/components/ChefAvatar";
+import Reveal from "@/components/Reveal";
 import { Link } from "@/i18n/navigation";
 import { CATEGORIES } from "@/lib/categories";
 
@@ -35,8 +36,8 @@ export default async function ExplorePage() {
           <span className="text-xs text-muted">{t("chefNote")}</span>
         </div>
         <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {chefs.map(({ slug, chef }) => (
-            <li key={slug}>
+          {chefs.map(({ slug, chef }, index) => (
+            <Reveal as="li" key={slug} delay={(index % 3) * 100}>
               <Link
                 href={`/recipes/${slug}`}
                 className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition hover:border-foreground"
@@ -58,7 +59,7 @@ export default async function ExplorePage() {
                   {tc(`${slug}.signatureDishes`)}
                 </p>
               </Link>
-            </li>
+            </Reveal>
           ))}
         </ul>
       </section>
@@ -70,8 +71,8 @@ export default async function ExplorePage() {
             <span className="text-xs text-muted">{t("count", { count: categories.length })}</span>
           </div>
           <ul className="grid sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map((category) => (
-              <li key={category.slug} className="border-b border-border">
+            {categories.map((category, index) => (
+              <Reveal as="li" key={category.slug} delay={(index % 3) * 80} className="border-b border-border">
                 <Link
                   href={`/recipes/${category.slug}`}
                   className="group flex items-center gap-4 py-5 pr-2 transition sm:pr-6"
@@ -85,7 +86,7 @@ export default async function ExplorePage() {
                     →
                   </span>
                 </Link>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </section>

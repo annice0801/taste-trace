@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import ChefAvatar, { PhotoCredit } from "@/components/ChefAvatar";
 import Parallax from "@/components/Parallax";
+import Reveal from "@/components/Reveal";
 import { Link } from "@/i18n/navigation";
 import { CATEGORIES, type Photo } from "@/lib/categories";
 import { LANDING_PHOTOS } from "@/lib/landing-photos";
@@ -25,6 +26,7 @@ function FramedPhoto({
   sizes,
   priority = false,
   depth = 12,
+  zoom = 0,
   creditInside = false,
 }: {
   photo: Photo;
@@ -33,6 +35,7 @@ function FramedPhoto({
   sizes: string;
   priority?: boolean;
   depth?: number; // 照片在框內的視差幅度（最大 15）
+  zoom?: number; // 捲動時從放大慢慢回到原尺寸的幅度，例：0.12
   creditInside?: boolean; // 授權標示放在照片右上角（照片下方有其他元素蓋住時用）
 }) {
   return (
@@ -40,7 +43,7 @@ function FramedPhoto({
       <div className={`relative overflow-hidden rounded-sm bg-border ${className}`}>
         {/* 照片比框高 44%（上下各多 22%），捲動時在框內位移；
             位移上限是照片高度的 15%（≈ 框高的 21.6%），不會露出邊緣 */}
-        <Parallax shift={Math.min(depth, 15)} className="absolute inset-x-0 -top-[22%] -bottom-[22%]">
+        <Parallax shift={Math.min(depth, 15)} zoom={zoom} className="absolute inset-x-0 -top-[22%] -bottom-[22%]">
           <Image
             src={photo.src}
             alt={alt}
@@ -87,14 +90,19 @@ export default async function LandingPage() {
       {/* 主視覺 */}
       <section className="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 pt-12 pb-20 sm:px-6 md:grid-cols-[1.1fr_1fr] md:gap-10 md:pt-16 md:pb-24 lg:gap-16 lg:pt-20 lg:pb-28">
         <div>
-          <p className="eyebrow">Mood &amp; weather based recipes</p>
+          <p className="eyebrow rise">Mood &amp; weather based recipes</p>
           <h1 className="mt-5 font-serif text-[2.6rem] leading-[1.12] tracking-tight sm:text-6xl md:text-5xl lg:text-6xl xl:text-7xl">
-            {t.rich("hero.title", { br })}
+            {/* 標題逐行升起 */}
+            {(t.raw("hero.title") as string).split("<br></br>").map((line, index) => (
+              <span key={line} className="rise block" style={{ "--rise-delay": `${150 + index * 140}ms` } as React.CSSProperties}>
+                {line}
+              </span>
+            ))}
           </h1>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-muted sm:text-lg">
+          <p className="rise mt-6 max-w-md text-base leading-relaxed text-muted sm:text-lg" style={{ "--rise-delay": "480ms" } as React.CSSProperties}>
             {t("hero.body")}
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
+          <div className="rise mt-9 flex flex-wrap gap-3" style={{ "--rise-delay": "600ms" } as React.CSSProperties}>
             <Link href="/explore" className="btn-primary">
               {t("cta.start")} <span aria-hidden>→</span>
             </Link>
@@ -102,10 +110,10 @@ export default async function LandingPage() {
               {t("hero.how")}
             </a>
           </div>
-          <p className="mt-6 text-xs text-muted">{t("hero.note")}</p>
+          <p className="rise mt-6 text-xs text-muted" style={{ "--rise-delay": "720ms" } as React.CSSProperties}>{t("hero.note")}</p>
         </div>
 
-        <div className="relative">
+        <div className="rise relative" style={{ "--rise-delay": "250ms" } as React.CSSProperties}>
           <FramedPhoto
             photo={photos.bread}
             alt={t("alt.bread")}
@@ -113,6 +121,7 @@ export default async function LandingPage() {
             sizes="(max-width: 768px) 100vw, 560px"
             priority
             depth={15}
+            zoom={0.14}
             creditInside
           />
           {/* 推薦結果示意：比照片捲得快，做出前後景深 */}
@@ -139,36 +148,55 @@ export default async function LandingPage() {
       {/* 數字 */}
       <section className="border-y border-border">
         <dl className="mx-auto grid w-full max-w-6xl grid-cols-2 gap-px bg-border md:grid-cols-4">
-          {STAT_KEYS.map((stat) => (
+          {STAT_KEYS.map((stat, index) => (
+            // 底色留在外層，內容浮現前不會露出格線的灰色
             <div key={stat.key} className="bg-background px-4 py-8 sm:px-6 md:py-10">
               <dt className="sr-only">{t(`stats.${stat.key}.label`)}</dt>
               <dd>
+                <Reveal as="span" delay={index * 90} className="block">
                 <span className="font-serif text-4xl sm:text-5xl">{stat.value ?? t(`stats.${stat.key}.value`)}</span>
                 <span className="mt-2 block text-sm font-medium">{t(`stats.${stat.key}.label`)}</span>
                 <span className="mt-1 block text-xs text-muted">{t(`stats.${stat.key}.note`)}</span>
+                </Reveal>
               </dd>
             </div>
           ))}
         </dl>
       </section>
 
+      {/* 大字橫向滑動帶：兩列往相反方向，跟著捲動移動 */}
+      <section className="overflow-hidden py-14 sm:py-20" aria-hidden>
+        <Parallax shift={0} x={-14} className="whitespace-nowrap">
+          <p className="font-serif text-[clamp(3rem,9vw,8rem)] leading-none tracking-tight">
+            {Array.from({ length: 3 }, () => t("marquee.row1")).join("　")}
+          </p>
+        </Parallax>
+        <Parallax shift={0} x={14} className="-ml-[40%] mt-3 whitespace-nowrap sm:mt-5">
+          <p className="outline-text font-serif text-[clamp(3rem,9vw,8rem)] leading-none tracking-tight italic">
+            {Array.from({ length: 3 }, () => t("marquee.row2")).join("　")}
+          </p>
+        </Parallax>
+      </section>
+
       {/* 如何運作 */}
       <section id="how" className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-24 sm:px-6">
         <div className="grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
           <div>
-            <p className="eyebrow">How it works</p>
-            <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-5xl lg:text-[2.6rem] xl:text-5xl">
-              {t.rich("how.title", { br })}
-            </h2>
+            <Reveal>
+              <p className="eyebrow">How it works</p>
+              <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-5xl lg:text-[2.6rem] xl:text-5xl">
+                {t.rich("how.title", { br })}
+              </h2>
+            </Reveal>
             <ol className="mt-12 space-y-10">
               {STEP_KEYS.map((key, index) => (
-                <li key={key} className="grid grid-cols-[3rem_1fr] gap-2 border-t border-border pt-6">
+                <Reveal as="li" key={key} delay={index * 120} className="grid grid-cols-[3rem_1fr] gap-2 border-t border-border pt-6">
                   <span className="section-number">0{index + 1}</span>
                   <div>
                     <h3 className="font-serif text-xl">{t(`how.steps.${key}.title`)}</h3>
                     <p className="mt-2 leading-relaxed text-muted">{t(`how.steps.${key}.body`)}</p>
                   </div>
-                </li>
+                </Reveal>
               ))}
             </ol>
           </div>
@@ -179,6 +207,7 @@ export default async function LandingPage() {
               className="aspect-[4/3] md:aspect-[16/9] lg:aspect-[4/3]"
               sizes="(max-width: 1024px) 100vw, 600px"
               depth={15}
+              zoom={0.1}
             />
           </Parallax>
         </div>
@@ -189,13 +218,15 @@ export default async function LandingPage() {
         <div className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <div>
-              <p className="eyebrow !text-on-olive/60">Inspired by the masters</p>
-              <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-5xl">
-                {t.rich("chefs.title", { br })}
-              </h2>
-              <p className="mt-6 max-w-md leading-relaxed text-on-olive/75">
-                {t("chefs.body")}
-              </p>
+              <Reveal>
+                <p className="eyebrow !text-on-olive/60">Inspired by the masters</p>
+                <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-5xl">
+                  {t.rich("chefs.title", { br })}
+                </h2>
+                <p className="mt-6 max-w-md leading-relaxed text-on-olive/75">
+                  {t("chefs.body")}
+                </p>
+              </Reveal>
             </div>
             <div className="grid gap-px overflow-hidden rounded-sm bg-on-olive/15 sm:grid-cols-2">
               <div className="bg-olive p-6">
@@ -212,8 +243,10 @@ export default async function LandingPage() {
           </div>
 
           <ul className="mt-16 flex flex-wrap justify-center gap-x-4 gap-y-10 sm:gap-x-8">
-            {CHEFS.map(({ slug, chef }) => (
-              <li key={slug} className="w-[calc(50%-0.5rem)] sm:w-40">
+            {CHEFS.map(({ slug, chef }, index) => (
+              <Reveal as="li" key={slug} delay={(index % 4) * 90} className="w-[calc(50%-0.5rem)] sm:w-40">
+                {/* 相鄰頭像捲動速度不同，做出前後層次 */}
+                <Parallax shift={index % 2 ? -14 : 10} from={640}>
                 <Link href={`/recipes/${slug}`} className="group block text-center">
                   <ChefAvatar chef={chef!} size={112} />
                   <span className="mt-4 block font-serif text-lg leading-tight group-hover:underline">
@@ -223,7 +256,8 @@ export default async function LandingPage() {
                     {[tc(`${slug}.chefName`), chef!.years].filter((part) => part !== chef!.englishName).join("・")}
                   </span>
                 </Link>
-              </li>
+                </Parallax>
+              </Reveal>
             ))}
           </ul>
           <p className="mt-12 text-center text-xs text-on-olive/50">
@@ -235,19 +269,19 @@ export default async function LandingPage() {
       {/* 功能 */}
       <section className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6">
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-20">
-          <div>
+          <Reveal className="lg:sticky lg:top-28 lg:self-start">
             <p className="eyebrow">Features</p>
             <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-4xl">
               {t.rich("features.title", { br })}
             </h2>
-          </div>
+          </Reveal>
           <ul className="grid gap-x-10 sm:grid-cols-2">
             {FEATURE_KEYS.map((key, index) => (
-              <li key={key} className="border-t border-border py-6">
+              <Reveal as="li" key={key} delay={(index % 2) * 120} className="border-t border-border py-6">
                 <p className="section-number">{String(index + 1).padStart(2, "0")}</p>
                 <h3 className="mt-2 font-serif text-xl">{t(`features.items.${key}.title`)}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted">{t(`features.items.${key}.body`)}</p>
-              </li>
+              </Reveal>
             ))}
           </ul>
         </div>
@@ -280,7 +314,7 @@ export default async function LandingPage() {
       {/* 當季蔬果 */}
       <section className="mx-auto mt-24 w-full max-w-6xl px-4 sm:px-6">
         <div className="grid gap-10 md:grid-cols-[1fr_1.1fr] md:items-center md:gap-16">
-          <div>
+          <Reveal>
             <p className="eyebrow">In season</p>
             <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-4xl">
               {t.rich("produce.title", { br })}
@@ -291,15 +325,15 @@ export default async function LandingPage() {
             <Link href="/produce" className="btn-primary mt-8">
               {t("produce.cta")} <span aria-hidden>→</span>
             </Link>
-          </div>
-          <div className="rounded-2xl border border-border bg-surface p-5 sm:p-7">
+          </Reveal>
+          <Reveal delay={150} className="rounded-2xl border border-border bg-surface p-5 shadow-[0_30px_60px_-40px_rgba(60,40,20,0.35)] sm:p-7">
             <p className="flex items-baseline justify-between text-xs text-muted">
               <span>{t("produce.sampleLabel")}</span>
               <span className="tabular-nums">{t("produce.monthRange")}</span>
             </p>
             <ul className="mt-4 divide-y divide-border">
-              {SEASON_SAMPLES.map((sample) => (
-                <li key={sample.key} className="grid grid-cols-[5.5rem_1fr] items-center gap-4 py-3.5">
+              {SEASON_SAMPLES.map((sample, index) => (
+                <Reveal as="li" key={sample.key} delay={250 + index * 90} className="grid grid-cols-[5.5rem_1fr] items-center gap-4 py-3.5">
                   <span className="font-serif text-lg leading-tight">{t(`produce.samples.${sample.key}`)}</span>
                   <span className="grid grid-cols-12 gap-0.5" aria-label={t("produce.peakLabel", { months: sample.months.join(", ") })}>
                     {Array.from({ length: 12 }, (_, index) => (
@@ -309,10 +343,10 @@ export default async function LandingPage() {
                       />
                     ))}
                   </span>
-                </li>
+                </Reveal>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -348,9 +382,11 @@ export default async function LandingPage() {
       {/* 行動呼籲 */}
       <section className="mx-auto w-full max-w-6xl px-4 pt-24 sm:px-6">
         <div className="flex flex-col items-start justify-between gap-8 border-t border-foreground pt-12 md:flex-row md:items-end">
-          <h2 className="font-serif text-4xl leading-tight sm:text-6xl">
-            {t.rich("cta.title", { br, em: (chunks) => <span className="italic text-accent">{chunks}</span> })}
-          </h2>
+          <Reveal>
+            <h2 className="font-serif text-4xl leading-tight sm:text-6xl">
+              {t.rich("cta.title", { br, em: (chunks) => <span className="italic text-accent">{chunks}</span> })}
+            </h2>
+          </Reveal>
           <div className="flex flex-wrap gap-3">
             <Link href="/explore" className="btn-primary">
               {t("cta.start")} <span aria-hidden>→</span>

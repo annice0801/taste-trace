@@ -124,6 +124,10 @@
       "ramen": "叉燒溏心蛋拉麵",
       "chocolateCake": "淋上巧克力醬的巧克力蛋糕",
       "appleCake": "附香草冰淇淋的蘋果蛋糕"
+    },
+    "marquee": {
+      "row1": "今天的心情 ・ 當地的天氣 ・ 季節的食材 ・",
+      "row2": "Mood — Weather — Season — Taste — Trace —"
     }
   },
   "Categories": {

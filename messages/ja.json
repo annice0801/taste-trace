@@ -124,6 +124,10 @@
       "ramen": "チャーシューと半熟卵のラーメン",
       "chocolateCake": "チョコレートソースをかけたチョコレートケーキ",
       "appleCake": "バニラアイスを添えたアップルケーキ"
+    },
+    "marquee": {
+      "row1": "今日の気分 ・ 街の天気 ・ 旬の食材 ・",
+      "row2": "Mood — Weather — Season — Taste — Trace —"
     }
   },
   "Categories": {

@@ -149,3 +149,74 @@ body {
 :lang(ja) :is(h1, h2, h3) {
   word-break: auto-phrase;
 }
+
+/* ── 捲動與載入動畫 ─────────────────────────────── */
+
+/* 捲動到畫面時浮現（Reveal 元件） */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  filter: blur(6px);
+  transition:
+    opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 1.1s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    filter 0.9s ease var(--reveal-delay, 0ms);
+}
+.reveal[data-shown="true"] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* 首頁標題載入時逐行升起 */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.6em, 0);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.rise {
+  animation: rise-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--rise-delay, 0ms);
+}
+
+/* 紙張質感：非常淡的顆粒，讓大面積的淺色底不會顯得平板（深色模式更淡） */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-color-scheme: dark) {
+  body::after {
+    opacity: 0.035;
+    mix-blend-mode: screen;
+  }
+}
+
+/* 大字橫向滑動帶：外框字 */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .rise {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+    animation: none;
+  }
+}

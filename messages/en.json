@@ -124,6 +124,10 @@
       "ramen": "Ramen with chashu pork and soft-boiled egg",
       "chocolateCake": "Chocolate cake drizzled with chocolate sauce",
       "appleCake": "Apple cake with vanilla ice cream"
+    },
+    "marquee": {
+      "row1": "Today's mood · Local weather · Seasonal produce ·",
+      "row2": "Mood — Weather — Season — Taste — Trace —"
     }
   },
   "Categories": {
