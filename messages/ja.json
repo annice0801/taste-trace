@@ -784,6 +784,9 @@
       "lamb": "羊肉"
     },
     "retailNames": "量販店の表示",
-    "wholesaleNames": "精肉店・卸の呼び名"
+    "wholesaleNames": "精肉店・卸の呼び名",
+    "compareTitle": "似た部位の比較",
+    "compareCut": "部位",
+    "compareBest": "おすすめ"
   }
 }

@@ -76,11 +76,13 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
   },
   beef: {
     neck: { retail: ["牛頸肉"], wholesale: ["Neck", "頸肉"] },
-    chuck: {
-      retail: ["板腱牛排", "嫩肩里肌", "牛肩里肌火鍋片", "翼板牛排"],
-      wholesale: ["Top Blade（板腱）", "Chuck Roll（肩胛肉捲）", "Chuck Tender", "嫩肩"],
-      snacks: [snack("台南牛肉湯", "溫體牛嫩肩或腰內，逆紋切 0.2 cm 薄片", "生肉片放碗中，直接沖入滾燙牛骨湯燙熟", "肉要當天現宰才鮮甜，配薑絲與醬油膏。")],
+    chucktender: {
+      retail: ["嫩肩火鍋片", "嫩肩肉片"],
+      wholesale: ["Chuck Tender", "Mock Tender", "嫩肩"],
+      snacks: [snack("台南牛肉湯", "溫體牛嫩肩（或腰內），逆紋切 0.2 cm 薄片", "生肉片放碗中，直接沖入滾燙牛骨湯燙熟", "肉要當天現宰才鮮甜，配薑絲與醬油膏。")],
     },
+    topblade: { retail: ["板腱牛排", "翼板牛排", "翼板燒肉片"], wholesale: ["Top Blade", "Flat Iron（去筋後的牛排）", "翼板"] },
+    chuckeye: { retail: ["肩里肌牛排", "嫩肩里肌牛排", "霜降牛肉片"], wholesale: ["Chuck Eye Roll", "Chuck Roll（肩胛肉捲）", "肩胛里肌"] },
     ribeye: { retail: ["肋眼牛排", "沙朗牛排（部分賣場）", "霜降火鍋片"], wholesale: ["Ribeye Roll", "Rib", "肋眼心"] },
     striploin: { retail: ["紐約客牛排", "沙朗"], wholesale: ["Striploin", "Short Loin", "外脊"] },
     tenderloin: { retail: ["菲力牛排", "腓力"], wholesale: ["Tenderloin", "腰內", "菲力"] },

@@ -784,6 +784,9 @@
       "lamb": "Lamb & goat"
     },
     "retailNames": "Supermarket labels",
-    "wholesaleNames": "Butcher / wholesale"
+    "wholesaleNames": "Butcher / wholesale",
+    "compareTitle": "Compare similar cuts",
+    "compareCut": "Cut",
+    "compareBest": "Best for"
   }
 }

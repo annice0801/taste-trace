@@ -122,7 +122,13 @@ export default function CutsExplorer() {
         </div>
 
         <div ref={detailRef} className="scroll-mt-20">
-          <CutDetail key={`${animal.id}-${selected.id}`} cut={selected} highlight={method} />
+          <CutDetail
+            key={`${animal.id}-${selected.id}`}
+            cut={selected}
+            highlight={method}
+            group={selected.compareGroup ? allCuts.filter((cut) => cut.compareGroup === selected.compareGroup) : []}
+            onSelect={selectCut}
+          />
         </div>
       </div>
 
@@ -195,6 +201,21 @@ function CutDiagram({
           <path key={d} d={d} fill="none" stroke="#7a3a22" strokeWidth={2.5} strokeLinecap="round" pointerEvents="none" />
         ))}
 
+        {/* 引線：標籤放在身體外的部位（例：牛肩胛），從標籤拉一條線指到部位 */}
+        {animal.cuts.map((cut) => {
+          if (!cut.label || !cut.anchor) return null;
+          const [x, y] = cut.label;
+          const [ax, ay] = cut.anchor;
+          const active = cut.id === selectedId;
+          const color = active ? "#9c3d1c" : "#7a3a22";
+          return (
+            <g key={`${cut.id}-leader`} pointerEvents="none" opacity={matches(cut) ? 1 : 0.45}>
+              <line x1={x} y1={y + 6} x2={ax} y2={ay} stroke={color} strokeWidth={1.2} strokeDasharray="3 2" />
+              <circle cx={ax} cy={ay} r={3.5} fill={color} stroke="#fffaf3" strokeWidth={1.5} />
+            </g>
+          );
+        })}
+
         {/* 標籤：英文小字在上、中文在下 */}
         {animal.cuts.map((cut) => {
           if (!cut.label) return null;
@@ -205,7 +226,15 @@ function CutDiagram({
             ? { fill: "#fffaf3", stroke: "#6f2a12", strokeWidth: 3.5 }
             : { fill: "#5b2512", stroke: "#fbefe6", strokeWidth: 3.5 };
           return (
-            <g key={cut.id} pointerEvents="none" opacity={matches(cut) ? 1 : 0.45} style={{ paintOrder: "stroke" }} strokeLinejoin="round">
+            <g
+              key={cut.id}
+              pointerEvents={cut.anchor ? "auto" : "none"}
+              onClick={cut.anchor ? () => onSelect(cut.id) : undefined}
+              className={cut.anchor ? "cursor-pointer" : undefined}
+              opacity={matches(cut) ? 1 : 0.45}
+              style={{ paintOrder: "stroke" }}
+              strokeLinejoin="round"
+            >
               <text x={x} y={showChinese ? y - 17 : y} textAnchor="middle" fontSize={10} fontStyle="italic" {...ink} strokeWidth={3}>
                 {cut.nameEn.split(" (")[0]}
               </text>
@@ -235,7 +264,17 @@ function Meter({ label, value }: { label: string; value: number }) {
   );
 }
 
-function CutDetail({ cut, highlight }: { cut: MeatCut; highlight: CookingMethod | null }) {
+function CutDetail({
+  cut,
+  highlight,
+  group,
+  onSelect,
+}: {
+  cut: MeatCut;
+  highlight: CookingMethod | null;
+  group: MeatCut[];
+  onSelect: (id: string) => void;
+}) {
   const t = useTranslations("Cuts");
   const locale = useLocale();
   // 選了煮法時，把那個煮法排到最前面
@@ -270,6 +309,8 @@ function CutDetail({ cut, highlight }: { cut: MeatCut; highlight: CookingMethod 
       <p className="mt-4 leading-relaxed">{cut.description}</p>
       <p className="mt-2 text-sm text-muted">{t("texture")}：{cut.texture}</p>
 
+      {group.length > 1 && <CompareTable cuts={group} currentId={cut.id} onSelect={onSelect} />}
+
       <h3 className="mt-6 border-b border-foreground pb-2 font-serif text-lg">{t("howToCook")}</h3>
       <ul className="divide-y divide-border">
         {methods.map((m) => (
@@ -299,5 +340,53 @@ function CutDetail({ cut, highlight }: { cut: MeatCut; highlight: CookingMethod 
         {cut.buyTip}
       </p>
     </article>
+  );
+}
+
+// 容易混淆的相鄰部位並排比較（例：牛的嫩肩、板腱、肩里肌）
+function CompareTable({ cuts, currentId, onSelect }: { cuts: MeatCut[]; currentId: string; onSelect: (id: string) => void }) {
+  const t = useTranslations("Cuts");
+  const dots = (value: number) => (
+    <span className="inline-flex gap-0.5" aria-label={`${value}/5`}>
+      {[1, 2, 3, 4, 5].map((n) => (
+        <span key={n} className={`size-1.5 rounded-full ${n <= value ? "bg-accent" : "bg-border"}`} />
+      ))}
+    </span>
+  );
+  return (
+    <section className="mt-6">
+      <h3 className="font-serif text-lg">{t("compareTitle")}</h3>
+      <div className="mt-2 overflow-x-auto">
+        <table className="w-full min-w-[26rem] text-left text-xs">
+          <thead className="text-muted">
+            <tr className="border-b border-border">
+              <th className="py-2 pr-2 font-normal">{t("compareCut")}</th>
+              <th className="py-2 pr-2 font-normal">{t("fat")}</th>
+              <th className="py-2 pr-2 font-normal">{t("tenderness")}</th>
+              <th className="py-2 pr-2 font-normal">{t("texture")}</th>
+              <th className="py-2 font-normal">{t("compareBest")}</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-border">
+            {cuts.map((cut) => (
+              <tr key={cut.id} className={cut.id === currentId ? "bg-accent-soft/60" : ""}>
+                <td className="py-2 pr-2 align-top">
+                  <button type="button" onClick={() => onSelect(cut.id)} className="text-left font-medium underline-offset-4 hover:underline">
+                    {cut.name}
+                  </button>
+                  <span className="block text-[10px] text-muted">{cut.nameEn.split(" (")[0]}</span>
+                </td>
+                <td className="py-2 pr-2 align-top">{dots(cut.fat)}</td>
+                <td className="py-2 pr-2 align-top">{dots(cut.tenderness)}</td>
+                <td className="py-2 pr-2 align-top leading-relaxed">{cut.texture}</td>
+                <td className="py-2 align-top">
+                  {cut.methods.filter((m) => m.method !== "snack").slice(0, 2).map((m) => t(`methods.${m.method}`)).join("、")}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }

@@ -784,6 +784,9 @@
       "lamb": "羊肉"
     },
     "retailNames": "賣場標示",
-    "wholesaleNames": "肉商說法"
+    "wholesaleNames": "肉商說法",
+    "compareTitle": "肩胛部位比較",
+    "compareCut": "部位",
+    "compareBest": "最適合"
   }
 }
