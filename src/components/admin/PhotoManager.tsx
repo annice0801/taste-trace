@@ -42,6 +42,27 @@ export default function PhotoManager() {
   const params = new URLSearchParams({ type, status, ...(region && type === "ingredient" && { region }), ...(query && { q: query }) });
   const { data, error, loading, reload } = useAdminData<PhotosData>(`/api/admin/photos?${params}`);
   const [editing, setEditing] = useState<Row | null>(null);
+  const [filling, setFilling] = useState(false);
+  const { notify } = useOperation();
+
+  // 立即替還沒找過的食材找照片（不用等有人打開頁面）
+  async function autoFill() {
+    setFilling(true);
+    try {
+      const res = await fetch("/api/admin/photos/fill", { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "自動補照片失敗");
+      notify({
+        type: "success",
+        message: data.tried === 0 ? "沒有還沒找過的食材" : `找了 ${data.tried} 種，補上 ${data.found} 張；還有 ${data.remaining} 種沒找`,
+      });
+      reload();
+    } catch (err) {
+      notify({ type: "error", message: err instanceof Error ? err.message : "自動補照片失敗" });
+    } finally {
+      setFilling(false);
+    }
+  }
 
   return (
     <>
@@ -85,6 +106,17 @@ export default function PhotoManager() {
           <button type="submit" className="btn-secondary !px-3 !py-1.5 !text-sm">搜尋</button>
         </form>
       </div>
+
+      {type === "ingredient" && (data?.counts.pending ?? 0) > 0 && (
+        <div className="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-sm">
+          <span className="text-muted">
+            有 {data!.counts.pending} 種食材還沒找過照片（要等有人打開頁面才會找）。
+          </span>
+          <button type="button" onClick={autoFill} disabled={filling} className="btn-primary !px-4 !py-1.5 !text-sm">
+            {filling ? "找照片中…（約 30 秒）" : "立即自動補照片（一次 12 種）"}
+          </button>
+        </div>
+      )}
 
       <div className="mt-4 flex flex-wrap gap-2">
         {[

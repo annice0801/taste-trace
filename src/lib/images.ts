@@ -40,7 +40,7 @@ function stripHtml(html: string | undefined): string | null {
 }
 
 type WikiPagesResponse = {
-  query?: { pages?: { pageimage?: string; missing?: boolean }[] };
+  query?: { pages?: { title?: string; pageimage?: string; missing?: boolean }[] };
 };
 
 type CommonsImageResponse = {
@@ -56,7 +56,7 @@ type CommonsImageResponse = {
   };
 };
 
-async function findWikipediaPageImage(lang: "zh" | "en", title: string) {
+async function findWikipediaPage(lang: "zh" | "en", title: string) {
   const url = new URL(`https://${lang}.wikipedia.org/w/api.php`);
   url.search = new URLSearchParams({
     action: "query",
@@ -68,8 +68,16 @@ async function findWikipediaPageImage(lang: "zh" | "en", title: string) {
     titles: title,
   }).toString();
   const data = await getJson<WikiPagesResponse>(url);
-  return data.query?.pages?.[0]?.pageimage ?? null;
+  const page = data.query?.pages?.[0];
+  return { image: page?.pageimage ?? null, title: page?.title ?? title };
 }
+
+async function findWikipediaPageImage(lang: "zh" | "en", title: string) {
+  return (await findWikipediaPage(lang, title)).image;
+}
+
+// 照片的檔名與說明，給食材照片判斷是否相關（以照片網址為 key）
+const commonsDescriptions = new Map<string, string>();
 
 async function getCommonsImage(fileName: string): Promise<RecipeImage | null> {
   const url = new URL("https://commons.wikimedia.org/w/api.php");
@@ -89,6 +97,7 @@ async function getCommonsImage(fileName: string): Promise<RecipeImage | null> {
   if (!info?.thumburl) return null;
 
   const meta = info.extmetadata ?? {};
+  commonsDescriptions.set(info.thumburl, `${fileName} ${stripHtml(meta.ObjectName?.value) ?? ""} ${stripHtml(meta.ImageDescription?.value) ?? ""}`);
   return {
     url: info.thumburl,
     source: "wikimedia",
@@ -111,11 +120,26 @@ export async function findWikimediaProduceImage(englishName: string, chineseName
   if (englishName.trim()) candidates.push(["en", englishName.trim()]);
   if (chineseName.trim()) candidates.push(["zh", chineseName.trim()]);
   for (const [lang, name] of candidates) {
-    const fileName = await findWikipediaPageImage(lang, name);
+    const page = await findWikipediaPage(lang, name);
+    const fileName = page.image;
     if (!fileName || NON_PHOTO_FILE.test(fileName) || !/\.(jpe?g|webp)$/i.test(fileName)) continue;
+    // 1500–1899 年的檔名多半是古書插圖、股票之類的文物，不是食材照片
+    if (/(^|[^0-9])1[5-8][0-9]{2}([^0-9]|$)/.test(fileName)) continue;
     const image = await getCommonsImage(fileName);
     // 沒有標明授權的不採用
-    if (image?.license && !/fair use/i.test(image.license)) return image;
+    if (!image?.license || /fair use/i.test(image.license)) continue;
+    // 照片的檔名或說明要提到這個食材（英文名稱或條目名稱，例：Ipomoea aquatica），
+    // 避免「stock」查到股票、「butter」條目首圖是蛋糕這類情形
+    // 比對字根，讓單複數都算（leaf／leaves、blackberry／blackberries、onion／onions）
+    const words = `${englishName} ${page.title}`
+      .toLowerCase()
+      .split(/[^a-z]+/)
+      .filter((word) => word.length >= 3 && !["fresh", "minced", "sliced", "dried", "whole", "boneless", "unsalted", "purpose", "the", "and"].includes(word))
+      .map((word) => word.replace(/(ies|ves|es|s|y|f)$/, ""))
+      .filter((stem) => stem.length >= 3);
+    const description = (commonsDescriptions.get(image.url) ?? fileName).toLowerCase();
+    if (words.length > 0 && !words.some((word) => description.includes(word))) continue;
+    return image;
   }
   return null;
 }

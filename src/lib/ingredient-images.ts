@@ -130,8 +130,9 @@ export async function resolveIngredientImages(
           };
         }
       }
-      // Unsplash 額度用完、維基百科也沒有：先不記錄，等額度恢復再找
+      // Unsplash 額度用完、維基百科也沒有：記下維基百科查過了，等 Unsplash 額度恢復再找
       if (!image && unsplashDown) {
+        await IngredientImageModel.updateOne({ key }, { $set: { wikiCheckedAt: new Date() } });
         pendingKeys.add(key);
         continue;
       }

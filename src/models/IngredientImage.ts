@@ -23,6 +23,7 @@ const ingredientImageSchema = new Schema(
     },
     manual: { type: Boolean }, // 管理員手動上傳，自動搜尋與檢查都不會覆蓋
     imageCheckedAt: { type: Date }, // 上次找照片的時間；找不到時避免每次重找
+    wikiCheckedAt: { type: Date }, // Unsplash 額度用完時改查維基百科也沒找到的時間；等 Unsplash 額度恢復再找
   },
   { timestamps: true },
 );
