@@ -245,11 +245,21 @@ function CutDetail({ cut, highlight }: { cut: MeatCut; highlight: CookingMethod 
     <article className="rounded-2xl border border-border bg-surface p-5 sm:p-6 lg:sticky lg:top-24" aria-live="polite">
       <p className="text-xs tracking-wide text-muted italic">{cut.nameEn}</p>
       <h2 className="mt-1 font-serif text-3xl">{cut.name}</h2>
-      {cut.aliases.length > 0 && (
-        <p className="mt-1 text-sm text-muted">
-          {t("aliases")}：{cut.aliases.join("、")}
-        </p>
-      )}
+      {/* 各種叫法：一般說法、大賣場標示、肉攤與批發 */}
+      <dl className="mt-3 space-y-1.5 text-sm">
+        {[
+          [t("aliases"), cut.aliases],
+          [t("retailNames"), cut.retailNames ?? []],
+          [t("wholesaleNames"), cut.wholesaleNames ?? []],
+        ]
+          .filter(([, names]) => (names as string[]).length > 0)
+          .map(([label, names]) => (
+            <div key={label as string} className="grid grid-cols-[5.5rem_1fr] gap-2">
+              <dt className="text-muted">{label as string}</dt>
+              <dd>{(names as string[]).join("、")}</dd>
+            </div>
+          ))}
+      </dl>
       {locale !== "zh-TW" && <p className="mt-2 rounded-lg bg-background px-3 py-1.5 text-[11px] text-muted">{t("contentNotice")}</p>}
 
       <div className="mt-4 flex flex-wrap gap-x-6 gap-y-1.5">
@@ -263,9 +273,12 @@ function CutDetail({ cut, highlight }: { cut: MeatCut; highlight: CookingMethod 
       <h3 className="mt-6 border-b border-foreground pb-2 font-serif text-lg">{t("howToCook")}</h3>
       <ul className="divide-y divide-border">
         {methods.map((m) => (
-          <li key={m.method + m.thickness} className={`py-3 ${highlight === m.method ? "rounded-lg bg-accent-soft/60 px-3" : ""}`}>
+          <li key={m.method + (m.dish ?? "") + m.thickness} className={`py-3 ${highlight === m.method ? "rounded-lg bg-accent-soft/60 px-3" : ""}`}>
             <p className="flex flex-wrap items-baseline gap-2">
-              <span className="rounded-full bg-foreground px-2.5 py-0.5 text-xs text-background">{t(`methods.${m.method}`)}</span>
+              <span className={`rounded-full px-2.5 py-0.5 text-xs ${m.method === "snack" ? "bg-accent text-white" : "bg-foreground text-background"}`}>
+                {t(`methods.${m.method}`)}
+              </span>
+              {m.dish && <span className="font-serif text-base font-semibold">{m.dish}</span>}
               <span className="text-sm font-medium">{m.thickness}</span>
             </p>
             <p className="mt-1 text-sm text-muted">⏱ {m.time}</p>

@@ -1,3 +1,5 @@
+import { CUT_EXTRAS } from "./meat-cuts-extra";
+
 // 肉品部位圖鑑：台灣常見的豬、牛、雞、鴨、鵝、羊，各部位的介紹、台灣叫法、適合的煮法與切法。
 // 部位圖是原創的側面示意圖（viewBox 0 0 640 400，頭朝左），region 是部位範圍（會被身體輪廓裁切）。
 
@@ -15,11 +17,13 @@ export const COOKING_METHODS = [
   "soup", // 煮湯・熬湯
   "smoke", // 煙燻
   "sousvide", // 低溫烹調
+  "snack", // 台灣小吃做法
 ] as const;
 export type CookingMethod = (typeof COOKING_METHODS)[number];
 
 export type CutMethod = {
   method: CookingMethod;
+  dish?: string; // 小吃名稱（method 為 snack 時）
   thickness: string; // 建議的切法與厚度
   time: string; // 大約的烹調時間
   tip?: string;
@@ -30,6 +34,8 @@ export type MeatCut = {
   name: string; // 繁中名稱
   nameEn: string;
   aliases: string[]; // 台灣市場的其他叫法
+  retailNames?: string[]; // 大賣場的標示（合併自 meat-cuts-extra.ts）
+  wholesaleNames?: string[]; // 肉攤、批發商的說法
   description: string;
   texture: string; // 肉質：油花、軟硬
   fat: 1 | 2 | 3 | 4 | 5; // 油脂多寡
@@ -968,7 +974,23 @@ const LAMB: Animal = {
   others: [],
 };
 
-export const ANIMALS: Animal[] = [PORK, BEEF, CHICKEN, DUCK, GOOSE, LAMB];
+// 合併大賣場／批發名稱與小吃做法
+function withExtras(animal: Animal): Animal {
+  const extras = CUT_EXTRAS[animal.id] ?? {};
+  const merge = (cut: MeatCut): MeatCut => {
+    const extra = extras[cut.id];
+    if (!extra) return cut;
+    return {
+      ...cut,
+      retailNames: extra.retail,
+      wholesaleNames: extra.wholesale,
+      methods: [...cut.methods, ...(extra.snacks ?? [])],
+    };
+  };
+  return { ...animal, cuts: animal.cuts.map(merge), others: animal.others.map(merge) };
+}
+
+export const ANIMALS: Animal[] = [PORK, BEEF, CHICKEN, DUCK, GOOSE, LAMB].map(withExtras);
 
 export function findAnimal(id: string): Animal | undefined {
   return ANIMALS.find((animal) => animal.id === id);

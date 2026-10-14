@@ -772,7 +772,8 @@
       "steam": "蒸",
       "soup": "煮湯",
       "smoke": "煙燻",
-      "sousvide": "低溫烹調"
+      "sousvide": "低溫烹調",
+      "snack": "小吃"
     },
     "animals": {
       "pork": "豬肉",
@@ -781,6 +782,8 @@
       "duck": "鴨肉",
       "goose": "鵝肉",
       "lamb": "羊肉"
-    }
+    },
+    "retailNames": "賣場標示",
+    "wholesaleNames": "肉商說法"
   }
 }

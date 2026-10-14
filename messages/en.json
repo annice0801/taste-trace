@@ -772,7 +772,8 @@
       "steam": "Steam",
       "soup": "Soup",
       "smoke": "Smoke",
-      "sousvide": "Sous vide"
+      "sousvide": "Sous vide",
+      "snack": "Street food"
     },
     "animals": {
       "pork": "Pork",
@@ -781,6 +782,8 @@
       "duck": "Duck",
       "goose": "Goose",
       "lamb": "Lamb & goat"
-    }
+    },
+    "retailNames": "Supermarket labels",
+    "wholesaleNames": "Butcher / wholesale"
   }
 }
