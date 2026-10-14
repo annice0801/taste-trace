@@ -50,6 +50,10 @@ export type MeatCut = {
   anchor?: [number, number];
   // 同一群組的部位，在說明裡並排比較（例：牛肩胛）
   compareGroup?: string;
+  // 只畫在這個形狀裡面（例：雞翅的三段只畫在翅膀範圍內）
+  within?: string;
+  // 不受身體輪廓裁切（例：豬耳朵、尾巴長在輪廓外）
+  unclipped?: boolean;
 };
 
 export type Animal = {
@@ -71,8 +75,28 @@ const PORK: Animal = {
   intro: "台灣最常吃的肉。溫體豬當天現宰、冷藏豬經排酸，口感各有喜好；挑選時看顏色粉紅、表面不出水、按壓有彈性。",
   outline:
     "M118 150 C150 112 262 96 384 100 C476 104 546 122 566 164 C582 200 578 250 560 282 L560 348 L532 348 L528 300 L506 300 L502 348 L474 348 L470 296 C400 300 300 300 230 294 L222 348 L196 348 L192 296 L178 296 L174 348 L148 348 L146 280 C126 270 112 256 102 244 C84 242 64 236 52 224 C42 214 46 196 60 190 C78 184 94 176 104 164 Z",
-  details: ["M70 204 a4 4 0 1 0 0.1 0", "M46 214 C44 220 46 226 52 228", "M112 158 C104 132 112 118 124 112 C134 126 140 140 138 156", "M566 172 C590 160 598 182 582 188 C572 192 576 176 586 178"],
+  details: ["M70 204 a4 4 0 1 0 0.1 0", "M46 214 C44 220 46 226 52 228", "M566 172 C590 160 598 182 582 188 C572 192 576 176 586 178"],
   cuts: [
+    {
+      id: "ear",
+      name: "豬耳",
+      nameEn: "Ear",
+      aliases: ["豬耳朵"],
+      description: "幾乎全是軟骨與皮，口感爽脆，滷好切細絲是黑白切與涼拌小菜的常客。",
+      texture: "軟骨脆、皮Q，幾乎沒有肉。",
+      fat: 2,
+      tenderness: 1,
+      methods: [
+        { method: "lu", thickness: "整個滷好後切 0.2 cm 細絲", time: "小火 40–60 分鐘", tip: "先汆燙並刮除細毛。" },
+        { method: "boil", thickness: "整個白煮後切細絲", time: "30 分鐘，冰鎮後切", tip: "涼拌豬耳絲：蒜末、辣油、香菜。" },
+      ],
+      dishes: ["滷豬耳朵", "涼拌豬耳絲", "黑白切"],
+      buyTip: "選軟骨完整、皮面乾淨無殘毛的。",
+      region: "M106 158 C96 130 104 112 122 104 C136 122 144 140 142 160 Z",
+      label: [88, 90],
+      anchor: [120, 132],
+      unclipped: true,
+    },
     {
       id: "head",
       name: "豬頭皮",
@@ -107,7 +131,7 @@ const PORK: Animal = {
       ],
       dishes: ["烤松阪豬", "松阪豬炒飯", "泰式松阪豬"],
       buyTip: "油花呈白色細網狀、顏色粉紅不暗沉。",
-      region: "0,212 150,212 196,236 196,330 0,330",
+      region: "0,212 150,212 196,236 196,296 0,296",
       label: [146, 252],
     },
     {
@@ -148,8 +172,28 @@ const PORK: Animal = {
       ],
       dishes: ["滷肉飯", "瓜仔肉", "獅子頭", "水餃餡"],
       buyTip: "請攤商現絞，可指定肥瘦比例（常見三分肥七分瘦）。",
-      region: "150,172 262,172 262,330 196,330 196,236 150,212",
+      region: "150,172 262,172 262,296 196,296 196,236 150,212",
       label: [216, 238],
+    },
+    {
+      id: "foreshank",
+      name: "豬腱",
+      nameEn: "Fore Shank",
+      aliases: ["前腿腱", "腱子肉", "豬腱子"],
+      description: "前腿下段的肌肉，筋膜交錯、膠質多，滷過放涼切片Q彈有嚼勁，做法和牛腱很像。",
+      texture: "筋肉交錯，滷後Q彈，切面有花紋。",
+      fat: 1,
+      tenderness: 2,
+      methods: [
+        { method: "lu", thickness: "整條", time: "小火 60–90 分鐘，泡滷汁放涼", tip: "冷藏後逆紋切 0.3 cm 片當冷盤。" },
+        { method: "braise", thickness: "3–4 cm 塊", time: "小火 60–80 分鐘" },
+        { method: "soup", thickness: "3 cm 塊", time: "小火 1 小時", tip: "藥燉、清燉都適合。" },
+      ],
+      dishes: ["滷豬腱", "豬腱冷盤", "藥燉豬腱"],
+      buyTip: "選筋紋清楚、顏色紅潤的整條。",
+      region: "140,296 240,296 240,338 140,338",
+      label: [86, 360],
+      anchor: [168, 318],
     },
     {
       id: "loin",
@@ -192,11 +236,30 @@ const PORK: Animal = {
       label: [438, 182],
     },
     {
+      id: "spareribs",
+      name: "肋排",
+      nameEn: "Spare Ribs (Rack)",
+      aliases: ["整片肋排", "一字排"],
+      description: "胸腔側面的整排肋骨，骨頭長而直、肉較薄。整片烤是美式烤肋排；切成一支支就是一字排，糖醋、京都排骨常用。",
+      texture: "骨邊肉香、肉層較薄，烤後軟嫩脫骨。",
+      fat: 3,
+      tenderness: 3,
+      methods: [
+        { method: "roast", thickness: "整片", time: "160°C 烤 1.5–2 小時，最後刷醬 220°C 上色", tip: "先撕掉背面的薄膜，入味更快。" },
+        { method: "deepfry", thickness: "沿骨切成一支支，再切 6–8 cm 段", time: "160°C 炸 5–6 分鐘", tip: "京都排骨、糖醋一字排。" },
+        { method: "braise", thickness: "6 cm 段", time: "小火 50–60 分鐘" },
+      ],
+      dishes: ["烤豬肋排", "京都排骨", "糖醋排骨"],
+      buyTip: "整片購買時選肉層厚、骨頭不外露的。",
+      region: "262,158 402,158 402,196 262,196",
+      label: [330, 186],
+    },
+    {
       id: "ribs",
-      name: "排骨",
-      nameEn: "Spare Ribs",
-      aliases: ["小排", "肋排", "一字排", "腩排"],
-      description: "胸腔的肋骨連著肉，小排骨肉多、軟骨Q，肋排適合整片烤。",
+      name: "小排・腩排",
+      nameEn: "Riblets / Soft-bone Ribs",
+      aliases: ["小排", "腩排", "軟骨排", "排骨"],
+      description: "肋骨下段靠腹部的部分。小排肉多、骨短，剁小塊燉湯、蒸最常見；腩排（軟骨排）在五花下方，帶Q脆軟骨。",
       texture: "骨邊肉最香，帶筋膜與軟骨。",
       fat: 3,
       tenderness: 3,
@@ -209,8 +272,8 @@ const PORK: Animal = {
       ],
       dishes: ["排骨湯", "糖醋排骨", "豆豉蒸排骨", "烤肋排"],
       buyTip: "小排請攤商剁好；肉要包覆骨頭、骨頭切面帶紅色較新鮮。",
-      region: "262,158 402,158 402,232 262,232",
-      label: [330, 196],
+      region: "262,196 402,196 402,232 262,232",
+      label: [330, 226],
     },
     {
       id: "belly",
@@ -235,11 +298,49 @@ const PORK: Animal = {
       label: [370, 268],
     },
     {
+      id: "rump",
+      name: "臀肉",
+      nameEn: "Rump (Sirloin)",
+      aliases: ["後腿上段", "臀尖肉"],
+      description: "後腿最上方靠近臀部的肉，比內、外腿多一點油花，肉質較嫩，切片炒、白切、做叉燒都適合。",
+      texture: "瘦中帶少許油花，比其他後腿肉嫩。",
+      fat: 2,
+      tenderness: 3,
+      methods: [
+        { method: "stirfry", thickness: "0.3 cm 片", time: "大火 1–2 分鐘" },
+        { method: "boil", thickness: "整塊下鍋，煮後切 0.3 cm 片", time: "30–40 分鐘", tip: "白切肉沾蒜蓉醬油。" },
+        { method: "roast", thickness: "4 cm 寬長條", time: "200°C 烤 30–35 分鐘", tip: "比梅花瘦的叉燒。" },
+      ],
+      dishes: ["白切肉", "炒肉片", "瘦叉燒"],
+      buyTip: "想要比梅花瘦、又不像後腿那麼柴，選臀肉。",
+      region: "474,0 640,0 640,150 474,150",
+      label: [524, 140],
+    },
+    {
+      id: "outerham",
+      name: "外腿",
+      nameEn: "Outside Ham",
+      aliases: ["後腿外側"],
+      description: "後腿外側運動量大的肉，纖維粗、肉較硬，價格最實惠，適合絞肉、做肉乾或長時間燉煮。",
+      texture: "瘦、纖維粗，直接煎炒容易硬。",
+      fat: 1,
+      tenderness: 1,
+      methods: [
+        { method: "stirfry", thickness: "絞肉", time: "大火 3–4 分鐘", tip: "做肉丸、餡料可混一點五花。" },
+        { method: "braise", thickness: "3 cm 塊", time: "小火 60–80 分鐘" },
+        { method: "roast", thickness: "0.3 cm 片，醃後攤平", time: "160°C 烤 25–30 分鐘", tip: "自製豬肉乾。" },
+      ],
+      dishes: ["豬肉乾", "肉丸", "燉肉"],
+      buyTip: "請攤商現絞，口感比預先絞好的好。",
+      region: "474,150 520,150 520,290 474,290",
+      label: [497, 274],
+    },
+    {
       id: "ham",
-      name: "後腿肉",
-      nameEn: "Leg (Ham)",
-      aliases: ["後腿瘦肉", "腿肉", "老鼠肉（後腿內側一小塊）"],
-      description: "後腿上段的大塊瘦肉，脂肪少、價格實惠，適合切絲、切片或做肉乾。",
+      name: "內腿",
+      nameEn: "Inside Ham",
+      aliases: ["後腿內側", "後腿瘦肉", "老鼠肉（內腿上的一小塊）"],
+      description: "後腿內側的瘦肉，比外腿嫩、紋理較細，切絲、切片快炒或做肉羹最合適。內側有一小塊形狀像老鼠的「老鼠肉」，特別嫩。",
       texture: "瘦、紋理較粗，切絲炒或醃過再煮較嫩。",
       fat: 1,
       tenderness: 2,
@@ -251,8 +352,8 @@ const PORK: Animal = {
       ],
       dishes: ["青椒肉絲", "肉片湯", "豬肉乾", "白切肉"],
       buyTip: "整塊買回家冷凍半小時，比較好切成薄片。",
-      region: "474,0 640,0 640,290 474,290",
-      label: [538, 210],
+      region: "520,150 640,150 640,290 520,290",
+      label: [550, 222],
     },
     {
       id: "hock",
@@ -269,7 +370,7 @@ const PORK: Animal = {
       ],
       dishes: ["滷腿庫", "腿庫飯", "紅燒蹄膀", "萬巒豬腳（腿庫段）"],
       buyTip: "皮面光滑、無瘀血，請攤商先處理好細毛。",
-      region: "470,290 640,290 640,330 470,330",
+      region: "470,290 640,290 640,338 470,338",
       label: [580, 306],
     },
     {
@@ -288,8 +389,8 @@ const PORK: Animal = {
       ],
       dishes: ["豬腳麵線", "滷豬腳", "花生豬腳", "萬巒豬腳"],
       buyTip: "前腳肉較多、後腳筋較多，喜歡吃肉選前腳。",
-      region: "0,330 640,330 640,400 0,400",
-      label: [326, 382],
+      region: "0,338 640,338 640,400 0,400",
+      label: [326, 384],
     },
     {
       id: "tail",
@@ -307,7 +408,8 @@ const PORK: Animal = {
       dishes: ["滷豬尾", "花生豬尾湯"],
       buyTip: "選皮面完整、粗細均勻的。",
       region: "M560 150 C592 140 610 170 594 192 C582 206 562 196 560 186 Z",
-      label: [606, 150],
+      label: [606, 130],
+      unclipped: true,
     },
   ],
   others: [
@@ -752,12 +854,25 @@ const P = {
   thigh: "330,200 470,200 470,320 330,320",
   wing: "M276 186 C330 160 420 160 470 180 C440 206 370 222 296 216 C280 210 272 198 276 186 Z",
   feet: "0,320 640,320 640,400 0,400",
+  // 雞翅三段（畫在翅膀形狀裡）
+  drumette: "260,150 335,150 335,230 260,230",
+  wingflat: "335,150 420,150 420,230 335,230",
+  wingtip: "420,150 490,150 490,230 420,230",
+  // 雞腿兩段
+  upperthigh: "330,200 470,200 470,262 330,262",
+  drumstick: "330,262 470,262 470,320 330,320",
+};
+// 頭部範圍：頭的下緣依鳥的種類不同（鵝的脖子最長）
+const HEAD: Record<"chicken" | "duck" | "goose", string> = {
+  chicken: "0,0 260,0 260,120 0,120",
+  duck: "0,0 260,0 260,114 0,114",
+  goose: "0,0 260,0 260,76 0,76",
 };
 // 禽類部位的繪製順序（後畫的蓋在上面）
-export const POULTRY_LAYER_ORDER = ["back", "tail", "breast", "thigh", "tender", "wing", "neck", "feet"];
+export const POULTRY_LAYER_ORDER = ["back", "tail", "breast", "thigh", "drumstick", "tender", "wing", "drumette", "wingflat", "wingtip", "neck", "head", "feet"];
 
-function poultryCut(base: Omit<MeatCut, "region" | "label">, region: string, label: [number, number]): MeatCut {
-  return { ...base, region, label };
+function poultryCut(base: Omit<MeatCut, "region" | "label">, region: string, label: [number, number], extra?: Partial<MeatCut>): MeatCut {
+  return { ...base, region, label, ...extra };
 }
 
 // ── 雞 ─────────────────────────────────────────
@@ -770,14 +885,23 @@ const CHICKEN: Animal = {
   details: POULTRY_DETAILS.chicken,
   cuts: [
     poultryCut({
-      id: "neck", name: "雞頭雞脖", nameEn: "Head & Neck", aliases: ["雞脖子", "雞頸"],
-      description: "肉少骨多，熬湯增加鮮味，滷味攤也常見。", texture: "骨多、皮多，細碎的肉很香。", fat: 2, tenderness: 2,
+      id: "head", name: "雞頭", nameEn: "Head", aliases: ["雞冠（頭頂）"],
+      description: "肉很少，雞冠膠質多，多用在滷味或與骨架一起熬湯。", texture: "皮與膠質為主。", fat: 2, tenderness: 2,
+      methods: [
+        { method: "lu", thickness: "整顆", time: "小火 20–30 分鐘" },
+        { method: "soup", thickness: "整顆，與骨架一起", time: "小火 1–2 小時" },
+      ],
+      dishes: ["滷雞頭", "雞高湯"], buyTip: "滷之前先汆燙去腥。",
+    }, HEAD.chicken, [176, 114]),
+    poultryCut({
+      id: "neck", name: "雞脖", nameEn: "Neck", aliases: ["雞脖子", "雞頸"],
+      description: "肉少骨多，骨節間的細碎肉很香，滷味攤常見，也是熬湯的好材料。", texture: "骨多、皮多，細碎的肉很香。", fat: 2, tenderness: 2,
       methods: [
         { method: "lu", thickness: "雞脖切 5 cm 段", time: "小火 30–40 分鐘" },
         { method: "soup", thickness: "整段", time: "小火 1 小時", tip: "與雞骨架一起熬高湯。" },
       ],
       dishes: ["滷雞脖", "雞高湯"], buyTip: "雞脖子的皮有較多淋巴，滷之前可先剝除。",
-    }, P.neck, [172, 140]),
+    }, P.neck, [204, 200]),
     poultryCut({
       id: "breast", name: "雞胸肉", nameEn: "Breast", aliases: ["清肉", "雞胸"],
       description: "高蛋白、低脂肪的白肉，容易煮太乾，控制溫度與厚度是關鍵。台式炸雞排用的就是雞胸。", texture: "瘦、細緻，過熟會乾柴。", fat: 1, tenderness: 3,
@@ -799,30 +923,59 @@ const CHICKEN: Animal = {
         { method: "boil", thickness: "整條", time: "滾水關火泡 6–8 分鐘", tip: "日式雞柳沙拉。" },
       ],
       dishes: ["炸雞柳", "雞柳沙拉", "炒雞柳"], buyTip: "肉條完整、顏色均勻。",
-    }, P.tender, [282, 218]),
+    }, P.tender, [130, 300], { anchor: [250, 222] }),
     poultryCut({
-      id: "wing", name: "雞翅", nameEn: "Wing", aliases: ["三節翅", "二節翅（中翅）", "翅小腿", "翅尖"],
-      description: "分成翅小腿（翅根）、二節翅（中翅）與翅尖。皮多膠質多，烤、炸、滷都受歡迎。", texture: "皮多、肉嫩，膠質豐富。", fat: 3, tenderness: 4,
+      id: "drumette", name: "翅小腿", nameEn: "Drumette", aliases: ["翅根", "翅腿", "小雞腿"],
+      description: "翅膀連著身體的那一段，形狀像迷你雞腿，肉最多、價格最實惠。", texture: "肉多、口感像雞腿，皮比二節翅少。", fat: 3, tenderness: 4,
       methods: [
-        { method: "roast", thickness: "整隻二節翅，兩面劃刀", time: "200°C 烤 20–25 分鐘" },
-        { method: "deepfry", thickness: "整隻", time: "170°C 炸 6–8 分鐘", tip: "雞翅包飯、鹽酥雞翅。" },
-        { method: "lu", thickness: "整隻", time: "小火 15–20 分鐘", tip: "可樂雞翅、滷雞翅。" },
-        { method: "panfry", thickness: "整隻，皮朝下", time: "中小火每面 5–6 分鐘" },
+        { method: "deepfry", thickness: "整隻", time: "170°C 炸 7–8 分鐘", tip: "鹽酥翅腿、韓式炸雞。" },
+        { method: "roast", thickness: "整隻，兩面劃刀", time: "200°C 烤 20–25 分鐘" },
+        { method: "lu", thickness: "整隻", time: "小火 20 分鐘", tip: "可樂翅腿。" },
       ],
-      dishes: ["可樂雞翅", "烤雞翅", "雞翅包飯"], buyTip: "二節翅最受歡迎，翅小腿肉最多、價格實惠。",
-    }, P.wing, [372, 194]),
+      dishes: ["炸翅腿", "烤翅腿", "可樂翅腿"], buyTip: "比二節翅便宜，想吃肉多選翅小腿。",
+    }, P.drumette, [300, 206], { within: P.wing }),
     poultryCut({
-      id: "thigh", name: "雞腿", nameEn: "Leg (Thigh & Drumstick)", aliases: ["棒棒腿", "去骨雞腿排", "大雞腿", "雞腿排"],
-      description: "運動量大、油脂與肉汁豐富，久煮不柴。去骨腿排適合煎，帶骨剁塊適合三杯、燉湯。", texture: "肉多汁、有彈性。", fat: 3, tenderness: 4,
+      id: "wingflat", name: "二節翅", nameEn: "Wing Flat (Mid-joint)", aliases: ["中翅", "雞中翅"],
+      description: "翅膀中間那一段，有兩根細骨，皮多、膠質多，是最受歡迎的雞翅部位。", texture: "皮多Q彈，肉細嫩，膠質豐富。", fat: 3, tenderness: 4,
+      methods: [
+        { method: "roast", thickness: "整隻，兩面劃刀", time: "200°C 烤 20–25 分鐘" },
+        { method: "deepfry", thickness: "整隻", time: "170°C 炸 6–7 分鐘" },
+        { method: "lu", thickness: "整隻", time: "小火 15–20 分鐘", tip: "可樂雞翅、滷雞翅。" },
+        { method: "panfry", thickness: "整隻，皮朝下", time: "中小火每面 5–6 分鐘", tip: "鹽烤雞翅。" },
+      ],
+      dishes: ["可樂雞翅", "烤雞翅", "雞翅包飯"], buyTip: "大小均勻的熟度比較一致。",
+    }, P.wingflat, [378, 206], { within: P.wing }),
+    poultryCut({
+      id: "wingtip", name: "翅尖", nameEn: "Wing Tip", aliases: ["雞翅尖"],
+      description: "翅膀最末端，幾乎沒有肉，皮與膠質為主，多用來滷或熬湯。", texture: "皮多、骨多，啃起來有滋味。", fat: 2, tenderness: 2,
+      methods: [
+        { method: "lu", thickness: "整隻", time: "小火 20 分鐘" },
+        { method: "soup", thickness: "整隻", time: "小火 1 小時", tip: "和雞骨架一起熬湯更濃。" },
+      ],
+      dishes: ["滷翅尖", "雞高湯"], buyTip: "通常很便宜，適合熬湯。",
+    }, P.wingtip, [450, 196], { within: P.wing }),
+    poultryCut({
+      id: "thigh", name: "雞腿排", nameEn: "Thigh", aliases: ["上腿", "去骨雞腿排", "雞腿排"],
+      description: "雞腿的上半段，油脂與肉汁最豐富，久煮不柴。去骨就是雞腿排，帶骨剁塊適合三杯、燉湯。", texture: "肉多汁、有彈性。", fat: 3, tenderness: 4,
       methods: [
         { method: "panfry", thickness: "去骨腿排 1.5–2 cm，斷筋", time: "皮朝下中火 6–8 分鐘，翻面 3–4 分鐘", tip: "壓著煎，皮才平整酥脆。" },
         { method: "braise", thickness: "帶骨剁 4 cm 塊", time: "小火 15–20 分鐘", tip: "三杯雞：麻油爆薑、米酒、醬油各一杯。" },
         { method: "soup", thickness: "帶骨剁 4 cm 塊", time: "小火 40–60 分鐘", tip: "香菇雞湯、麻油雞。" },
-        { method: "roast", thickness: "棒棒腿整隻", time: "200°C 烤 30–35 分鐘" },
         { method: "deepfry", thickness: "切 3 cm 塊", time: "170°C 炸 5 分鐘", tip: "鹽酥雞、唐揚雞。" },
       ],
-      dishes: ["三杯雞", "麻油雞", "雞腿便當", "鹽酥雞"], buyTip: "去骨腿排請攤商先斷筋，煎時才不會縮。",
-    }, P.thigh, [400, 270]),
+      dishes: ["三杯雞", "麻油雞", "雞腿排便當", "鹽酥雞"], buyTip: "去骨腿排請攤商先斷筋，煎時才不會縮。",
+    }, P.upperthigh, [400, 244]),
+    poultryCut({
+      id: "drumstick", name: "棒棒腿", nameEn: "Drumstick", aliases: ["雞小腿", "下腿"],
+      description: "雞腿的下半段，肉質緊實、帶筋，整隻烤、滷、炸都很適合，便當店的大雞腿就是整隻腿。", texture: "肉緊實有彈性，靠近骨頭處帶筋。", fat: 2, tenderness: 3,
+      methods: [
+        { method: "roast", thickness: "整隻，劃 2–3 刀", time: "200°C 烤 30–35 分鐘" },
+        { method: "lu", thickness: "整隻", time: "小火 25–30 分鐘，泡滷汁入味" },
+        { method: "deepfry", thickness: "整隻", time: "160°C 炸 10–12 分鐘", tip: "炸大雞腿便當。" },
+        { method: "soup", thickness: "整隻或剁 2 段", time: "小火 40 分鐘" },
+      ],
+      dishes: ["滷雞腿", "烤棒棒腿", "炸雞腿便當"], buyTip: "粗細接近的一起烤，熟度比較一致。",
+    }, P.drumstick, [400, 304]),
     poultryCut({
       id: "back", name: "雞背骨架", nameEn: "Back & Carcass", aliases: ["雞骨架", "雞骨"],
       description: "剔下肉後剩下的骨架，熬高湯的最佳材料。", texture: "骨多肉少。", fat: 2, tenderness: 2,
@@ -879,14 +1032,23 @@ const DUCK: Animal = {
   details: POULTRY_DETAILS.duck,
   cuts: [
     poultryCut({
-      id: "neck", name: "鴨頭鴨脖", nameEn: "Head & Neck", aliases: ["鴨脖子", "鴨舌（頭部）"],
-      description: "滷味攤的經典，鴨舌、鴨頭、鴨脖都很受歡迎。", texture: "骨多、皮Q，肉有嚼勁。", fat: 2, tenderness: 2,
+      id: "head", name: "鴨頭", nameEn: "Head", aliases: ["鴨舌（頭部）"],
+      description: "東山鴨頭的主角，鴨舌也是滷味、熱炒常見的下酒菜。", texture: "皮Q骨多，鴨舌脆中帶軟骨。", fat: 2, tenderness: 2,
       methods: [
-        { method: "lu", thickness: "鴨脖切 6 cm 段", time: "小火 40 分鐘，泡滷汁入味" },
+        { method: "lu", thickness: "整顆對切", time: "小火 40–60 分鐘，泡滷汁入味" },
         { method: "deepfry", thickness: "鴨舌整條", time: "170°C 炸 2 分鐘", tip: "椒鹽鴨舌。" },
       ],
-      dishes: ["滷鴨脖", "滷鴨舌", "鴨頭"], buyTip: "滷味用的鴨舌要先汆燙去腥。",
-    }, P.neck, [172, 140]),
+      dishes: ["東山鴨頭", "滷鴨舌", "椒鹽鴨舌"], buyTip: "滷味用的鴨舌要先汆燙去腥。",
+    }, HEAD.duck, [180, 108]),
+    poultryCut({
+      id: "neck", name: "鴨脖", nameEn: "Neck", aliases: ["鴨脖子", "鴨頸"],
+      description: "滷味攤的經典，骨節間的肉有嚼勁、越啃越香。", texture: "骨多、皮Q，肉有嚼勁。", fat: 2, tenderness: 2,
+      methods: [
+        { method: "lu", thickness: "切 6–8 cm 段", time: "小火 40 分鐘，泡滷汁入味", tip: "麻辣鴨脖：滷汁加花椒、辣椒。" },
+        { method: "soup", thickness: "整條", time: "小火 1 小時" },
+      ],
+      dishes: ["滷鴨脖", "麻辣鴨脖", "東山鴨頭（鴨脖）"], buyTip: "粗一點的鴨脖肉較多。",
+    }, P.neck, [204, 196]),
     poultryCut({
       id: "breast", name: "鴨胸", nameEn: "Breast", aliases: ["鴨胸肉"],
       description: "肉色深紅、皮下有厚油脂，煎成粉紅色的半熟最好吃。宜蘭鴨賞則是整隻鴨醃製後煙燻。", texture: "肉質紮實多汁，皮煎酥後香脆。", fat: 4, tenderness: 4,
@@ -958,11 +1120,17 @@ const GOOSE: Animal = {
   details: POULTRY_DETAILS.goose,
   cuts: [
     poultryCut({
-      id: "neck", name: "鵝頭鵝脖", nameEn: "Head & Neck", aliases: ["鵝頸"],
+      id: "head", name: "鵝頭", nameEn: "Head", aliases: ["鵝頭（含鵝舌）"],
+      description: "鵝頭較大，額頭的肉瘤與鵝舌都是鵝肉攤的人氣小菜，以滷為主。", texture: "皮厚Q、膠質多。", fat: 3, tenderness: 2,
+      methods: [{ method: "lu", thickness: "整顆對切", time: "小火 50–60 分鐘" }],
+      dishes: ["滷鵝頭", "滷鵝舌"], buyTip: "鵝肉攤可單點，請店家剁開。",
+    }, HEAD.goose, [240, 40], { anchor: [168, 56] }),
+    poultryCut({
+      id: "neck", name: "鵝脖", nameEn: "Neck", aliases: ["鵝頸"],
       description: "鵝脖比鴨脖更長更粗，皮厚肉多，滷或煙燻後切段。", texture: "皮Q、骨邊肉香。", fat: 3, tenderness: 2,
       methods: [{ method: "lu", thickness: "切 6 cm 段", time: "小火 50–60 分鐘" }, { method: "smoke", thickness: "煮熟後整條", time: "煙燻 10 分鐘" }],
-      dishes: ["滷鵝頭", "煙燻鵝脖"], buyTip: "鵝肉攤可單點，請店家剁成小段。",
-    }, P.neck, [168, 120]),
+      dishes: ["滷鵝脖", "煙燻鵝脖"], buyTip: "鵝肉攤可單點，請店家剁成小段。",
+    }, P.neck, [192, 170]),
     poultryCut({
       id: "breast", name: "鵝胸", nameEn: "Breast", aliases: ["鵝肉（胸肉）", "鵝胸肉"],
       description: "鵝肉攤切盤的主力部位，肉厚、皮下油脂香。白斬是整隻浸煮後放涼切片。", texture: "肉紮實、皮下油香。", fat: 3, tenderness: 3,
@@ -1074,6 +1242,16 @@ const LAMB: Animal = {
       region: "430,0 540,0 540,160 430,160", label: [486, 134],
     },
     {
+      id: "breast", name: "羊胸", nameEn: "Breast", aliases: ["羊胸肉", "胸口肉"],
+      description: "胸前帶骨帶油的部位，膠質與油脂多，長時間燉煮後軟嫩，是羊肉爐常用的帶骨肉。", texture: "帶骨、油脂多，燉後軟糯。", fat: 4, tenderness: 2,
+      methods: [
+        { method: "braise", thickness: "帶骨剁 4 cm 塊", time: "小火 1.5–2 小時", tip: "羊肉爐、紅燒羊肉。" },
+        { method: "roast", thickness: "整塊帶骨", time: "150°C 慢烤 2.5–3 小時" },
+      ],
+      dishes: ["羊肉爐", "紅燒羊肉"], buyTip: "帶皮的山羊胸肉燉起來更Q。",
+      region: "214,190 330,190 330,300 214,300", label: [272, 252],
+    },
+    {
       id: "belly", name: "羊腩", nameEn: "Belly / Flank", aliases: ["羊肋", "羊五花"],
       description: "腹部肥瘦相間帶皮的肉，燉羊肉爐、紅燒羊肉最香。", texture: "肥瘦相間、皮Q。", fat: 4, tenderness: 3,
       methods: [
@@ -1081,7 +1259,18 @@ const LAMB: Animal = {
         { method: "hotpot", thickness: "0.2 cm 薄片", time: "涮 10 秒" },
       ],
       dishes: ["羊肉爐", "紅燒羊肉"], buyTip: "帶皮的較有口感。",
-      region: "214,190 330,190 330,170 430,170 430,160 540,160 540,300 214,300", label: [390, 246],
+      region: "330,170 430,170 430,160 540,160 540,300 330,300", label: [436, 250],
+    },
+    {
+      id: "rump", name: "羊臀", nameEn: "Rump (Chump)", aliases: ["羊臀肉", "腰臀"],
+      description: "腰與後腿之間的肉，瘦而嫩、羶味少，可以像牛排一樣整塊煎，價格比羊排實惠。", texture: "瘦嫩、肉味濃。", fat: 2, tenderness: 4,
+      methods: [
+        { method: "panfry", thickness: "2.5–3 cm 厚塊", time: "大火每面 3 分鐘，靜置 5 分鐘", tip: "五分熟最嫩。" },
+        { method: "roast", thickness: "整塊", time: "200°C 烤 15–20 分鐘" },
+        { method: "grill", thickness: "3 cm 丁串成串", time: "大火 6–8 分鐘" },
+      ],
+      dishes: ["香煎羊臀排", "烤羊臀"], buyTip: "選表面帶一層薄油脂的，煎起來更香。",
+      region: "540,0 640,0 640,190 540,190", label: [618, 70], anchor: [562, 150],
     },
     {
       id: "leg", name: "羊腿", nameEn: "Leg", aliases: ["後腿肉"],
@@ -1092,14 +1281,14 @@ const LAMB: Animal = {
         { method: "stirfry", thickness: "逆紋 0.3 cm 片", time: "大火 1 分鐘" },
       ],
       dishes: ["羊肉串", "烤羊腿", "孜然羊肉"], buyTip: "去骨羊腿肉切丁最方便。",
-      region: "540,0 640,0 640,300 540,300", label: [560, 214],
+      region: "540,190 640,190 640,300 540,300", label: [612, 236], anchor: [562, 240],
     },
     {
       id: "shank", name: "羊腱", nameEn: "Shank", aliases: ["羊小腿", "羊蹄"],
       description: "腿下段，筋多膠質多，燉到脫骨最好吃。", texture: "膠質豐富，久燉軟Q。", fat: 1, tenderness: 2,
       methods: [{ method: "braise", thickness: "整支", time: "小火 2–2.5 小時" }, { method: "soup", thickness: "整支", time: "小火 2 小時", tip: "當歸羊肉湯。" }],
       dishes: ["燉羊小腿", "當歸羊肉湯"], buyTip: "整支燉，上桌更有份量。",
-      region: "0,300 640,300 640,400 0,400", label: [326, 382],
+      region: "0,300 640,300 640,400 0,400", label: [326, 384],
     },
   ],
   others: [],

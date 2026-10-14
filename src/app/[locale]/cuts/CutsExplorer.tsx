@@ -160,6 +160,28 @@ function CutDiagram({
     ? [...animal.cuts].sort((a, b) => POULTRY_LAYER_ORDER.indexOf(a.id) - POULTRY_LAYER_ORDER.indexOf(b.id))
     : animal.cuts;
 
+  function renderRegion(cut: MeatCut) {
+    if (!cut.region) return null;
+    const active = cut.id === selectedId;
+    const fill = active ? FILL_ACTIVE : !matches(cut) ? FILL_DIM : cut.id === hoverId ? FILL_HOVER : FILL;
+    const props = {
+      fill,
+      stroke: "#fffaf3",
+      strokeWidth: 2,
+      strokeDasharray: "5 4",
+      className: "cursor-pointer outline-none transition-[fill] duration-200",
+      role: "button",
+      tabIndex: 0,
+      "aria-label": `${cut.name} ${cut.nameEn}`,
+      "aria-pressed": active,
+      onClick: () => onSelect(cut.id),
+      onKeyDown: (event: React.KeyboardEvent) => (event.key === "Enter" || event.key === " ") && onSelect(cut.id),
+      onPointerEnter: () => setHoverId(cut.id),
+      onPointerLeave: () => setHoverId(null),
+    };
+    return cut.region.startsWith("M") ? <path key={cut.id} d={cut.region} {...props} /> : <polygon key={cut.id} points={cut.region} {...props} />;
+  }
+
   return (
     <figure className="overflow-hidden rounded-2xl border border-border bg-[#f7efe3] p-3 sm:p-5 dark:bg-surface">
       <figcaption className="mb-1 text-center font-serif text-xl text-accent sm:text-2xl">{title}</figcaption>
@@ -168,32 +190,37 @@ function CutDiagram({
           <clipPath id={clipId}>
             <path d={animal.outline} />
           </clipPath>
+          {animal.cuts.map((cut) =>
+            cut.within ? (
+              <clipPath key={cut.id} id={`${clipId}-${cut.id}`}>
+                {cut.within.startsWith("M") ? <path d={cut.within} /> : <polygon points={cut.within} />}
+              </clipPath>
+            ) : null,
+          )}
         </defs>
 
-        {/* 部位：被身體輪廓裁切，部位之間用白色虛線分隔 */}
+        {/* 部位：被身體輪廓裁切，部位之間用白色虛線分隔；within 的部位再裁進所屬範圍（例：雞翅三段） */}
         <g clipPath={`url(#${clipId})`}>
-          {layered.map((cut) => {
-            if (!cut.region) return null;
-            const active = cut.id === selectedId;
-            const fill = active ? FILL_ACTIVE : !matches(cut) ? FILL_DIM : cut.id === hoverId ? FILL_HOVER : FILL;
-            const props = {
-              fill,
-              stroke: "#fffaf3",
-              strokeWidth: 2,
-              strokeDasharray: "5 4",
-              className: "cursor-pointer outline-none transition-[fill] duration-200",
-              role: "button",
-              tabIndex: 0,
-              "aria-label": `${cut.name} ${cut.nameEn}`,
-              "aria-pressed": active,
-              onClick: () => onSelect(cut.id),
-              onKeyDown: (event: React.KeyboardEvent) => (event.key === "Enter" || event.key === " ") && onSelect(cut.id),
-              onPointerEnter: () => setHoverId(cut.id),
-              onPointerLeave: () => setHoverId(null),
-            };
-            return cut.region.startsWith("M") ? <path key={cut.id} d={cut.region} {...props} /> : <polygon key={cut.id} points={cut.region} {...props} />;
-          })}
+          {layered.map((cut) =>
+            cut.unclipped ? null : cut.within ? (
+              <g key={cut.id} clipPath={`url(#${clipId}-${cut.id})`}>
+                {renderRegion(cut)}
+              </g>
+            ) : (
+              renderRegion(cut)
+            ),
+          )}
+          {/* 分區範圍的外框（例：整隻翅膀），跟部位分隔線同樣式 */}
+          {[...new Set(animal.cuts.flatMap((cut) => (cut.within ? [cut.within] : [])))].map((shape) =>
+            shape.startsWith("M") ? (
+              <path key={shape} d={shape} fill="none" stroke="#fffaf3" strokeWidth={2} strokeDasharray="5 4" pointerEvents="none" />
+            ) : (
+              <polygon key={shape} points={shape} fill="none" stroke="#fffaf3" strokeWidth={2} strokeDasharray="5 4" pointerEvents="none" />
+            ),
+          )}
         </g>
+        {/* 輪廓外的部位（例：豬耳、尾巴） */}
+        {layered.map((cut) => (cut.unclipped ? renderRegion(cut) : null))}
 
         {/* 輪廓與五官 */}
         <path d={animal.outline} fill="none" stroke="#7a3a22" strokeWidth={2.5} strokeLinejoin="round" pointerEvents="none" />

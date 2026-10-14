@@ -19,6 +19,11 @@ const snack = (dish: string, thickness: string, time: string, tip?: string): Cut
 
 export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
   pork: {
+    ear: { retail: ["豬耳朵"], wholesale: ["豬耳"], snacks: [snack("黑白切（豬耳朵）", "滷好後切 0.2 cm 細絲", "滷 40–60 分鐘", "淋醬油膏、薑絲，或拌蒜末辣油。")] },
+    foreshank: { retail: ["豬腱", "腱子肉"], wholesale: ["腱子心", "前腱"] },
+    spareribs: { retail: ["豬肋排", "整片肋排", "一字排"], wholesale: ["肋排", "一字排", "Spare Ribs"] },
+    rump: { retail: ["豬臀肉", "後腿肉片"], wholesale: ["臀肉", "後腿上段"] },
+    outerham: { retail: ["後腿肉", "豬絞肉"], wholesale: ["外腿", "後腿外側"] },
     head: { retail: ["豬頭皮"], wholesale: ["頭皮", "嘴邊肉"], snacks: [snack("黑白切（豬頭皮）", "滷或白煮後切 0.3 cm 薄片", "滷 60–90 分鐘", "淋醬油膏、撒薑絲與蔥花。")] },
     jowl: { retail: ["松阪豬肉片", "霜降豬肉"], wholesale: ["頸肉", "霜降", "松阪"] },
     shoulder: {
@@ -42,7 +47,7 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
     },
     tenderloin: { retail: ["豬腰內肉", "小里肌"], wholesale: ["腰內", "腰內肉"] },
     ribs: {
-      retail: ["豬小排", "豬肋排", "排骨"],
+      retail: ["豬小排", "腩排", "軟骨排", "排骨"],
       wholesale: ["小排", "腩排", "一字排（肋排中段，骨形較直）", "軟骨排"],
       snacks: [snack("排骨酥湯", "小排剁 3 cm 塊", "醃五香醬油、裹地瓜粉炸到金黃，再與白蘿蔔蒸或煮湯 40 分鐘")],
     },
@@ -56,7 +61,7 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
       ],
     },
     ham: {
-      retail: ["後腿肉", "後腿肉絲", "豬肉片", "後腿肉塊"],
+      retail: ["後腿肉絲", "豬肉片", "瘦肉片"],
       wholesale: ["後腿", "內腿", "外腿", "老鼠肉（後腿內側一小塊）"],
       snacks: [snack("肉羹", "切 1 cm 寬條", "醃醬油、蒜、糖後裹魚漿，滾水燙熟成肉羹，再加入羹湯")],
     },
@@ -111,6 +116,7 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
     },
   },
   chicken: {
+    head: { retail: ["雞頭"], wholesale: ["雞頭"] },
     neck: { retail: ["雞脖子"], wholesale: ["雞頸"] },
     breast: {
       retail: ["清胸肉", "雞胸肉片", "舒肥雞胸"],
@@ -121,16 +127,19 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
       ],
     },
     tender: { retail: ["雞柳條", "里肌肉"], wholesale: ["里肌", "雞柳"] },
-    wing: {
-      retail: ["二節翅", "三節翅", "翅小腿"],
-      wholesale: ["三節翅", "二節翅", "翅腿（翅小腿）", "翅尖"],
+    drumette: { retail: ["翅小腿", "雞翅腿"], wholesale: ["翅腿", "翅根"] },
+    wingtip: { retail: ["翅尖"], wholesale: ["翅尖"] },
+    wingflat: {
+      retail: ["二節翅", "雞中翅", "三節翅（含翅尖）"],
+      wholesale: ["二節翅", "中翅", "三節翅"],
       snacks: [snack("雞翅包飯", "二節翅＋翅小腿整隻，抽出骨頭", "塞入炒飯或油飯，用牙籤封口，170°C 炸 6–8 分鐘")],
     },
     thigh: {
-      retail: ["去骨雞腿排", "棒棒腿", "雞腿肉丁"],
-      wholesale: ["清腿（去骨腿肉）", "骨腿（帶骨腿）", "棒腿", "全腿"],
+      retail: ["去骨雞腿排", "雞腿肉丁", "雞腿塊"],
+      wholesale: ["清腿（去骨腿肉）", "骨腿（帶骨腿）", "全腿", "上腿"],
       snacks: [snack("鹽酥雞", "去骨腿肉切 3 cm 塊", "醃蒜泥、醬油、五香粉 1 小時，裹地瓜粉 170°C 炸 4–5 分鐘", "起鍋前丟入九層塔一起炸，撒胡椒鹽。")],
     },
+    drumstick: { retail: ["棒棒腿", "雞小腿", "大雞腿（全腿）"], wholesale: ["棒腿", "下腿"] },
     back: { retail: ["雞骨架", "雞骨"], wholesale: ["雞架", "骨架"] },
     tail: { retail: ["雞屁股"], wholesale: ["尾椎", "七里香"], snacks: [snack("烤七里香", "去尾脂腺後整顆串成串", "先刷醬油膏烤 8–10 分鐘，刷醬再烤 1 分鐘")] },
     feet: { retail: ["雞腳"], wholesale: ["雞爪", "鳳爪"], snacks: [snack("滷雞腳", "剪去趾甲整隻", "汆燙後滷 30–40 分鐘，泡滷汁一晚更入味")] },
@@ -138,9 +147,14 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
     heart: { retail: ["雞心"], wholesale: ["雞心"] },
   },
   duck: {
+    head: {
+      retail: ["鴨頭", "鴨舌"],
+      wholesale: ["鴨頭"],
+      snacks: [snack("東山鴨頭", "鴨頭整顆對切", "中藥滷汁小火滷 40–60 分鐘，瀝乾放涼；160–170°C 回炸 2–3 分鐘到外皮酥脆", "先滷後炸是東山鴨頭的特色，起鍋撒胡椒鹽。")],
+    },
     neck: {
-      retail: ["鴨脖", "鴨頭", "鴨舌"],
-      wholesale: ["鴨頸", "鴨頭"],
+      retail: ["鴨脖"],
+      wholesale: ["鴨頸"],
       snacks: [snack("東山鴨頭", "鴨頭、鴨脖（切 8–10 cm 段）", "中藥滷汁小火滷 40–60 分鐘，瀝乾放涼；160–170°C 回炸 2–3 分鐘到外皮酥脆", "先滷後炸是東山鴨頭的特色，起鍋撒胡椒鹽，也常一起炸豆干、米血。")],
     },
     breast: {
@@ -160,7 +174,8 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
     intestine: { retail: ["鴨腸"], wholesale: ["鴨腸"] },
   },
   goose: {
-    neck: { retail: ["鵝頭", "鵝脖"], wholesale: ["鵝頸", "鵝頭"] },
+    head: { retail: ["鵝頭", "鵝舌"], wholesale: ["鵝頭"] },
+    neck: { retail: ["鵝脖"], wholesale: ["鵝頸"] },
     breast: {
       retail: ["鵝肉（胸）", "煙燻鵝肉"],
       wholesale: ["鵝胸"],
@@ -187,7 +202,9 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
       wholesale: ["Loin", "Backstrap（去骨里肌）"],
       snacks: [snack("沙茶羊肉炒麵", "逆紋切 0.2 cm 薄片", "大火爆炒 30–60 秒加沙茶醬、空心菜，再拌入油麵")],
     },
-    belly: { retail: ["羊腩", "羊五花"], wholesale: ["Flap", "Breast"] },
+    breast: { retail: ["羊胸", "帶骨羊肉（爐用）"], wholesale: ["Breast"] },
+    belly: { retail: ["羊腩", "羊五花"], wholesale: ["Flap", "Flank"] },
+    rump: { retail: ["羊臀肉", "羊臀排"], wholesale: ["Rump", "Chump"] },
     leg: { retail: ["去骨羊腿", "羊腿肉丁"], wholesale: ["Leg", "Boneless Leg"] },
     shank: { retail: ["羊小腿", "羊腱"], wholesale: ["Shank"] },
   },
