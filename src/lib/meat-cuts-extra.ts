@@ -86,11 +86,15 @@ export const CUT_EXTRAS: Record<string, Record<string, Extra>> = {
     ribeye: { retail: ["肋眼牛排", "沙朗牛排（部分賣場）", "霜降火鍋片"], wholesale: ["Ribeye Roll", "Rib", "肋眼心"] },
     striploin: { retail: ["紐約客牛排", "沙朗"], wholesale: ["Striploin", "Short Loin", "外脊"] },
     tenderloin: { retail: ["菲力牛排", "腓力"], wholesale: ["Tenderloin", "腰內", "菲力"] },
-    sirloin: { retail: ["上後腰牛排", "牛臀肉"], wholesale: ["Top Sirloin", "Rump", "上後腰脊"] },
+    topsirloin: { retail: ["上後腰牛排", "沙朗牛排（部分賣場）"], wholesale: ["Top Sirloin", "Top Sirloin Butt", "上後腰脊"] },
+    bottomsirloin: { retail: ["三角肉", "牛臀肉"], wholesale: ["Bottom Sirloin", "Tri-tip"] },
+    round: { retail: ["牛後腿肉", "牛肉絲", "和尚頭火鍋片"], wholesale: ["Round", "Knuckle（和尚頭）", "Top Round", "Outside Round"] },
     shortrib: { retail: ["無骨牛小排", "帶骨牛小排", "牛小排火鍋片"], wholesale: ["Chuck Short Rib（無骨牛小排常見來源）", "Short Rib", "Boneless Short Rib"] },
-    brisket: {
-      retail: ["牛腩", "牛五花火鍋片", "牛胸腹肉"],
-      wholesale: ["Brisket", "Short Plate（牛五花）", "Flank（腹脇）", "Navel"],
+    brisket: { retail: ["牛胸肉"], wholesale: ["Brisket", "Point / Flat（胸肉兩部分）"] },
+    plate: { retail: ["牛五花火鍋片", "牛五花肉片", "牛丼肉片"], wholesale: ["Short Plate", "Navel"] },
+    flank: {
+      retail: ["牛腩", "牛腹肉"],
+      wholesale: ["Flank", "Flank Steak", "腹脇"],
       snacks: [snack("紅燒牛肉麵", "切 4 cm 塊", "汆燙後與豆瓣醬、番茄、八角小火燉 2–3 小時")],
     },
     shank: {
