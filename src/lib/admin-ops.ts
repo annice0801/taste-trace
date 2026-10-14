@@ -132,7 +132,7 @@ export const OPS = {
         count: 1,
         items: [],
         risk: "high",
-        confirmPhrase: `停權 ${user.email}`,
+        confirmPhrase: String(user.email),
       };
     },
     async execute({ userId, reason }) {
@@ -391,7 +391,7 @@ export const OPS = {
         count: 1,
         items: [],
         risk: permissions.includes("users") || permissions.includes("assets") ? "high" : "medium",
-        confirmPhrase: existing ? null : `新增 ${email}`,
+        confirmPhrase: existing ? null : email,
       };
     },
     async execute({ email, permissions, note }, admin) {
@@ -417,7 +417,7 @@ export const OPS = {
         count: 1,
         items: [],
         risk: "high",
-        confirmPhrase: `移除 ${email}`,
+        confirmPhrase: email,
       };
     },
     async execute({ email }) {

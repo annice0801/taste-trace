@@ -106,7 +106,9 @@ function ConfirmDialog({
   const [running, setRunning] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const cancelRef = useRef<HTMLButtonElement>(null);
-  const phraseOk = !preview.confirmPhrase || typed.trim() === preview.confirmPhrase;
+  // 比對時忽略空白與大小寫（例：Email 大小寫、多打一個空格）
+  const normalize = (text: string) => text.replace(/\s+/g, "").toLowerCase();
+  const phraseOk = !preview.confirmPhrase || normalize(typed) === normalize(preview.confirmPhrase);
   const nothingToDo = preview.count === 0;
 
   useEffect(() => {
@@ -165,7 +167,10 @@ function ConfirmDialog({
         ) : (
           preview.confirmPhrase && (
             <label className="mt-5 block text-sm">
-              請輸入 <code className="rounded bg-background px-1.5 py-0.5 font-mono text-red-700 dark:text-red-400">{preview.confirmPhrase}</code> 確認
+              請完整輸入框內的文字以確認：
+              <span className="mt-2 block rounded-lg border border-dashed border-red-300 bg-background px-3 py-2 font-mono text-red-700 select-none dark:border-red-900 dark:text-red-400">
+                {preview.confirmPhrase}
+              </span>
               <input
                 ref={inputRef}
                 value={typed}
@@ -173,7 +178,11 @@ function ConfirmDialog({
                 onPaste={(event) => event.preventDefault()} // 要自己打，避免直接貼上
                 autoComplete="off"
                 className="field mt-2"
+                aria-invalid={typed.length > 0 && !phraseOk}
               />
+              {typed.length > 0 && !phraseOk && (
+                <span className="mt-1 block text-xs text-muted">還沒有完全相同，請再檢查一次。</span>
+              )}
             </label>
           )
         )}
