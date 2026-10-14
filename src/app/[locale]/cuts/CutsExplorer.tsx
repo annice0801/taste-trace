@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ANIMALS, POULTRY_LAYER_ORDER, type Animal, type CookingMethod, type MeatCut } from "@/lib/meat-cuts";
 
 // 部位圖的配色：淺陶土色的部位、選取時深陶土色，與網站主色一致
@@ -42,7 +42,7 @@ export default function CutsExplorer() {
   return (
     <div className="mt-10">
       {/* 選肉的種類 */}
-      <div className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0" role="tablist" aria-label={t("chooseAnimal")}>
+      <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap" role="tablist" aria-label={t("chooseAnimal")}>
         {ANIMALS.map((a) => (
           <button
             key={a.id}
@@ -50,7 +50,7 @@ export default function CutsExplorer() {
             role="tab"
             aria-selected={a.id === animalId}
             onClick={() => chooseAnimal(a.id)}
-            className={`shrink-0 rounded-full border px-5 py-2 text-sm transition ${
+            className={`rounded-full border px-5 py-2 text-sm transition ${
               a.id === animalId ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground"
             }`}
           >
@@ -153,6 +153,24 @@ function CutDiagram({
   showChinese: boolean;
 }) {
   const [hoverId, setHoverId] = useState<string | null>(null);
+  // 圖會跟著螢幕縮小；窄螢幕時把文字放大回可讀的大小，並省略英文小字
+  const svgRef = useRef<SVGSVGElement>(null);
+  const [svgWidth, setSvgWidth] = useState(640);
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+    const observer = new ResizeObserver(([entry]) => setSvgWidth(entry!.contentRect.width || 640));
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, []);
+  const compact = svgWidth < 520;
+  const textScale = Math.max(1, 640 / svgWidth / 1.5);
+  // 文字放大後可能超出圖的左右邊，把標籤往內推
+  function labelPos(cut: MeatCut): [number, number] {
+    const [x, y] = cut.label!;
+    const half = showChinese ? (cut.name.length * 15 * textScale) / 2 + 4 : (cut.nameEn.split(" (")[0]!.length * 5.5 * textScale) / 2 + 4;
+    return [Math.min(640 - half, Math.max(half, x)), y];
+  }
   const clipId = `cut-clip-${animal.id}`;
   // 禽類的背部是底層，要先畫；其他動物照資料順序
   const isPoultry = ["chicken", "duck", "goose"].includes(animal.id);
@@ -185,7 +203,7 @@ function CutDiagram({
   return (
     <figure className="overflow-hidden rounded-2xl border border-border bg-[#f7efe3] p-3 sm:p-5 dark:bg-surface">
       <figcaption className="mb-1 text-center font-serif text-xl text-accent sm:text-2xl">{title}</figcaption>
-      <svg viewBox="0 0 640 400" className="w-full select-none" role="group" aria-label={title}>
+      <svg ref={svgRef} viewBox="0 0 640 400" className="w-full select-none" role="group" aria-label={title}>
         <defs>
           <clipPath id={clipId}>
             <path d={animal.outline} />
@@ -231,7 +249,7 @@ function CutDiagram({
         {/* 引線：標籤放在身體外的部位（例：牛肩胛），從標籤拉一條線指到部位 */}
         {animal.cuts.map((cut) => {
           if (!cut.label || !cut.anchor) return null;
-          const [x, y] = cut.label;
+          const [x, y] = labelPos(cut);
           const [ax, ay] = cut.anchor;
           const active = cut.id === selectedId;
           const color = active ? "#9c3d1c" : "#7a3a22";
@@ -246,7 +264,7 @@ function CutDiagram({
         {/* 標籤：英文小字在上、中文在下 */}
         {animal.cuts.map((cut) => {
           if (!cut.label) return null;
-          const [x, y] = cut.label;
+          const [x, y] = labelPos(cut);
           const active = cut.id === selectedId;
           // 文字加一圈描邊（paint-order），放在淺色或深色部位上都看得清楚
           const ink = active
@@ -262,11 +280,13 @@ function CutDiagram({
               style={{ paintOrder: "stroke" }}
               strokeLinejoin="round"
             >
-              <text x={x} y={showChinese ? y - 17 : y} textAnchor="middle" fontSize={10} fontStyle="italic" {...ink} strokeWidth={3}>
-                {cut.nameEn.split(" (")[0]}
-              </text>
+              {!(compact && showChinese) && (
+                <text x={x} y={showChinese ? y - 17 : y} textAnchor="middle" fontSize={10 * textScale} fontStyle="italic" {...ink} strokeWidth={3 * textScale}>
+                  {cut.nameEn.split(" (")[0]}
+                </text>
+              )}
               {showChinese && (
-                <text x={x} y={y} textAnchor="middle" fontSize={15} fontWeight={700} className="font-serif" {...ink}>
+                <text x={x} y={y} textAnchor="middle" fontSize={15 * textScale} fontWeight={700} className="font-serif" {...ink} strokeWidth={3.5 * textScale}>
                   {cut.name}
                 </text>
               )}
