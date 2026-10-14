@@ -15,7 +15,7 @@ type PhotoRow = {
   id: string;
   name: string;
   subtitle: string;
-  image: { url: string; source: string; author: string; license: string } | null;
+  image: { url: string; source: string; author: string; license: string; licenseUrl: string } | null;
   status: Status;
 };
 
@@ -56,7 +56,7 @@ export async function GET(request: Request) {
         name: key,
         subtitle: doc?.englishName ?? produceEnglish.get(key) ?? "",
         image: image
-          ? { url: image.url!, source: image.source ?? "unsplash", author: image.author ?? "", license: image.license ?? "" }
+          ? { url: image.url!, source: image.source ?? "unsplash", author: image.author ?? "", license: image.license ?? "", licenseUrl: image.licenseUrl ?? "" }
           : null,
         status: doc?.manual ? "manual" : image ? "auto" : doc?.imageCheckedAt ? "missing" : "pending",
       };
@@ -75,7 +75,7 @@ export async function GET(request: Request) {
       name: recipe.title,
       subtitle: [recipe.englishName, recipe.category].filter(Boolean).join("・"),
       image: recipe.image?.url
-        ? { url: recipe.image.url, source: recipe.image.source, author: recipe.image.author ?? "", license: recipe.image.license ?? "" }
+        ? { url: recipe.image.url, source: recipe.image.source, author: recipe.image.author ?? "", license: recipe.image.license ?? "", licenseUrl: recipe.image.licenseUrl ?? "" }
         : null,
       status: recipe.imageManual ? "manual" : recipe.image?.url ? "auto" : recipe.imageCheckedAt ? "missing" : "pending",
     }));
@@ -102,6 +102,8 @@ const uploadSchema = z.object({
   id: z.string().trim().min(1).max(60),
   author: z.string().trim().max(80).default(""),
   license: z.string().trim().max(80).default(""),
+  // 授權條款連結，例：https://creativecommons.org/licenses/by-sa/4.0
+  licenseUrl: z.union([z.string().trim().url().max(300).startsWith("https://"), z.literal("")]).default(""),
 });
 
 // 上傳手動照片（multipart：file、type、id、author、license），存進 Blob 並取代目前的照片
@@ -123,7 +125,7 @@ export async function POST(request: Request) {
   if (file.size > MAX_UPLOAD_BYTES) {
     return Response.json({ error: "照片太大，請小於 4MB" }, { status: 413 });
   }
-  const { type, id, author, license } = parsed.data;
+  const { type, id, author, license, licenseUrl } = parsed.data;
   if (type === "recipe" && !isObjectId(id)) {
     return Response.json({ error: "食譜 id 格式錯誤" }, { status: 400 });
   }
@@ -133,7 +135,7 @@ export async function POST(request: Request) {
       type === "ingredient"
         ? { type: "ingredient" as const, key: normalizeIngredientKey(id) }
         : { type: "recipe" as const, recipeId: id };
-    const { url } = await saveCuratedPhoto(target, file, { author, license });
+    const { url } = await saveCuratedPhoto(target, file, { author, license, licenseUrl });
     await audit(admin, "photos.upload", { type, id, author, license }, `上傳 ${id} 的照片`);
     return Response.json({ ok: true, url });
   } catch (error) {

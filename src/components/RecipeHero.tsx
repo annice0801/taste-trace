@@ -62,9 +62,22 @@ export function ImageCredit({ image }: { image: RecipeImage }) {
   const t = useTranslations("Photo");
   const link = "underline decoration-dotted underline-offset-2 hover:text-foreground";
   if (image.source === "custom") {
-    // 管理員上傳的照片：只標示攝影者與授權
-    const credit = [image.author, image.license].filter(Boolean).join("・");
-    return credit ? <figcaption className="mt-1.5 text-right text-[11px] text-muted">{credit}</figcaption> : null;
+    // 管理員上傳的照片：標示攝影者與授權（有條款連結就附上）
+    if (!image.author && !image.license) return null;
+    return (
+      <figcaption className="mt-1.5 text-right text-[11px] text-muted">
+        {image.author}
+        {image.author && image.license && " ・ "}
+        {image.license &&
+          (image.licenseUrl ? (
+            <a href={image.licenseUrl} target="_blank" rel="noreferrer" className={link}>
+              {image.license}
+            </a>
+          ) : (
+            image.license
+          ))}
+      </figcaption>
+    );
   }
   if (image.source === "unsplash") {
     return (

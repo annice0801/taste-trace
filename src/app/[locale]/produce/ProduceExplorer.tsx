@@ -346,9 +346,27 @@ function ProduceCard({
           {t(`types.${item.type}`)}
         </span>
       </div>
-      {photo?.source === "custom" && (photo.author || photo.license) && (
+      {(photo?.source === "custom" || photo?.source === "wikimedia") && (photo.author || photo.license) && (
         <p className="mt-1 truncate text-[10px] text-muted/80">
-          {[photo.author, photo.license].filter(Boolean).join("・")}
+          {/* 攝影者・授權（附條款連結）・來源 */}
+          {photo.author}
+          {photo.author && photo.license && "・"}
+          {photo.license &&
+            (photo.licenseUrl ? (
+              <a href={photo.licenseUrl} target="_blank" rel="noreferrer" className="underline decoration-dotted">
+                {photo.license}
+              </a>
+            ) : (
+              photo.license
+            ))}
+          {photo.source === "wikimedia" && (
+            <>
+              {"・"}
+              <a href={photo.sourceUrl} target="_blank" rel="noreferrer" className="underline decoration-dotted">
+                Wikimedia Commons
+              </a>
+            </>
+          )}
         </p>
       )}
       {photo?.source === "unsplash" && (

@@ -11,7 +11,7 @@ type Row = {
   id: string;
   name: string;
   subtitle: string;
-  image: { url: string; source: string; author: string; license: string } | null;
+  image: { url: string; source: string; author: string; license: string; licenseUrl: string } | null;
   status: Status;
 };
 type PhotosData = { rows: Row[]; counts: Record<Status, number>; regions: { id: string; label: string }[] };
@@ -22,7 +22,15 @@ const STATUS_LABELS: Record<Status, string> = {
   missing: "找不到合格照片",
   pending: "還沒找",
 };
-const LICENSE_PRESETS = ["自行拍攝", "CC0", "CC BY 4.0", "Unsplash License"];
+// 常用授權與條款連結
+const LICENSE_PRESETS: Record<string, string> = {
+  自行拍攝: "",
+  CC0: "https://creativecommons.org/publicdomain/zero/1.0/",
+  "CC BY 4.0": "https://creativecommons.org/licenses/by/4.0/",
+  "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "CC BY-SA 3.0": "https://creativecommons.org/licenses/by-sa/3.0/",
+};
+const SOURCE_LABELS: Record<string, string> = { unsplash: "Unsplash", wikimedia: "Wikimedia", custom: "手動", openverse: "Openverse" };
 
 // 照片管理：自動搜尋找不到或找錯的照片，由管理員上傳自己的照片遞補（存在 Vercel Blob）
 export default function PhotoManager() {
@@ -111,6 +119,11 @@ export default function PhotoManager() {
                   <span className="block p-2.5">
                     <span className="block truncate text-sm font-medium">{row.name}</span>
                     <span className="block truncate text-[11px] text-muted">{row.subtitle || "—"}</span>
+                    {row.image && row.status === "auto" && (
+                      <span className="mt-1 mr-1 inline-block rounded-full bg-background px-2 py-0.5 text-[10px] text-muted">
+                        {SOURCE_LABELS[row.image.source] ?? row.image.source}
+                      </span>
+                    )}
                     <span className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] ${
                       row.status === "manual" ? "bg-olive text-on-olive" : row.status === "auto" ? "bg-background text-muted" : "bg-accent-soft text-accent"
                     }`}>
@@ -156,6 +169,7 @@ function UploadDialog({
   const [preview, setPreview] = useState<string | null>(null);
   const [author, setAuthor] = useState(row.status === "manual" ? row.image?.author ?? "" : "");
   const [license, setLicense] = useState(row.status === "manual" ? row.image?.license ?? "自行拍攝" : "自行拍攝");
+  const [licenseUrl, setLicenseUrl] = useState(row.status === "manual" ? row.image?.licenseUrl ?? "" : "");
   const [busy, setBusy] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -179,6 +193,7 @@ function UploadDialog({
       form.set("id", row.id);
       form.set("author", author.trim());
       form.set("license", license.trim());
+      form.set("licenseUrl", licenseUrl.trim());
       const res = await fetch("/api/admin/photos", { method: "POST", body: form });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error ?? "上傳失敗");
@@ -238,14 +253,36 @@ function UploadDialog({
         </label>
         <label className="mt-3 block text-sm">
           授權
-          <input value={license} onChange={(event) => setLicense(event.target.value)} maxLength={80} list="license-presets" className="field mt-1 !py-2" />
+          <input
+            value={license}
+            onChange={(event) => {
+              setLicense(event.target.value);
+              // 選了常用授權時自動帶入條款連結
+              if (event.target.value in LICENSE_PRESETS) setLicenseUrl(LICENSE_PRESETS[event.target.value]!);
+            }}
+            maxLength={80}
+            list="license-presets"
+            className="field mt-1 !py-2"
+          />
           <datalist id="license-presets">
-            {LICENSE_PRESETS.map((preset) => (
+            {Object.keys(LICENSE_PRESETS).map((preset) => (
               <option key={preset} value={preset} />
             ))}
           </datalist>
         </label>
-        <p className="mt-2 text-[11px] text-muted">網站上會顯示「攝影者・授權」。使用別人的 CC 授權照片時，請填原作者與授權條款。</p>
+        <label className="mt-3 block text-sm">
+          授權條款連結（選填）
+          <input
+            value={licenseUrl}
+            onChange={(event) => setLicenseUrl(event.target.value)}
+            maxLength={300}
+            placeholder="https://creativecommons.org/licenses/by-sa/4.0/"
+            className="field mt-1 !py-2 font-mono text-xs"
+          />
+        </label>
+        <p className="mt-2 text-[11px] text-muted">
+          網站上會顯示「攝影者・授權」，授權文字會連到條款。使用 Wikimedia Commons 等 CC 授權照片時，請填原作者、授權與條款連結。
+        </p>
 
         <div className="mt-5 flex flex-wrap justify-between gap-2">
           {row.status === "manual" ? (

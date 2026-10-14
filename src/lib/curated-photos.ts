@@ -11,7 +11,7 @@ import { RecipeModel } from "@/models/Recipe";
 // 標記為 manual 後，自動搜尋與照片檢查都不會覆蓋或清掉。
 
 export type CuratedTarget = { type: "ingredient"; key: string } | { type: "recipe"; recipeId: string };
-export type CuratedCredit = { author: string; license: string };
+export type CuratedCredit = { author: string; license: string; licenseUrl: string };
 
 // 上傳到 Blob 的檔名只用英數字，避免中文路徑在某些工具裡出問題
 function blobPath(target: CuratedTarget): string {
@@ -54,6 +54,7 @@ export async function saveCuratedPhoto(
               source: "custom",
               author: credit.author || undefined,
               license: credit.license || undefined,
+              licenseUrl: credit.licenseUrl || undefined,
               pathname: blob.pathname,
             },
             manual: true,
@@ -74,6 +75,7 @@ export async function saveCuratedPhoto(
               author: credit.author || undefined,
               sourceUrl: blob.url,
               license: credit.license || undefined,
+              licenseUrl: credit.licenseUrl || undefined,
               pathname: blob.pathname,
             },
             imageManual: true,

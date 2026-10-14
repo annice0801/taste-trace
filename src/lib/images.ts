@@ -7,22 +7,22 @@ import { logError } from "./error-log";
 // 2. 中文維基百科（用中文菜名）→ 英文維基百科（用英文菜名）的條目主圖，只採用 Wikimedia Commons 上的自由授權照片
 // 3. 都找不到再用 Openverse 搜尋開放授權照片（不需金鑰）：先用英文菜名，再用食材關鍵字（例：pasta shrimp）
 
-// Wikimedia 要求 API 請求帶上可識別的 User-Agent
-const USER_AGENT = "Taste-Trace/0.1 (personal recipe project)";
+// Wikimedia 要求 API 請求帶上可識別、附聯絡方式的 User-Agent，否則容易被限流
+const USER_AGENT = "Taste-Trace/0.2 (https://taste-trace.vercel.app; recipe and seasonal produce guide)";
 const TIMEOUT_MS = 6000;
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-// 遇到 429（請求太頻繁）時依 Retry-After 等一下再試一次，最多等 3 秒
+// 遇到 429（請求太頻繁）時依 Retry-After 等一下再試，最多重試 2 次、每次最多等 4 秒
 async function getJson<T>(url: URL, headers: Record<string, string> = {}): Promise<T> {
   for (let attempt = 0; ; attempt++) {
     const res = await fetch(url, {
       headers: { "User-Agent": USER_AGENT, ...headers },
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
-    if (res.status === 429 && attempt === 0) {
-      const retryAfter = Number(res.headers.get("retry-after")) || 1;
-      await sleep(Math.min(retryAfter, 3) * 1000);
+    if (res.status === 429 && attempt < 2) {
+      const retryAfter = Number(res.headers.get("retry-after")) || 2 * (attempt + 1);
+      await sleep(Math.min(retryAfter, 4) * 1000);
       continue;
     }
     if (!res.ok) throw new Error(`${url.host} 回應 ${res.status}`);
@@ -99,6 +99,25 @@ async function getCommonsImage(fileName: string): Promise<RecipeImage | null> {
     license: meta.LicenseShortName?.value ?? null,
     licenseUrl: meta.LicenseUrl?.value ?? null,
   };
+}
+
+// 食材、蔬果：維基百科條目的代表照片（例：water spinach 條目是空心菜的照片）。
+// 先查英文名稱，再查中文名稱；只採用照片檔，排除地圖、圖表、手繪圖鑑之類的圖。
+// PNG 多半是圖鑑掃描或繪圖（例：Blanco《菲律賓植物誌》），只採用 JPG／WebP 照片
+const NON_PHOTO_FILE = /(map|diagram|chart|logo|structure|molecule|formula|illustration|drawing|botanical|köhler|blanco|flora|herbarium|plate|icon|flag|\.svg|\.gif|\.tif|\.png)/i;
+
+export async function findWikimediaProduceImage(englishName: string, chineseName: string): Promise<RecipeImage | null> {
+  const candidates: ["en" | "zh", string][] = [];
+  if (englishName.trim()) candidates.push(["en", englishName.trim()]);
+  if (chineseName.trim()) candidates.push(["zh", chineseName.trim()]);
+  for (const [lang, name] of candidates) {
+    const fileName = await findWikipediaPageImage(lang, name);
+    if (!fileName || NON_PHOTO_FILE.test(fileName) || !/\.(jpe?g|webp)$/i.test(fileName)) continue;
+    const image = await getCommonsImage(fileName);
+    // 沒有標明授權的不採用
+    if (image?.license && !/fair use/i.test(image.license)) return image;
+  }
+  return null;
 }
 
 async function findWikimediaImage(

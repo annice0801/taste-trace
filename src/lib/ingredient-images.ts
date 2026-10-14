@@ -1,7 +1,7 @@
 import "server-only";
 import { z } from "zod";
 import { generateStructured, type AIClient } from "./ai";
-import { findUnsplashImage, LOOKUP_INTERVAL_MS, sleep } from "./images";
+import { findUnsplashImage, findWikimediaProduceImage, LOOKUP_INTERVAL_MS, sleep } from "./images";
 import { connectDB } from "./mongodb";
 import { ingredientKey } from "./quantity";
 import { IngredientImageModel } from "@/models/IngredientImage";
@@ -9,11 +9,12 @@ import { logError } from "./error-log";
 
 export type IngredientPhoto = {
   url: string;
-  source: "unsplash" | "custom"; // custom：管理員上傳
+  source: "unsplash" | "wikimedia" | "custom"; // custom：管理員上傳
   author: string;
   authorUrl: string;
   sourceUrl: string;
   license: string | null;
+  licenseUrl: string | null;
 };
 
 // 每次請求最多找幾種食材的照片（Unsplash 測試額度每小時 50 次）
@@ -76,9 +77,9 @@ export async function resolveIngredientImages(
     }
   }
 
-  // 依序找照片；Unsplash 額度用完或出錯就停，剩下的下次再找
+  // 依序找照片：先找 Unsplash；沒有合格照片或額度用完時，改用維基百科條目的代表照片
   let lookups = 0;
-  let stopped = false;
+  let unsplashDown = false;
   const pendingKeys = new Set<string>();
   for (const key of keys) {
     const doc = docs.get(key);
@@ -89,7 +90,7 @@ export async function resolveIngredientImages(
     const checkedRecently =
       doc.imageCheckedAt && Date.now() - doc.imageCheckedAt.getTime() < RETRY_MS;
     if (checkedRecently) continue;
-    if (stopped || lookups >= MAX_LOOKUPS_PER_REQUEST) {
+    if (lookups >= MAX_LOOKUPS_PER_REQUEST) {
       pendingKeys.add(key);
       continue;
     }
@@ -97,14 +98,43 @@ export async function resolveIngredientImages(
     if (lookups > 0) await sleep(LOOKUP_INTERVAL_MS);
     lookups++;
     try {
-      // 只採用蔬果、食材本身的照片（排除動物、果醬罐之類的加工品）
-      const photo = await findUnsplashImage(`fresh ${doc.englishName}`, "squarish", 400, "produce");
-      const image = photo && {
-        url: photo.url,
-        author: photo.author ?? "Unsplash",
-        authorUrl: photo.authorUrl ?? photo.sourceUrl,
-        sourceUrl: photo.sourceUrl,
-      };
+      let image: Record<string, string | null> | null = null;
+      if (!unsplashDown) {
+        try {
+          // 只採用蔬果、食材本身的照片（排除動物、果醬罐之類的加工品）
+          const photo = await findUnsplashImage(`fresh ${doc.englishName}`, "squarish", 400, "produce");
+          if (photo) {
+            image = {
+              url: photo.url,
+              source: "unsplash",
+              author: photo.author ?? "Unsplash",
+              authorUrl: photo.authorUrl ?? photo.sourceUrl,
+              sourceUrl: photo.sourceUrl,
+            };
+          }
+        } catch (error) {
+          logError("unsplash", "ingredient-images.unsplash", error, { query: doc.englishName });
+          unsplashDown = true; // 額度用完：這次剩下的只查維基百科
+        }
+      }
+      if (!image) {
+        const wiki = await findWikimediaProduceImage(doc.englishName, key);
+        if (wiki) {
+          image = {
+            url: wiki.url,
+            source: "wikimedia",
+            author: wiki.author,
+            sourceUrl: wiki.sourceUrl,
+            license: wiki.license,
+            licenseUrl: wiki.licenseUrl,
+          };
+        }
+      }
+      // Unsplash 額度用完、維基百科也沒有：先不記錄，等額度恢復再找
+      if (!image && unsplashDown) {
+        pendingKeys.add(key);
+        continue;
+      }
       const updated = await IngredientImageModel.findOneAndUpdate(
         { key },
         { $set: { imageCheckedAt: new Date(), ...(image && { image }) } },
@@ -112,8 +142,7 @@ export async function resolveIngredientImages(
       ).lean();
       if (updated) docs.set(key, updated);
     } catch (error) {
-      logError("unsplash", "ingredient-images.unsplash", error, { query: doc.englishName });
-      stopped = true;
+      logError("image-search", "ingredient-images.wikimedia", error, { query: doc.englishName });
       pendingKeys.add(key);
     }
   }
@@ -123,14 +152,15 @@ export async function resolveIngredientImages(
   for (const [name, key] of keyOf) {
     const image = docs.get(key)?.image;
     images[name] = image?.url
-      ? image.source === "custom"
+      ? image.source === "custom" || image.source === "wikimedia"
         ? {
             url: image.url,
-            source: "custom",
+            source: image.source,
             author: image.author ?? "",
             authorUrl: "",
-            sourceUrl: image.url,
+            sourceUrl: image.sourceUrl ?? image.url,
             license: image.license ?? null,
+            licenseUrl: image.licenseUrl ?? null,
           }
         : {
             url: image.url,
@@ -139,10 +169,11 @@ export async function resolveIngredientImages(
             authorUrl: image.authorUrl ?? image.sourceUrl ?? "https://unsplash.com",
             sourceUrl: image.sourceUrl ?? "https://unsplash.com",
             license: null,
+            licenseUrl: null,
           }
       : null;
     if (pendingKeys.has(key)) pending.push(name);
   }
-  // 額度用完時，這次就不要再請前端重試
-  return { images, pending: stopped ? [] : pending };
+  // Unsplash 額度用完時，這次就不要再請前端重試
+  return { images, pending: unsplashDown ? [] : pending };
 }

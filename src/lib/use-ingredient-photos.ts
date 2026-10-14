@@ -5,11 +5,12 @@ import { openAIKeyHeaders } from "./openai-key-store";
 
 export type IngredientPhoto = {
   url: string;
-  source: "unsplash" | "custom"; // custom：管理員上傳
+  source: "unsplash" | "wikimedia" | "custom"; // custom：管理員上傳
   author: string;
   authorUrl: string;
   sourceUrl: string;
   license: string | null;
+  licenseUrl: string | null;
 };
 export type PhotoState = Record<string, IngredientPhoto | null | undefined>; // undefined：還在找
 
