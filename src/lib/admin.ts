@@ -5,8 +5,10 @@ import { getCurrentUser, getUserFromRequest } from "./auth";
 function adminEmails(): Set<string> {
   return new Set(
     (process.env.ADMIN_EMAILS ?? "")
+      .replace(/^["']|["']$/g, "")
       .split(",")
-      .map((email) => email.trim().toLowerCase())
+      // 去掉多餘的空白與引號（例如從 .env.local 複製到 Vercel 時連引號一起貼上）
+      .map((email) => email.trim().replace(/^["']|["']$/g, "").trim().toLowerCase())
       .filter(Boolean),
   );
 }
