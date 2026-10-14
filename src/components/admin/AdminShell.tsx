@@ -11,6 +11,7 @@ const NAV = [
   { href: "/admin", label: "總覽" },
   { href: "/admin/logs", label: "錯誤日誌" },
   { href: "/admin/prompts", label: "Prompt 與模型" },
+  { href: "/admin/photos", label: "照片管理" },
   { href: "/admin/assets", label: "圖片與儲存" },
   { href: "/admin/users", label: "使用者" },
   { href: "/admin/metrics", label: "使用統計" },

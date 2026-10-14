@@ -346,7 +346,12 @@ function ProduceCard({
           {t(`types.${item.type}`)}
         </span>
       </div>
-      {photo && (
+      {photo?.source === "custom" && (photo.author || photo.license) && (
+        <p className="mt-1 truncate text-[10px] text-muted/80">
+          {[photo.author, photo.license].filter(Boolean).join("・")}
+        </p>
+      )}
+      {photo?.source === "unsplash" && (
         <p className="mt-1 truncate text-[10px] text-muted/80">
           Photo by{" "}
           <a href={photo.authorUrl} target="_blank" rel="noreferrer" className="underline decoration-dotted">

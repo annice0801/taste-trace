@@ -5,6 +5,7 @@ import { z } from "zod";
 import type { Admin } from "./admin";
 import { isAdminEmail } from "./admin";
 import { findOrphanBlobs } from "./blob-assets";
+import { normalizeIngredientKey, removeCuratedPhoto } from "./curated-photos";
 import { connectDB } from "./mongodb";
 import { AdminAuditModel } from "@/models/AdminAudit";
 import { CreationModel } from "@/models/Creation";
@@ -310,6 +311,28 @@ export const OPS = {
     },
   }),
 
+  // 移除管理員上傳的照片（刪 Blob 檔案），之後改回自動搜尋
+  "photos.removeCurated": define({
+    schema: z.object({ type: z.enum(["ingredient", "recipe"]), id: z.string().trim().min(1).max(60) }),
+    async preview({ type, id }) {
+      return {
+        title: "移除手動照片",
+        summary: `刪除「${type === "recipe" ? (await findRecipeOrThrow(id)).title : id}」的手動上傳照片（Blob 檔案一併刪除），之後改回自動搜尋照片。`,
+        count: 1,
+        items: [],
+        risk: "medium",
+        confirmPhrase: null,
+      };
+    },
+    async execute({ type, id }) {
+      const removed = await removeCuratedPhoto(
+        type === "ingredient" ? { type, key: normalizeIngredientKey(id) } : { type, recipeId: id },
+      );
+      if (!removed) throw new OpError("這張不是手動上傳的照片");
+      return "已移除手動照片";
+    },
+  }),
+
   "recipe.resetImage": define({
     schema: z.object({ recipeId: objectId }),
     async preview({ recipeId }) {
@@ -325,7 +348,11 @@ export const OPS = {
     },
     async execute({ recipeId }) {
       await connectDB();
-      await RecipeModel.updateOne({ _id: recipeId }, { $unset: { image: "", imageCheckedAt: "" } });
+      const result = await RecipeModel.updateOne(
+        { _id: recipeId, imageManual: { $ne: true } }, // 手動照片要用「移除手動照片」
+        { $unset: { image: "", imageCheckedAt: "" } },
+      );
+      if (result.matchedCount === 0) throw new OpError("這道菜用的是手動上傳的照片，請到照片管理移除");
       return "已移除照片";
     },
   }),

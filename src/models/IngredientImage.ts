@@ -13,10 +13,14 @@ const ingredientImageSchema = new Schema(
     englishName: { type: String, trim: true }, // 搜尋照片用的英文名稱
     image: {
       url: { type: String },
+      source: { type: String, enum: ["unsplash", "custom"] }, // 舊資料沒有這個欄位，視為 unsplash
       author: { type: String },
       authorUrl: { type: String },
       sourceUrl: { type: String },
+      license: { type: String }, // 管理員上傳時填的授權，例：自行拍攝、CC BY 4.0
+      pathname: { type: String }, // 管理員上傳的照片在 Blob 內的路徑
     },
+    manual: { type: Boolean }, // 管理員手動上傳，自動搜尋與檢查都不會覆蓋
     imageCheckedAt: { type: Date }, // 上次找照片的時間；找不到時避免每次重找
   },
   { timestamps: true },

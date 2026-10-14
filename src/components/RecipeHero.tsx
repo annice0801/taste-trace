@@ -61,6 +61,11 @@ export default function RecipeHero({
 export function ImageCredit({ image }: { image: RecipeImage }) {
   const t = useTranslations("Photo");
   const link = "underline decoration-dotted underline-offset-2 hover:text-foreground";
+  if (image.source === "custom") {
+    // 管理員上傳的照片：只標示攝影者與授權
+    const credit = [image.author, image.license].filter(Boolean).join("・");
+    return credit ? <figcaption className="mt-1.5 text-right text-[11px] text-muted">{credit}</figcaption> : null;
+  }
   if (image.source === "unsplash") {
     return (
       <figcaption className="mt-1.5 text-right text-[11px] text-muted">

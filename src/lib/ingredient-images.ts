@@ -9,9 +9,11 @@ import { logError } from "./error-log";
 
 export type IngredientPhoto = {
   url: string;
+  source: "unsplash" | "custom"; // custom：管理員上傳
   author: string;
   authorUrl: string;
   sourceUrl: string;
+  license: string | null;
 };
 
 // 每次請求最多找幾種食材的照片（Unsplash 測試額度每小時 50 次）
@@ -121,12 +123,23 @@ export async function resolveIngredientImages(
   for (const [name, key] of keyOf) {
     const image = docs.get(key)?.image;
     images[name] = image?.url
-      ? {
-          url: image.url,
-          author: image.author ?? "Unsplash",
-          authorUrl: image.authorUrl ?? image.sourceUrl ?? "https://unsplash.com",
-          sourceUrl: image.sourceUrl ?? "https://unsplash.com",
-        }
+      ? image.source === "custom"
+        ? {
+            url: image.url,
+            source: "custom",
+            author: image.author ?? "",
+            authorUrl: "",
+            sourceUrl: image.url,
+            license: image.license ?? null,
+          }
+        : {
+            url: image.url,
+            source: "unsplash",
+            author: image.author ?? "Unsplash",
+            authorUrl: image.authorUrl ?? image.sourceUrl ?? "https://unsplash.com",
+            sourceUrl: image.sourceUrl ?? "https://unsplash.com",
+            license: null,
+          }
       : null;
     if (pendingKeys.has(key)) pending.push(name);
   }

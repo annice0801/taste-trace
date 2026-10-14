@@ -77,7 +77,7 @@ export type Difficulty = (typeof DIFFICULTIES)[number];
 // 食譜照片（只存網址與授權資訊）
 export type RecipeImage = {
   url: string;
-  source: "unsplash" | "wikimedia" | "openverse"; // 找到照片的管道
+  source: "unsplash" | "wikimedia" | "openverse" | "custom"; // 找到照片的管道；custom 是管理員上傳
   provider: string; // 照片實際所在的網站，例：Wikimedia Commons、Flickr
   author: string | null;
   authorUrl: string | null;

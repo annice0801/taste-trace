@@ -2,6 +2,8 @@ import "server-only";
 import { list } from "@vercel/blob";
 import { connectDB } from "./mongodb";
 import { CreationModel } from "@/models/Creation";
+import { IngredientImageModel } from "@/models/IngredientImage";
+import { RecipeModel } from "@/models/Recipe";
 
 export type BlobFile = { url: string; pathname: string; size: number; uploadedAt: string };
 
@@ -24,11 +26,19 @@ export async function listAllBlobs(): Promise<BlobFile[]> {
   return files;
 }
 
-// 資料庫裡有被引用的 Blob 網址（目前只有作品照）
+// 資料庫裡有被引用的 Blob 網址：作品照、管理員上傳的食材與食譜照片
 export async function referencedBlobUrls(): Promise<Set<string>> {
   await connectDB();
-  const creations = await CreationModel.find({}, { url: 1 }).lean();
-  return new Set(creations.map((creation) => creation.url));
+  const [creations, ingredients, recipes] = await Promise.all([
+    CreationModel.find({}, { url: 1 }).lean(),
+    IngredientImageModel.find({ "image.source": "custom" }, { image: 1 }).lean(),
+    RecipeModel.find({ "image.source": "custom" }, { image: 1 }).lean(),
+  ]);
+  return new Set([
+    ...creations.map((creation) => creation.url),
+    ...ingredients.flatMap((doc) => (doc.image?.url ? [doc.image.url] : [])),
+    ...recipes.flatMap((doc) => (doc.image?.url ? [doc.image.url] : [])),
+  ]);
 }
 
 // 孤兒檔案：在 Blob 裡，但資料庫沒有任何地方引用

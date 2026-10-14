@@ -77,7 +77,8 @@ const ingredientSchema = new Schema(
 const imageSchema = new Schema(
   {
     url: { type: String, required: true },
-    source: { type: String, enum: ["unsplash", "wikimedia", "openverse"], required: true },
+    source: { type: String, enum: ["unsplash", "wikimedia", "openverse", "custom"], required: true }, // custom：管理員上傳
+    pathname: { type: String }, // 管理員上傳的照片在 Blob 內的路徑，換照片時用來刪舊檔
     provider: { type: String }, // 照片實際所在的網站，例：Flickr
     author: { type: String },
     authorUrl: { type: String },
@@ -133,6 +134,7 @@ const recipeSchema = new Schema(
     imageUrl: { type: String, trim: true },
     image: { type: imageSchema },
     imageCheckedAt: { type: Date }, // 上次找照片的時間；找不到時避免每次都重找
+    imageManual: { type: Boolean }, // 管理員手動上傳的照片，自動搜尋與檢查都不會覆蓋
     source: {
       type: {
         type: String,

@@ -3,7 +3,14 @@
 import { useEffect, useState } from "react";
 import { openAIKeyHeaders } from "./openai-key-store";
 
-export type IngredientPhoto = { url: string; author: string; authorUrl: string; sourceUrl: string };
+export type IngredientPhoto = {
+  url: string;
+  source: "unsplash" | "custom"; // custom：管理員上傳
+  author: string;
+  authorUrl: string;
+  sourceUrl: string;
+  license: string | null;
+};
 export type PhotoState = Record<string, IngredientPhoto | null | undefined>; // undefined：還在找
 
 // 食材照片：每種食材全站只找一次；一次沒找完（額度保護）就再要一次，最多 3 輪
