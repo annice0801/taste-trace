@@ -1,5 +1,6 @@
 import "server-only";
 import { del, put } from "@vercel/blob";
+import { blobToken } from "./blob-token";
 import { Types } from "mongoose";
 import { connectDB } from "./mongodb";
 import { ingredientKey } from "./quantity";
@@ -39,6 +40,7 @@ export async function saveCuratedPhoto(
     access: "public",
     addRandomSuffix: true,
     contentType: "image/jpeg",
+    token: blobToken(),
   });
 
   try {
@@ -81,12 +83,12 @@ export async function saveCuratedPhoto(
       );
     }
   } catch (error) {
-    await del(blob.url).catch(() => {}); // 資料庫寫入失敗就把剛上傳的檔案刪掉
+    await del(blob.url, { token: blobToken() }).catch(() => {}); // 資料庫寫入失敗就把剛上傳的檔案刪掉
     throw error;
   }
 
   // 換掉之前手動上傳的照片時，刪除舊檔
-  if (previous?.source === "custom" && previous.url) await del(previous.url).catch(() => {});
+  if (previous?.source === "custom" && previous.url) await del(previous.url, { token: blobToken() }).catch(() => {});
   return { url: blob.url };
 }
 
@@ -96,7 +98,7 @@ export async function removeCuratedPhoto(target: CuratedTarget): Promise<boolean
   if (target.type === "ingredient") {
     const doc = await IngredientImageModel.findOne({ key: target.key }, { image: 1 }).lean();
     if (doc?.image?.source !== "custom") return false;
-    if (doc.image.url) await del(doc.image.url);
+    if (doc.image.url) await del(doc.image.url, { token: blobToken() });
     await IngredientImageModel.updateOne(
       { key: target.key },
       { $unset: { image: "", manual: "", imageCheckedAt: "" } },
@@ -105,7 +107,7 @@ export async function removeCuratedPhoto(target: CuratedTarget): Promise<boolean
   }
   const doc = await RecipeModel.findById(target.recipeId, { image: 1 }).lean();
   if (doc?.image?.source !== "custom") return false;
-  await del(doc.image.url);
+  await del(doc.image.url, { token: blobToken() });
   await RecipeModel.updateOne(
     { _id: target.recipeId },
     { $unset: { image: "", imageManual: "", imageCheckedAt: "" } },

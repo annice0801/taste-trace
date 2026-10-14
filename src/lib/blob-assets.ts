@@ -1,5 +1,6 @@
 import "server-only";
 import { list } from "@vercel/blob";
+import { blobToken } from "./blob-token";
 import { connectDB } from "./mongodb";
 import { CreationModel } from "@/models/Creation";
 import { IngredientImageModel } from "@/models/IngredientImage";
@@ -12,7 +13,7 @@ export async function listAllBlobs(): Promise<BlobFile[]> {
   const files: BlobFile[] = [];
   let cursor: string | undefined;
   do {
-    const page = await list({ cursor, limit: 1000 });
+    const page = await list({ cursor, limit: 1000, token: blobToken() });
     for (const blob of page.blobs) {
       files.push({
         url: blob.url,

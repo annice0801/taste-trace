@@ -1,5 +1,6 @@
 import "server-only";
 import { del } from "@vercel/blob";
+import { blobToken } from "./blob-token";
 import mongoose, { Types } from "mongoose";
 import { z } from "zod";
 import type { Admin } from "./admin";
@@ -80,7 +81,7 @@ export const OPS = {
       // 執行前重新比對，預覽之後才被引用的檔案不會被刪
       const { orphans } = await findOrphanBlobs();
       const targets = (urls ? orphans.filter((file) => urls.includes(file.url)) : orphans).map((f) => f.url);
-      for (let i = 0; i < targets.length; i += 100) await del(targets.slice(i, i + 100));
+      for (let i = 0; i < targets.length; i += 100) await del(targets.slice(i, i + 100), { token: blobToken() });
       return `已刪除 ${targets.length} 個孤兒檔案`;
     },
   }),
@@ -105,7 +106,7 @@ export const OPS = {
     async execute({ ids }) {
       await connectDB();
       const creations = await CreationModel.find({ _id: { $in: ids } }, { url: 1 }).lean();
-      if (creations.length > 0) await del(creations.map((c) => c.url));
+      if (creations.length > 0) await del(creations.map((c) => c.url), { token: blobToken() });
       await CreationModel.deleteMany({ _id: { $in: creations.map((c) => c._id) } });
       return `已下架 ${creations.length} 張作品照`;
     },

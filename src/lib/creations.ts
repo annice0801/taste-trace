@@ -1,5 +1,6 @@
 import "server-only";
 import { del, put } from "@vercel/blob";
+import { blobToken } from "./blob-token";
 import mongoose, { Types } from "mongoose";
 import { connectDB } from "./mongodb";
 import {
@@ -90,7 +91,7 @@ export async function uploadCreation({
   const blob = await put(
     `creations/${userId}/${recipeId}.${EXTENSIONS[file.type]}`,
     file,
-    { access: "public", addRandomSuffix: true, contentType: file.type },
+    { access: "public", addRandomSuffix: true, contentType: file.type, token: blobToken() },
   );
 
   try {
@@ -117,7 +118,7 @@ export async function uploadCreation({
     };
   } catch (error) {
     // 資料庫寫入失敗時把剛上傳的檔案刪掉，避免留下沒人用的檔案
-    await del(blob.url).catch(() => {});
+    await del(blob.url, { token: blobToken() }).catch(() => {});
     throw error;
   }
 }
@@ -127,7 +128,7 @@ export async function deleteCreation(userId: string, creationId: string): Promis
   await connectDB();
   const creation = await CreationModel.findOne({ _id: creationId, userId }).lean();
   if (!creation) return false;
-  await del(creation.url);
+  await del(creation.url, { token: blobToken() });
   await CreationModel.deleteOne({ _id: creationId, userId });
   return true;
 }
