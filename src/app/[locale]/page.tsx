@@ -413,6 +413,24 @@ export default async function LandingPage() {
         </div>
       </section>
 
+      {/* 行動呼籲 */}
+      <section className="mx-auto w-full max-w-6xl px-4 pt-24 sm:px-6">
+        <div className="flex flex-col items-start justify-between gap-8 border-t border-foreground pt-12 md:flex-row md:items-end">
+          <Reveal>
+            <h2 className="font-serif text-4xl leading-tight sm:text-6xl">
+              {t.rich("cta.title", { br, em: (chunks) => <span className="italic text-accent">{chunks}</span> })}
+            </h2>
+          </Reveal>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/explore" className="btn-primary">
+              {t("cta.start")} <span aria-hidden>→</span>
+            </Link>
+            <Link href="/explore#chefs" className="btn-secondary">
+              {t("cta.chefs")}
+            </Link>
+          </div>
+        </div>
+      </section>
       {/* 照片牆 */}
       <section className="mx-auto mt-24 w-full max-w-6xl px-4 sm:px-6">
         <div className="grid gap-4 md:grid-cols-[1.4fr_1fr] md:gap-6">
@@ -442,24 +460,6 @@ export default async function LandingPage() {
         </div>
       </section>
 
-      {/* 行動呼籲 */}
-      <section className="mx-auto w-full max-w-6xl px-4 pt-24 sm:px-6">
-        <div className="flex flex-col items-start justify-between gap-8 border-t border-foreground pt-12 md:flex-row md:items-end">
-          <Reveal>
-            <h2 className="font-serif text-4xl leading-tight sm:text-6xl">
-              {t.rich("cta.title", { br, em: (chunks) => <span className="italic text-accent">{chunks}</span> })}
-            </h2>
-          </Reveal>
-          <div className="flex flex-wrap gap-3">
-            <Link href="/explore" className="btn-primary">
-              {t("cta.start")} <span aria-hidden>→</span>
-            </Link>
-            <Link href="/explore#chefs" className="btn-secondary">
-              {t("cta.chefs")}
-            </Link>
-          </div>
-        </div>
-      </section>
     </main>
   );
 }
