@@ -358,7 +358,8 @@
     "chefs": "Chefs",
     "produce": "In season",
     "favorites": "Saved",
-    "works": "My dishes"
+    "works": "My dishes",
+    "cuts": "Meat cuts"
   },
   "Header": {
     "home": "Taste-Trace home",
@@ -730,7 +731,7 @@
     "loading": "Gathering local produce and seasons… The first lookup for a place takes about 15 seconds.",
     "setKey": "Set OpenAI key",
     "retry": "Retry",
-    "disclaimer": "Seasons are compiled by AI from public agricultural information. Actual availability shifts with each year's weather and growing region.",
+    "disclaimer": "Actual availability shifts with each year's weather and growing region.",
     "inSeasonTitle": "In season in {month}",
     "kinds": "{count} items",
     "noneThisMonth": "Nothing listed is at its peak this month. Try another month.",
@@ -739,5 +740,47 @@
     "choose": "Picking",
     "eat": "Eating",
     "peakMonths": "Peak months: {months}"
+  },
+  "Cuts": {
+    "title": "Meat cuts",
+    "intro": "Illustrated cut guides for pork, beef, chicken, duck, goose and lamb. Tap a cut to see its Taiwanese names, texture, and how thick to cut and how long to cook it for each method.",
+    "chooseAnimal": "Choose a meat",
+    "filterByMethod": "Find cuts by method",
+    "allMethods": "All",
+    "diagramTitle": "{animal} cuts",
+    "cutList": "Cuts",
+    "others": "Other parts (offal, etc.)",
+    "aliases": "Also called",
+    "fat": "Fat",
+    "tenderness": "Tender",
+    "texture": "Texture",
+    "howToCook": "Cooking methods & cuts",
+    "dishes": "Popular Taiwanese dishes",
+    "buyTip": "Buying tip",
+    "contentNotice": "Cut descriptions are currently available in Traditional Chinese only.",
+    "disclaimer": "Thicknesses and times are home-cooking guidelines; adjust for your heat, portion size and taste. Cook pork and poultry thoroughly (core temperature 71°C for pork and 74°C for poultry, or follow a sous-vide time-temperature chart). Diagrams are illustrative, not to scale.",
+    "methods": {
+      "boil": "Poach / Boil",
+      "hotpot": "Hot pot",
+      "stirfry": "Stir-fry",
+      "panfry": "Pan-fry",
+      "grill": "Grill",
+      "roast": "Roast",
+      "braise": "Braise",
+      "lu": "Soy-braise (lu)",
+      "deepfry": "Deep-fry",
+      "steam": "Steam",
+      "soup": "Soup",
+      "smoke": "Smoke",
+      "sousvide": "Sous vide"
+    },
+    "animals": {
+      "pork": "Pork",
+      "beef": "Beef",
+      "chicken": "Chicken",
+      "duck": "Duck",
+      "goose": "Goose",
+      "lamb": "Lamb & goat"
+    }
   }
 }

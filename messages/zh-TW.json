@@ -358,7 +358,8 @@
     "chefs": "名廚靈感",
     "produce": "當季蔬果",
     "favorites": "我的收藏",
-    "works": "我的作品"
+    "works": "我的作品",
+    "cuts": "肉品部位"
   },
   "Header": {
     "home": "Taste-Trace 首頁",
@@ -730,7 +731,7 @@
     "loading": "整理當地的蔬果與產季中…第一次查詢一個地點大約需要 15 秒。",
     "setKey": "設定 OpenAI 金鑰",
     "retry": "重試",
-    "disclaimer": "產季由 AI 依公開農產資訊整理，實際上市時間會因當年天氣與產地而前後變動。",
+    "disclaimer": "實際上市時間會依當年天氣與產地而前後變動。",
     "inSeasonTitle": "{month}正當季",
     "kinds": "{count} 種",
     "noneThisMonth": "這個月沒有列入的盛產蔬果，換個月份看看。",
@@ -739,5 +740,47 @@
     "choose": "挑選",
     "eat": "吃法",
     "peakMonths": "盛產月份：{months}"
+  },
+  "Cuts": {
+    "title": "肉品部位",
+    "intro": "豬、牛、雞、鴨、鵝、羊的部位圖解。點選部位，看台灣的叫法、肉質特色，以及每種煮法該切多厚、煮多久。",
+    "chooseAnimal": "選擇肉的種類",
+    "filterByMethod": "依煮法找部位",
+    "allMethods": "全部",
+    "diagramTitle": "{animal}部位圖",
+    "cutList": "部位列表",
+    "others": "其他部位（內臟等）",
+    "aliases": "台灣也叫",
+    "fat": "油脂",
+    "tenderness": "軟嫩",
+    "texture": "肉質",
+    "howToCook": "適合的煮法與切法",
+    "dishes": "台灣常見吃法",
+    "buyTip": "挑選訣竅",
+    "contentNotice": "",
+    "disclaimer": "厚度與時間是一般家庭烹調的參考，實際請依火力、肉量與個人喜好調整。豬肉與禽肉請確實煮熟（中心溫度豬肉 71°C、禽肉 74°C 以上，或依低溫烹調的時間溫度表）。部位圖為示意，非實際比例。",
+    "methods": {
+      "boil": "水煮・白切",
+      "hotpot": "火鍋・涮",
+      "stirfry": "炒",
+      "panfry": "煎",
+      "grill": "燒烤",
+      "roast": "烤箱烤",
+      "braise": "燉・紅燒",
+      "lu": "滷",
+      "deepfry": "炸",
+      "steam": "蒸",
+      "soup": "煮湯",
+      "smoke": "煙燻",
+      "sousvide": "低溫烹調"
+    },
+    "animals": {
+      "pork": "豬肉",
+      "beef": "牛肉",
+      "chicken": "雞肉",
+      "duck": "鴨肉",
+      "goose": "鵝肉",
+      "lamb": "羊肉"
+    }
   }
 }

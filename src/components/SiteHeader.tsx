@@ -61,7 +61,6 @@ export default function SiteHeader() {
         <div className="flex items-center gap-2 text-sm">
           <BasketDrawer />
           <OpenAIKeyPanel />
-          <LanguageSwitcher />
           <div className="hidden items-center gap-3 lg:flex">
             {isPending ? null : session ? (
               <>
@@ -75,10 +74,9 @@ export default function SiteHeader() {
                 {t("signIn")}
               </button>
             )}
-            <Link href="/explore" className="btn-primary hidden !py-2 !text-[13px] whitespace-nowrap lg:inline-flex">
-              {t("start")}
-            </Link>
           </div>
+          {/* 語言切換放在最右邊（原本「開始使用」的位置）；手機上在選單按鈕左邊 */}
+          <LanguageSwitcher />
 
           <button
             type="button"

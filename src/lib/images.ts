@@ -206,6 +206,8 @@ export function photoRelevance(
   // 食材、當季蔬果：照片要是這個蔬果本身，描述一定要提到它，而且不能是動物、加工品或料理
   //（名稱有好幾個字時每個字都要出現，例：garlic chive 不能配到只有 garlic 的照片）
   if (kind === "produce") {
+    // 甜點、烘焙（cheesecake、muffin…）裡的水果不算，字中間出現也要排除
+    if (/(cake|muffin|pastry|pancake|waffle|yogurt|yoghurt|granola|oatmeal|cereal|dessert)/.test(text)) return 0;
     const mentionsAll = queryWords.length > 0 && queryWords.every((word) => text.includes(word));
     return mentionsAll && !NOT_PRODUCE_WORDS.test(text) ? 2 : 0;
   }
