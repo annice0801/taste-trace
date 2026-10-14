@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import ChefAvatar, { PhotoCredit } from "@/components/ChefAvatar";
 import Parallax from "@/components/Parallax";
 import Reveal from "@/components/Reveal";
 import { Link } from "@/i18n/navigation";
 import { CATEGORIES, type Photo } from "@/lib/categories";
 import { LANDING_PHOTOS } from "@/lib/landing-photos";
+import { ANIMALS } from "@/lib/meat-cuts";
 
 const CHEFS = CATEGORIES.filter((category) => category.chef);
 
@@ -70,6 +71,16 @@ function FramedPhoto({
 }
 
 // 首頁的產季示意（台灣常見蔬果）
+// 首頁示範的三個熱門部位，內容直接取自部位資料
+const CUT_SAMPLES = [
+  ["pork", "jowl"],
+  ["beef", "topblade"],
+  ["chicken", "thigh"],
+].map(([animalId, cutId]) => {
+  const cut = ANIMALS.find((animal) => animal.id === animalId)!.cuts.find((c) => c.id === cutId)!;
+  return { animalId: animalId!, cut };
+});
+
 const SEASON_SAMPLES = [
   { key: "cabbage", months: [1, 2, 3, 11, 12] },
   { key: "bamboo", months: [4, 5, 6, 7, 8, 9] },
@@ -84,6 +95,8 @@ export default async function LandingPage() {
   const photos = LANDING_PHOTOS;
   const t = await getTranslations("Landing");
   const tc = await getTranslations("Categories.items");
+  const tcuts = await getTranslations("Cuts");
+  const showChinese = (await getLocale()) === "zh-TW";
 
   return (
     <main>
@@ -341,6 +354,56 @@ export default async function LandingPage() {
                         key={index}
                         className={`h-2.5 rounded-[2px] ${(sample.months as readonly number[]).includes(index + 1) ? "bg-olive" : "bg-border"}`}
                       />
+                    ))}
+                  </span>
+                </Reveal>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 肉品部位 */}
+      <section className="mx-auto mt-24 w-full max-w-6xl px-4 sm:px-6">
+        <div className="grid gap-10 md:grid-cols-[1.1fr_1fr] md:items-center md:gap-16">
+          <Reveal className="md:order-2">
+            <p className="eyebrow">Meat cuts</p>
+            <h2 className="mt-4 font-serif text-3xl leading-tight sm:text-4xl">
+              {t.rich("cuts.title", { br })}
+            </h2>
+            <p className="mt-4 max-w-md leading-relaxed text-muted">
+              {t("cuts.body")}
+            </p>
+            <Link href="/cuts" className="btn-primary mt-8">
+              {t("cuts.cta")} <span aria-hidden>→</span>
+            </Link>
+          </Reveal>
+          <Reveal delay={150} className="rounded-2xl border border-border bg-surface p-5 shadow-[0_30px_60px_-40px_rgba(60,40,20,0.35)] sm:p-7 md:order-1">
+            <p className="text-xs text-muted">{t("cuts.sampleLabel")}</p>
+            <ul className="mt-4 divide-y divide-border">
+              {CUT_SAMPLES.map(({ animalId, cut }, index) => (
+                <Reveal as="li" key={cut.id} delay={250 + index * 90} className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-4">
+                  <span className="min-w-0">
+                    <span className="block text-xs text-muted">{tcuts(`animals.${animalId}`)}</span>
+                    <span className="font-serif text-lg leading-tight">{showChinese ? cut.name : cut.nameEn.split(" (")[0]}</span>
+                  </span>
+                  <span className="flex flex-col items-end gap-1.5 text-xs text-muted">
+                    {(["fat", "tenderness"] as const).map((key) => (
+                      <span key={key} className="flex items-center gap-2" aria-label={`${tcuts(key)} ${cut[key]}/5`}>
+                        {tcuts(key)}
+                        <span className="flex gap-0.5" aria-hidden>
+                          {Array.from({ length: 5 }, (_, i) => (
+                            <span key={i} className={`size-2 rounded-full ${i < cut[key] ? "bg-accent" : "bg-border"}`} />
+                          ))}
+                        </span>
+                      </span>
+                    ))}
+                  </span>
+                  <span className="flex w-full flex-wrap gap-1.5">
+                    {cut.methods.slice(0, 3).map((m) => (
+                      <span key={m.method} className="rounded-full border border-border px-2.5 py-0.5 text-xs">
+                        {tcuts(`methods.${m.method}`)}
+                      </span>
                     ))}
                   </span>
                 </Reveal>

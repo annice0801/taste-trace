@@ -2,11 +2,11 @@
   "Landing": {
     "meta": {
       "title": "Taste-Trace | Let your mood and the weather pick tonight's dish",
-      "description": "Tell the chef how you feel or share your local weather. Taste-Trace recommends dishes with local ingredient swaps, serving scaling, a shopping list, and recipes inspired by legendary chefs."
+      "description": "Tell the chef your mood or share your local weather and Taste-Trace suggests dishes to match, with local ingredient swaps, serving scaling and a shopping list — plus seasonal produce, an illustrated meat-cut guide, and recipes inspired by legendary chefs."
     },
     "hero": {
       "title": "Today's mood<br></br>decides today's dish.",
-      "body": "Tell the chef how you're feeling, or let us check the weather where you are. Taste-Trace suggests three dishes that fit just right, with ingredient swaps you can find locally and amounts scaled to your table.",
+      "body": "Tell the chef how you're feeling, or let us check the weather where you are. Taste-Trace suggests three dishes that fit just right, with ingredient swaps you can find locally and amounts scaled to your table. Before you shop, check what's in season and which cut to buy.",
       "how": "See how it works",
       "note": "Sign in with Google · Bring your own OpenAI key · Recipes are generated once and kept for good"
     },
@@ -111,6 +111,12 @@
         "pomelo": "Pomelo",
         "persimmon": "Persimmon"
       }
+    },
+    "cuts": {
+      "title": "Which cut, how thick,<br></br>and how long to cook it?",
+      "body": "Illustrated cut guides for pork, beef, chicken, duck, goose and lamb. Tap a cut to see its Taiwanese, supermarket and butcher names, how its texture differs, and how thick to cut and how long to cook it for each method — street-food recipes included.",
+      "cta": "Explore meat cuts",
+      "sampleLabel": "Popular cuts"
     },
     "cta": {
       "title": "What's for dinner?<br></br><em>Leave it to</em> Taste-Trace.",
