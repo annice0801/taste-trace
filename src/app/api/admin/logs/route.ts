@@ -9,7 +9,7 @@ const categorySchema = z.enum(Object.keys(ERROR_CATEGORIES) as [string, ...strin
 
 // 錯誤日誌：依分類、處理狀態篩選；用 before 往前翻頁
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "logs");
   if (admin instanceof Response) return admin;
 
   const url = new URL(request.url);
@@ -61,7 +61,7 @@ const patchSchema = z.object({
 
 // 標記已處理／未處理（低風險，不需要二階段確認）
 export async function PATCH(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "logs");
   if (admin instanceof Response) return admin;
   const body = patchSchema.safeParse(await request.json().catch(() => null));
   if (!body.success) return Response.json({ error: "請求格式錯誤" }, { status: 400 });

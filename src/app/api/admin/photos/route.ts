@@ -25,7 +25,7 @@ function escapeRegex(text: string) {
 
 // 照片管理清單：食材（含當季蔬果）或食譜，依狀態、地區、關鍵字篩選
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "photos");
   if (admin instanceof Response) return admin;
 
   const url = new URL(request.url);
@@ -108,7 +108,7 @@ const uploadSchema = z.object({
 
 // 上傳手動照片（multipart：file、type、id、author、license），存進 Blob 並取代目前的照片
 export async function POST(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "photos");
   if (admin instanceof Response) return admin;
 
   const form = await request.formData().catch(() => null);

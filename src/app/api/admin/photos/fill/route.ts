@@ -8,7 +8,7 @@ const BATCH = 12; // 一次最多處理幾種食材（每輪最多找 6 種，�
 
 // 手動觸發找照片：處理還沒找過照片的食材（Unsplash → 維基百科），不用等有人打開頁面
 export async function POST(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "photos");
   if (admin instanceof Response) return admin;
 
   await connectDB();

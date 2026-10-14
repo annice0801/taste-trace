@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { isAdminEmail, requireAdmin } from "@/lib/admin";
+import { isOwnerEmail, requireAdmin } from "@/lib/admin";
+import { AdminMemberModel } from "@/models/AdminMember";
 import { connectDB } from "@/lib/mongodb";
 import { CreationModel } from "@/models/Creation";
 import { FavoriteRecipeModel } from "@/models/FavoriteRecipe";
@@ -13,7 +14,7 @@ function escapeRegex(text: string) {
 
 // 使用者名單：Google 登入註冊的帳號，附收藏、作品、推薦次數
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "users");
   if (admin instanceof Response) return admin;
 
   const url = new URL(request.url);
@@ -43,6 +44,9 @@ export async function GET(request: Request) {
   ]);
 
   const ids = users.map((user) => user._id.toString());
+  const memberEmails = new Set(
+    (await AdminMemberModel.find({ email: { $in: users.map((user) => String(user.email ?? "").toLowerCase()) } }, { email: 1 }).lean()).map((m) => m.email),
+  );
   const countBy = async (model: typeof FavoriteRecipeModel | typeof CreationModel | typeof SearchHistoryModel) =>
     new Map(
       (
@@ -71,7 +75,7 @@ export async function GET(request: Request) {
         createdAt: user.createdAt instanceof Date ? user.createdAt.toISOString() : null,
         banned: Boolean(user.banned),
         banReason: user.banReason ?? null,
-        isAdmin: isAdminEmail(user.email),
+        isAdmin: isOwnerEmail(user.email) || memberEmails.has(String(user.email ?? "").toLowerCase()),
         favorites: favorites.get(id) ?? 0,
         creations: creations.get(id) ?? 0,
         searches: searches.get(id) ?? 0,

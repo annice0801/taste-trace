@@ -9,7 +9,7 @@ function escapeRegex(text: string) {
 
 // 資料維護：用菜名或 id 找食譜，看做法、照片的狀態
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "maintenance");
   if (admin instanceof Response) return admin;
 
   const q = new URL(request.url).searchParams.get("q")?.trim().slice(0, 100) ?? "";

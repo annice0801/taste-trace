@@ -1,8 +1,11 @@
 import "server-only";
+import { canAccess, PERMISSION_KEYS, type AdminInfo, type AdminPermission } from "./admin-permissions";
 import { getCurrentUser, getUserFromRequest } from "./auth";
+import { connectDB } from "./mongodb";
+import { AdminMemberModel } from "@/models/AdminMember";
 
-// 管理員名單：.env.local 的 ADMIN_EMAILS（逗號分隔），必須用這些 Google 帳號登入
-function adminEmails(): Set<string> {
+// 擁有者名單：.env.local 的 ADMIN_EMAILS（逗號分隔），擁有全部權限，不能從後台移除
+function ownerEmails(): Set<string> {
   return new Set(
     (process.env.ADMIN_EMAILS ?? "")
       .replace(/^["']|["']$/g, "")
@@ -13,23 +16,55 @@ function adminEmails(): Set<string> {
   );
 }
 
-export function isAdminEmail(email: string | null | undefined): boolean {
-  return Boolean(email && adminEmails().has(email.toLowerCase()));
+export function isOwnerEmail(email: string | null | undefined): boolean {
+  return Boolean(email && ownerEmails().has(email.toLowerCase()));
 }
 
-export type Admin = { id: string; email: string; name: string };
+export function listOwnerEmails(): string[] {
+  return [...ownerEmails()];
+}
+
+// 擁有者或後台新增的管理員
+export async function isAnyAdminEmail(email: string | null | undefined): Promise<boolean> {
+  if (!email) return false;
+  if (isOwnerEmail(email)) return true;
+  await connectDB();
+  return Boolean(await AdminMemberModel.exists({ email: email.toLowerCase() }));
+}
+
+export type Admin = AdminInfo;
+
+async function resolveAdmin(user: { id: string; email: string; name: string } | null): Promise<Admin | null> {
+  if (!user?.email) return null;
+  if (isOwnerEmail(user.email)) {
+    return { id: user.id, email: user.email, name: user.name, isOwner: true, permissions: [...PERMISSION_KEYS] };
+  }
+  await connectDB();
+  const member = await AdminMemberModel.findOne({ email: user.email.toLowerCase() }).lean();
+  if (!member) return null;
+  return {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    isOwner: false,
+    permissions: (member.permissions ?? []) as AdminPermission[],
+  };
+}
 
 // Server Component 用：不是管理員回傳 null
 export async function getAdmin(): Promise<Admin | null> {
-  const user = await getCurrentUser();
-  return user && isAdminEmail(user.email) ? { id: user.id, email: user.email, name: user.name } : null;
+  return resolveAdmin(await getCurrentUser());
 }
 
-// 後台 API 用：不是管理員時回傳 404（不透露後台存在）
-export async function requireAdmin(request: Request): Promise<Admin | Response> {
-  const user = await getUserFromRequest(request);
-  if (!user || !isAdminEmail(user.email)) {
-    return Response.json({ error: "Not found" }, { status: 404 });
+// 後台 API 用：不是管理員回 404（不透露後台存在）；是管理員但沒有這項權限回 403
+export async function requireAdmin(
+  request: Request,
+  need: AdminPermission | "owner" | null = null,
+): Promise<Admin | Response> {
+  const admin = await resolveAdmin(await getUserFromRequest(request));
+  if (!admin) return Response.json({ error: "Not found" }, { status: 404 });
+  if (!canAccess(admin, need)) {
+    return Response.json({ error: "你沒有這項功能的權限，請聯絡網站擁有者" }, { status: 403 });
   }
-  return { id: user.id, email: user.email, name: user.name };
+  return admin;
 }

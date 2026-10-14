@@ -7,7 +7,7 @@ const PAGE_SIZE = 48;
 
 // 作品照審核牆：最新上傳在前，附上傳者與公開狀態
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "assets");
   if (admin instanceof Response) return admin;
 
   const url = new URL(request.url);

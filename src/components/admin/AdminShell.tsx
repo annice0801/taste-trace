@@ -3,24 +3,29 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import type { Admin } from "@/lib/admin";
+import { canAccess, PAGE_PERMISSIONS, type AdminInfo, type AdminPermission } from "@/lib/admin-permissions";
 import { authClient } from "@/lib/auth-client";
 import { OperationProvider } from "./useOperation";
 
-const NAV = [
-  { href: "/admin", label: "總覽" },
-  { href: "/admin/logs", label: "錯誤日誌" },
-  { href: "/admin/prompts", label: "Prompt 與模型" },
-  { href: "/admin/photos", label: "照片管理" },
-  { href: "/admin/assets", label: "圖片與儲存" },
-  { href: "/admin/users", label: "使用者" },
-  { href: "/admin/metrics", label: "使用統計" },
-  { href: "/admin/maintenance", label: "資料維護" },
+const NAV: { href: string; label: string; need: AdminPermission | "owner" | null }[] = [
+  { href: "/admin", label: "總覽", need: null },
+  { href: "/admin/logs", label: "錯誤日誌", need: "logs" },
+  { href: "/admin/prompts", label: "Prompt 與模型", need: "prompts" },
+  { href: "/admin/photos", label: "照片管理", need: "photos" },
+  { href: "/admin/assets", label: "圖片與儲存", need: "assets" },
+  { href: "/admin/users", label: "使用者", need: "users" },
+  { href: "/admin/metrics", label: "使用統計", need: "metrics" },
+  { href: "/admin/maintenance", label: "資料維護", need: "maintenance" },
+  { href: "/admin/admins", label: "管理員與權限", need: "owner" },
 ];
 
-export default function AdminShell({ admin, children }: { admin: Admin; children: React.ReactNode }) {
+export default function AdminShell({ admin, children }: { admin: AdminInfo; children: React.ReactNode }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  // 只顯示有權限的功能；直接輸入網址進沒有權限的頁面時顯示提示
+  const nav = NAV.filter((item) => canAccess(admin, item.need));
+  const pageNeed = PAGE_PERMISSIONS.find(([prefix]) => pathname.startsWith(prefix))?.[1] ?? null;
+  const allowed = canAccess(admin, pageNeed);
 
   return (
     <OperationProvider>
@@ -44,7 +49,7 @@ export default function AdminShell({ admin, children }: { admin: Admin; children
           </div>
           <nav className={`${menuOpen ? "block" : "hidden"} px-3 pb-4 lg:block`} aria-label="後台導覽">
             <ul className="space-y-0.5 text-sm">
-              {NAV.map((item) => {
+              {nav.map((item) => {
                 const active = item.href === "/admin" ? pathname === "/admin" : pathname.startsWith(item.href);
                 return (
                   <li key={item.href}>
@@ -63,6 +68,7 @@ export default function AdminShell({ admin, children }: { admin: Admin; children
             </ul>
             <div className="mt-6 border-t border-border px-3 pt-4 text-xs text-muted">
               <p className="truncate">{admin.email}</p>
+              <p className="mt-0.5">{admin.isOwner ? "擁有者" : "管理員"}</p>
               <div className="mt-2 flex gap-3">
                 <Link href="/" className="underline underline-offset-4 hover:text-foreground">回網站</Link>
                 <button
@@ -76,7 +82,16 @@ export default function AdminShell({ admin, children }: { admin: Admin; children
             </div>
           </nav>
         </aside>
-        <main className="min-w-0 flex-1 px-4 py-6 sm:px-8 lg:py-10">{children}</main>
+        <main className="min-w-0 flex-1 px-4 py-6 sm:px-8 lg:py-10">
+          {allowed ? (
+            children
+          ) : (
+            <div className="mx-auto mt-16 max-w-md text-center">
+              <h1 className="font-serif text-3xl">沒有這項功能的權限</h1>
+              <p className="mt-3 text-sm text-muted">請聯絡網站擁有者幫你開啟。</p>
+            </div>
+          )}
+        </main>
       </div>
     </OperationProvider>
   );

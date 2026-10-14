@@ -37,7 +37,7 @@ async function listModels(provider: AIProvider): Promise<string[]> {
 
 // 目前的預設模型，以及兩家供應商可以選的模型
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "prompts");
   if (admin instanceof Response) return admin;
 
   const [current, openai, gemini] = await Promise.all([
@@ -66,7 +66,7 @@ const testSchema = z.object({ ok: z.boolean(), dish: z.string() });
 
 // 切換前先用這個模型實際產生一次結構化回應，成功才儲存，避免換成不能用的模型
 export async function POST(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "prompts");
   if (admin instanceof Response) return admin;
   const body = bodySchema.safeParse(await request.json().catch(() => null));
   if (!body.success) return Response.json({ error: "請求格式錯誤" }, { status: 400 });

@@ -4,7 +4,9 @@ import { blobToken } from "./blob-token";
 import mongoose, { Types } from "mongoose";
 import { z } from "zod";
 import type { Admin } from "./admin";
-import { isAdminEmail } from "./admin";
+import { isAnyAdminEmail, isOwnerEmail } from "./admin";
+import { ADMIN_PERMISSIONS, PERMISSION_KEYS, type AdminPermission } from "./admin-permissions";
+import { AdminMemberModel } from "@/models/AdminMember";
 import { findOrphanBlobs } from "./blob-assets";
 import { normalizeIngredientKey, removeCuratedPhoto } from "./curated-photos";
 import { connectDB } from "./mongodb";
@@ -34,6 +36,7 @@ export type OpPreview = {
 };
 
 type OpDefinition<S extends z.ZodType> = {
+  permission: AdminPermission | "owner"; // 執行這個操作需要的權限
   schema: S;
   preview: (params: z.infer<S>) => Promise<OpPreview>;
   execute: (params: z.infer<S>, admin: Admin) => Promise<string>;
@@ -63,6 +66,7 @@ function define<S extends z.ZodType>(definition: OpDefinition<S>) {
 export const OPS = {
   // 孤兒圖片：Blob 裡有、資料庫沒人引用
   "blob.deleteOrphans": define({
+    permission: "assets",
     schema: z.object({ urls: z.array(z.string().url()).min(1).max(1000).optional() }),
     async preview({ urls }) {
       const { orphans } = await findOrphanBlobs();
@@ -88,6 +92,7 @@ export const OPS = {
 
   // 下架作品照：同時刪除 Blob 檔案與資料庫紀錄
   "creations.takedown": define({
+    permission: "assets",
     schema: z.object({ ids: z.array(objectId).min(1).max(100) }),
     async preview({ ids }) {
       await connectDB();
@@ -113,12 +118,13 @@ export const OPS = {
   }),
 
   "user.ban": define({
+    permission: "users",
     schema: z.object({ userId: objectId, reason: z.string().trim().max(200).default("") }),
     async preview({ userId, reason }) {
       await connectDB();
       const user = await db().collection("user").findOne({ _id: new Types.ObjectId(userId) });
       if (!user) throw new OpError("找不到這位使用者");
-      if (isAdminEmail(user.email)) throw new OpError("不能停權管理員帳號");
+      if (await isAnyAdminEmail(user.email)) throw new OpError("不能停權管理員帳號，請先移除他的管理員身分");
       const sessions = await db().collection("session").countDocuments({ userId: user._id });
       return {
         title: "停權使用者",
@@ -133,7 +139,7 @@ export const OPS = {
       await connectDB();
       const _id = new Types.ObjectId(userId);
       const user = await db().collection("user").findOne({ _id });
-      if (!user || isAdminEmail(user.email)) throw new OpError("無法停權這個帳號");
+      if (!user || (await isAnyAdminEmail(user.email))) throw new OpError("無法停權這個帳號");
       await db()
         .collection("user")
         .updateOne({ _id }, { $set: { banned: true, banReason: reason || null, bannedAt: new Date() } });
@@ -143,6 +149,7 @@ export const OPS = {
   }),
 
   "user.unban": define({
+    permission: "users",
     schema: z.object({ userId: objectId }),
     async preview({ userId }) {
       await connectDB();
@@ -170,6 +177,7 @@ export const OPS = {
   }),
 
   "db.clearSearchHistory": define({
+    permission: "maintenance",
     schema: z.object({ olderThanDays: days }),
     async preview({ olderThanDays }) {
       await connectDB();
@@ -192,6 +200,7 @@ export const OPS = {
 
   // 沒人收藏、沒有作品照的舊食譜
   "db.deleteUnusedRecipes": define({
+    permission: "maintenance",
     schema: z.object({ olderThanDays: days.min(1) }),
     async preview({ olderThanDays }) {
       const ids = await unusedRecipeIds(olderThanDays);
@@ -213,6 +222,7 @@ export const OPS = {
   }),
 
   "db.clearProduceCache": define({
+    permission: "maintenance",
     schema: z.object({}),
     async preview() {
       await connectDB();
@@ -235,6 +245,7 @@ export const OPS = {
 
   // 找不到照片的食材，讓下次顯示時重新找
   "db.retryIngredientImages": define({
+    permission: "maintenance",
     schema: z.object({}),
     async preview() {
       await connectDB();
@@ -258,6 +269,7 @@ export const OPS = {
   }),
 
   "db.clearErrorLogs": define({
+    permission: "logs",
     schema: z.object({
       category: z.enum(Object.keys(ERROR_CATEGORIES) as [string, ...string[]]).optional(),
       resolvedOnly: z.boolean().default(false),
@@ -287,6 +299,7 @@ export const OPS = {
 
   // 排錯：做法有問題時清掉，下次點開會重新產生
   "recipe.resetDetail": define({
+    permission: "maintenance",
     schema: z.object({ recipeId: objectId }),
     async preview({ recipeId }) {
       const recipe = await findRecipeOrThrow(recipeId);
@@ -314,6 +327,7 @@ export const OPS = {
 
   // 移除管理員上傳的照片（刪 Blob 檔案），之後改回自動搜尋
   "photos.removeCurated": define({
+    permission: "photos",
     schema: z.object({ type: z.enum(["ingredient", "recipe"]), id: z.string().trim().min(1).max(60) }),
     async preview({ type, id }) {
       return {
@@ -335,6 +349,7 @@ export const OPS = {
   }),
 
   "recipe.resetImage": define({
+    permission: "maintenance",
     schema: z.object({ recipeId: objectId }),
     async preview({ recipeId }) {
       const recipe = await findRecipeOrThrow(recipeId);
@@ -355,6 +370,60 @@ export const OPS = {
       );
       if (result.matchedCount === 0) throw new OpError("這道菜用的是手動上傳的照片，請到照片管理移除");
       return "已移除照片";
+    },
+  }),
+  // 新增管理員或修改權限（只有擁有者可以）
+  "admins.save": define({
+    permission: "owner",
+    schema: z.object({
+      email: z.string().trim().toLowerCase().email().max(200),
+      permissions: z.array(z.enum(PERMISSION_KEYS as [AdminPermission, ...AdminPermission[]])).max(PERMISSION_KEYS.length),
+      note: z.string().trim().max(100).default(""),
+    }),
+    async preview({ email, permissions }) {
+      if (isOwnerEmail(email)) throw new OpError("這個帳號是擁有者（ADMIN_EMAILS），本來就有全部權限");
+      await connectDB();
+      const existing = await AdminMemberModel.findOne({ email }).lean();
+      const labels = permissions.map((key) => ADMIN_PERMISSIONS[key]);
+      return {
+        title: existing ? "修改管理員權限" : "新增管理員",
+        summary: `${existing ? "更新" : "新增"} ${email} 為管理員，可使用：${labels.length ? labels.join("、") : "（只能看總覽）"}。對方用這個 Google 帳號登入 /admin 就能使用。`,
+        count: 1,
+        items: [],
+        risk: permissions.includes("users") || permissions.includes("assets") ? "high" : "medium",
+        confirmPhrase: existing ? null : `新增 ${email}`,
+      };
+    },
+    async execute({ email, permissions, note }, admin) {
+      await connectDB();
+      await AdminMemberModel.updateOne(
+        { email },
+        { $set: { permissions, note: note || undefined }, $setOnInsert: { addedBy: admin.email } },
+        { upsert: true },
+      );
+      return `已設定 ${email} 的權限`;
+    },
+  }),
+
+  "admins.remove": define({
+    permission: "owner",
+    schema: z.object({ email: z.string().trim().toLowerCase().email().max(200) }),
+    async preview({ email }) {
+      await connectDB();
+      if (!(await AdminMemberModel.exists({ email }))) throw new OpError("找不到這位管理員");
+      return {
+        title: "移除管理員",
+        summary: `移除 ${email} 的管理員身分，對方會立即無法進入後台（帳號本身不受影響）。`,
+        count: 1,
+        items: [],
+        risk: "high",
+        confirmPhrase: `移除 ${email}`,
+      };
+    },
+    async execute({ email }) {
+      await connectDB();
+      await AdminMemberModel.deleteOne({ email });
+      return `已移除 ${email} 的管理員身分`;
     },
   }),
 } as const;

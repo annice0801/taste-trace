@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { requireAdmin } from "@/lib/admin";
+import { canAccess } from "@/lib/admin-permissions";
 import { createConfirmToken, verifyConfirmToken } from "@/lib/admin-confirm";
 import { audit, isOpName, OpError, OPS } from "@/lib/admin-ops";
 import { logError } from "@/lib/error-log";
@@ -24,6 +25,9 @@ export async function POST(request: Request) {
   }
   const { action, phase, token } = body.data;
   const op = OPS[action];
+  if (!canAccess(admin, op.permission)) {
+    return Response.json({ error: "你沒有這項功能的權限，請聯絡網站擁有者" }, { status: 403 });
+  }
   const params = op.schema.safeParse(body.data.params ?? {});
   if (!params.success) {
     return Response.json({ error: "參數格式錯誤" }, { status: 400 });

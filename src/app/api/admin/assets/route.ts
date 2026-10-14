@@ -4,7 +4,7 @@ import { logError } from "@/lib/error-log";
 
 // 儲存健康：Blob 檔案總數與容量，以及沒有被資料庫引用的孤兒檔案
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "assets");
   if (admin instanceof Response) return admin;
 
   try {

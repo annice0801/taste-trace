@@ -13,7 +13,7 @@ import { PromptVersionModel } from "@/models/PromptVersion";
 
 // Prompt CMS：列出每個提示詞的內建預設、所有版本，以及目前生效的版本
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "prompts");
   if (admin instanceof Response) return admin;
 
   await connectDB();
@@ -49,7 +49,7 @@ const saveSchema = z.object({
 
 // 儲存成新版本並立即生效
 export async function POST(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "prompts");
   if (admin instanceof Response) return admin;
   const body = saveSchema.safeParse(await request.json().catch(() => null));
   if (!body.success || !isPromptKey(body.data.key)) {
@@ -79,7 +79,7 @@ const activateSchema = z.object({ key: z.string(), version: z.number().int().min
 
 // 切換到指定版本；version 0 是內建預設
 export async function PUT(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "prompts");
   if (admin instanceof Response) return admin;
   const body = activateSchema.safeParse(await request.json().catch(() => null));
   if (!body.success || !isPromptKey(body.data.key)) {

@@ -9,7 +9,7 @@ type Row = { _id: string; count: number };
 
 // 使用偏好統計：菜系熱度（查詢、收藏）與標籤點擊率
 export async function GET(request: Request) {
-  const admin = await requireAdmin(request);
+  const admin = await requireAdmin(request, "metrics");
   if (admin instanceof Response) return admin;
 
   const daysParam = Number(new URL(request.url).searchParams.get("days"));
