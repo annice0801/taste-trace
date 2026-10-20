@@ -4,6 +4,7 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
 import { MongoClient, ObjectId } from "mongodb";
 import { headers } from "next/headers";
+import { logError } from "./error-log";
 
 // Better Auth 用自己的 MongoClient，使用者、session、帳號會存在同一個資料庫的
 // user、session、account、verification collection
@@ -66,12 +67,38 @@ export const auth = betterAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     },
   },
+  // Better Auth 內部錯誤（例如讀 session 時資料庫出錯）只會印在主機紀錄裡，
+  // 另外寫進後台的錯誤日誌，才看得到真正的原因
+  logger: {
+    log: (level, message, ...args) => {
+      if (level !== "error") return;
+      const cause = args.find((arg) => arg instanceof Error) ?? args[0] ?? message;
+      void logError("auth", `better-auth:${message}`, cause);
+    },
+  },
   plugins: [nextCookies()],
 });
 
+// 讀取目前的登入狀態。頁面渲染時不能寫 cookie，所以 Server Component 一律只讀不續期
+// （續期交給瀏覽器端的 get-session）；讀取失敗時當作未登入並記錄，不讓整頁壞掉
+async function readSession(requestHeaders: Headers, readOnly: boolean) {
+  try {
+    return await auth.api.getSession({ headers: requestHeaders, query: { disableRefresh: readOnly } });
+  } catch (error) {
+    if (!readOnly) {
+      // 續期失敗（例如同時有其他請求刪除了這個 session）時，改用只讀再試一次
+      try {
+        return await auth.api.getSession({ headers: requestHeaders, query: { disableRefresh: true } });
+      } catch {}
+    }
+    void logError("auth", "getSession", error);
+    return null;
+  }
+}
+
 // Server Component 用：取得目前登入的使用者，未登入回傳 null
 export async function getCurrentUser() {
-  const session = await auth.api.getSession({ headers: await headers() });
+  const session = await readSession(await headers(), true);
   return session && !session.user.banned ? session.user : null;
 }
 
@@ -79,12 +106,12 @@ export async function getCurrentUser() {
 export async function getUserIdFromRequest(
   request: Request,
 ): Promise<string | null> {
-  const session = await auth.api.getSession({ headers: request.headers });
+  const session = await readSession(request.headers, false);
   return session && !session.user.banned ? session.user.id : null;
 }
 
 // Route Handler 用：取得完整的使用者資料（後台判斷管理員用）
 export async function getUserFromRequest(request: Request) {
-  const session = await auth.api.getSession({ headers: request.headers });
+  const session = await readSession(request.headers, false);
   return session && !session.user.banned ? session.user : null;
 }
