@@ -13,7 +13,7 @@
     "better-auth": "^1.7.7",
     "mongodb": "^7.7.0",
     "mongoose": "^9.11.1",
-    "next": "16.4.0",
+    "next": "16.4.3",
     "next-intl": "^4.14.7",
     "openai": "^7.32.0",
     "react": "19.3.0",
@@ -27,7 +27,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.4.0",
+    "eslint-config-next": "16.4.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
