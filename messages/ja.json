@@ -745,7 +745,29 @@
     "areas": "産地",
     "choose": "選び方",
     "eat": "食べ方",
-    "peakMonths": "旬：{months}"
+    "peakMonths": "旬：{months}",
+    "pickingOpen": "詳しい選び方",
+    "pickingTitle": "{name}の選び方",
+    "pickingLoading": "選び方をまとめています…初めて調べる品目は約 10 秒かかります。",
+    "pickingSenses": "五感で見分ける",
+    "pickingGood": "選ぶ",
+    "pickingAvoid": "避ける",
+    "pickingGoals": "目的別の選び方",
+    "pickingRipening": "買ったあと",
+    "pickingStorage": "保存",
+    "pickingMyth": "よくある誤解",
+    "pickingNote": "一般的な買い物の経験をもとに AI がまとめた内容です。品種や産地によって異なります。",
+    "pickingClose": "閉じる",
+    "pickingSearchLabel": "どんな青果でも選び方を調べる",
+    "pickingSearchPlaceholder": "例：スイカ、アボカド",
+    "pickingSearchGo": "調べる",
+    "senses": {
+      "look": "見る",
+      "touch": "触る",
+      "sound": "聞く",
+      "smell": "嗅ぐ",
+      "weight": "重さ"
+    }
   },
   "Cuts": {
     "title": "肉の部位ガイド",

@@ -745,7 +745,29 @@
     "areas": "Grown in",
     "choose": "Picking",
     "eat": "Eating",
-    "peakMonths": "Peak months: {months}"
+    "peakMonths": "Peak months: {months}",
+    "pickingOpen": "Full picking guide",
+    "pickingTitle": "How to pick {name}",
+    "pickingLoading": "Putting together the picking guide… the first lookup for an item takes about 10 seconds.",
+    "pickingSenses": "Use your senses",
+    "pickingGood": "Pick",
+    "pickingAvoid": "Avoid",
+    "pickingGoals": "By what you want",
+    "pickingRipening": "After you buy",
+    "pickingStorage": "Storage",
+    "pickingMyth": "Common myth",
+    "pickingNote": "Compiled by AI from common shopping experience; varieties and growing regions vary.",
+    "pickingClose": "Close",
+    "pickingSearchLabel": "Look up how to pick any produce",
+    "pickingSearchPlaceholder": "e.g. watermelon, avocado",
+    "pickingSearchGo": "Look up",
+    "senses": {
+      "look": "Look",
+      "touch": "Touch",
+      "sound": "Listen",
+      "smell": "Smell",
+      "weight": "Heft"
+    }
   },
   "Cuts": {
     "title": "Meat cuts",

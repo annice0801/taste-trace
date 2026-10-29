@@ -13,7 +13,9 @@ import {
   type ProduceItem,
   type ProduceType,
 } from "@/lib/produce";
+import { MAX_PRODUCE_NAME_LENGTH } from "@/lib/picking";
 import { useIngredientPhotos, type IngredientPhoto } from "@/lib/use-ingredient-photos";
+import { PickingGuideDialog, type PickingTarget } from "./PickingGuideDialog";
 
 type LoadResult =
   | { status: "error"; error: string; needsKey: boolean }
@@ -88,6 +90,9 @@ export default function ProduceExplorer() {
   const [draft, setDraft] = useState("");
   const [type, setType] = useState<ProduceType | "all">("all");
   const [reloadKey, setReloadKey] = useState(0);
+  // 正在看挑選標準的蔬果；null 代表視窗關閉
+  const [picking, setPicking] = useState<PickingTarget | null>(null);
+  const [pickDraft, setPickDraft] = useState("");
 
   // 結果記下是哪一次請求的；地點換了、結果還沒回來時就顯示載入中
   const requestKey = `${location ?? ""}#${reloadKey}`;
@@ -172,6 +177,29 @@ export default function ProduceExplorer() {
           </form>
         </div>
         <p id="produce-location-hint" className="sr-only">{t("locationHint")}</p>
+
+        <form
+          className="mt-5 flex flex-wrap items-center gap-2 border-t border-border pt-5"
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (pickDraft.trim()) setPicking({ name: pickDraft.trim() });
+          }}
+        >
+          <label htmlFor="produce-picking" className="w-full text-sm font-medium sm:w-auto">
+            {t("pickingSearchLabel")}
+          </label>
+          <input
+            id="produce-picking"
+            value={pickDraft}
+            onChange={(event) => setPickDraft(event.target.value)}
+            maxLength={MAX_PRODUCE_NAME_LENGTH}
+            placeholder={t("pickingSearchPlaceholder")}
+            className="field min-w-0 flex-1 sm:max-w-56"
+          />
+          <button type="submit" disabled={!pickDraft.trim()} className="btn-secondary shrink-0 !px-4">
+            {t("pickingSearchGo")}
+          </button>
+        </form>
 
         <div className="-mx-5 mt-5 flex gap-2 overflow-x-auto px-5 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
           <button type="button" aria-pressed={!location} onClick={() => choose(null)} className="chip shrink-0">
@@ -259,8 +287,10 @@ export default function ProduceExplorer() {
       )}
 
       {guide && month && (
-        <ProduceGrid inSeason={inSeason} offSeason={offSeason} month={month} allItems={guide.items} />
+        <ProduceGrid inSeason={inSeason} offSeason={offSeason} month={month} allItems={guide.items} onPick={setPicking} />
       )}
+
+      <PickingGuideDialog target={picking} onClose={() => setPicking(null)} />
 
       <p className="mt-12 text-xs leading-relaxed text-muted">
         {t("disclaimer")}
@@ -274,11 +304,13 @@ function ProduceGrid({
   offSeason,
   month,
   allItems,
+  onPick,
 }: {
   inSeason: ProduceItem[];
   offSeason: ProduceItem[];
   month: number;
   allItems: ProduceItem[];
+  onPick: (target: PickingTarget) => void;
 }) {
   const t = useTranslations("Produce");
   const monthLabel = useMonthLabel();
@@ -297,7 +329,7 @@ function ProduceGrid({
         ) : (
           <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4">
             {inSeason.map((item) => (
-              <ProduceCard key={item.name} item={item} month={month} photo={photos[item.name]} />
+              <ProduceCard key={item.name} item={item} month={month} photo={photos[item.name]} onPick={onPick} />
             ))}
           </ul>
         )}
@@ -310,7 +342,7 @@ function ProduceGrid({
           </h2>
           <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 opacity-80 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4">
             {offSeason.map((item) => (
-              <ProduceCard key={item.name} item={item} month={month} photo={photos[item.name]} />
+              <ProduceCard key={item.name} item={item} month={month} photo={photos[item.name]} onPick={onPick} />
             ))}
           </ul>
         </section>
@@ -323,10 +355,12 @@ function ProduceCard({
   item,
   month,
   photo,
+  onPick,
 }: {
   item: ProduceItem;
   month: number;
   photo: IngredientPhoto | null | undefined;
+  onPick: (target: PickingTarget) => void;
 }) {
   const t = useTranslations("Produce");
   return (
@@ -397,7 +431,16 @@ function ProduceCard({
         {item.howToChoose && (
           <div className="flex gap-2">
             <dt className="shrink-0 text-muted">{t("choose")}</dt>
-            <dd>{item.howToChoose}</dd>
+            <dd>
+              {item.howToChoose}
+              <button
+                type="button"
+                onClick={() => onPick({ name: item.name, englishName: item.englishName })}
+                className="ml-1 font-medium text-accent underline decoration-dotted underline-offset-4"
+              >
+                {t("pickingOpen")} →
+              </button>
+            </dd>
           </div>
         )}
         {item.howToEat && (
