@@ -63,7 +63,19 @@ export function scaleAmount(amount: string, factor: number): string {
     ...parsed,
     value: parsed.value * factor,
     max: parsed.max != null ? parsed.max * factor : null,
+    // 括號內的重量、容量也要跟著換算，例：「3 顆（約 350 公克）」加倍為「6 顆（約 700 公克）」
+    // 只換算後面接著重量或容量單位的數字，「2 號」這類型號不動
+    unit: parsed.unit.replace(/[（(][^）)]*[）)]/g, (note) =>
+      note.replace(NOTE_MEASURE, (_, n: string, unit: string) => `${formatMeasure(Number(n) * factor)}${unit}`),
+    ),
   });
+}
+
+const NOTE_MEASURE = /(\d+(?:\.\d+)?)(\s*(?:公克|克|公斤|毫升|公升|kg|ml|cc|g|l)(?![a-z]))/gi;
+
+// 括號內的重量容量用小數：10 以上取整數，以下取到小數一位，例：7.5 毫升
+function formatMeasure(value: number): string {
+  return value >= 10 ? String(Math.round(value)) : String(Math.round(value * 10) / 10);
 }
 
 // 採買清單合併用：同名食材（忽略空白與括號說明）視為同一項
