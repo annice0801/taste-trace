@@ -11,7 +11,7 @@ import { RecipeModel, type Recipe } from "@/models/Recipe";
 
 // MCP 伺服器：讓 Claude 等 AI 助理直接查詢 Taste-Trace 的食譜
 // 原則：只讀、不呼叫 AI（不產生費用）、不碰任何使用者資料（收藏、作品、搜尋紀錄都不開放）
-// 挑選標準也只讀已整理過的，第一次整理要到網站上查詢
+// 挑選標準來自資料庫，同樣不呼叫 AI
 // 還沒產生過做法的食譜只回傳摘要與網站連結，請使用者到網站點開產生
 
 type RecipeDoc = Recipe & { _id: Types.ObjectId };
@@ -220,16 +220,17 @@ export function buildMcpServer(siteUrl: string) {
     {
       title: "蔬果挑選標準",
       description:
-        "查詢一種蔬菜或水果怎麼挑：依感官（看、摸、聽、聞、掂重）與目的（想要甜、想要脆）整理，附保存方式。只回傳網站上已整理過的蔬果；還沒整理過的請到網站的「當季蔬果」頁查詢。",
+        "查詢一種蔬菜或水果怎麼挑：依感官（看、摸、聽、聞、掂重）與目的（想要甜、想要脆）整理，附保存方式。可用中文名稱或其他叫法查詢，例：文旦、柚子。",
       inputSchema: z.object({
         name: z.string().trim().min(1).max(20).describe("蔬果的繁體中文名稱，例：西瓜、蘋果"),
+        englishName: z.string().trim().max(40).optional().describe("英文名稱，中文名稱找不到時用來比對，例：watermelon"),
       }),
       annotations: { readOnlyHint: true, openWorldHint: false },
     },
-    async ({ name }) => {
-      const guide = await findPickingGuide(name);
+    async ({ name, englishName }) => {
+      const guide = await findPickingGuide(name, englishName);
       if (!guide) {
-        return json({ found: false, note: `網站上還沒有「${name}」的挑選標準，請到 ${siteUrl}/produce 用「查任何蔬果怎麼挑」查詢。` });
+        return json({ found: false, note: `網站上還沒有收錄「${name}」的挑選標準。` });
       }
       return json({ found: true, ...guide, url: `${siteUrl}/produce` });
     },

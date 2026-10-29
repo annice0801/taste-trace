@@ -13,7 +13,8 @@ import {
   type ProduceItem,
   type ProduceType,
 } from "@/lib/produce";
-import { MAX_PRODUCE_NAME_LENGTH } from "@/lib/picking";
+import { MAX_PRODUCE_NAME_LENGTH, type PickingIndexItem } from "@/lib/picking";
+import { ingredientKey } from "@/lib/quantity";
 import { useIngredientPhotos, type IngredientPhoto } from "@/lib/use-ingredient-photos";
 import { PickingGuideDialog, type PickingTarget } from "./PickingGuideDialog";
 
@@ -93,6 +94,29 @@ export default function ProduceExplorer() {
   // 正在看挑選標準的蔬果；null 代表視窗關閉
   const [picking, setPicking] = useState<PickingTarget | null>(null);
   const [pickDraft, setPickDraft] = useState("");
+  // 有收錄挑選標準的蔬果；載入前是 null，卡片先不顯示連結
+  const [pickingIndex, setPickingIndex] = useState<PickingIndexItem[] | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/picking")
+      .then((res) => (res.ok ? res.json() : { items: [] }))
+      .then((data: { items: PickingIndexItem[] }) => !cancelled && setPickingIndex(data.items))
+      .catch(() => !cancelled && setPickingIndex([]));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  // 比對中文名稱、其他叫法與英文名稱，判斷這種蔬果有沒有挑選標準
+  const hasPicking = (item: { name: string; englishName?: string }) => {
+    if (!pickingIndex) return false;
+    const key = ingredientKey(item.name) || item.name;
+    const en = item.englishName?.trim().toLowerCase();
+    return pickingIndex.some(
+      (p) => ingredientKey(p.name) === key || p.aliases.includes(key) || (en ? p.englishNames.includes(en) : false),
+    );
+  };
 
   // 結果記下是哪一次請求的；地點換了、結果還沒回來時就顯示載入中
   const requestKey = `${location ?? ""}#${reloadKey}`;
@@ -194,8 +218,12 @@ export default function ProduceExplorer() {
             onChange={(event) => setPickDraft(event.target.value)}
             maxLength={MAX_PRODUCE_NAME_LENGTH}
             placeholder={t("pickingSearchPlaceholder")}
+            list="produce-picking-names"
             className="field min-w-0 flex-1 sm:max-w-56"
           />
+          <datalist id="produce-picking-names">
+            {pickingIndex?.map((p) => <option key={p.name} value={p.name} />)}
+          </datalist>
           <button type="submit" disabled={!pickDraft.trim()} className="btn-secondary shrink-0 !px-4">
             {t("pickingSearchGo")}
           </button>
@@ -287,7 +315,7 @@ export default function ProduceExplorer() {
       )}
 
       {guide && month && (
-        <ProduceGrid inSeason={inSeason} offSeason={offSeason} month={month} allItems={guide.items} onPick={setPicking} />
+        <ProduceGrid inSeason={inSeason} offSeason={offSeason} month={month} allItems={guide.items} onPick={setPicking} hasPicking={hasPicking} />
       )}
 
       <PickingGuideDialog target={picking} onClose={() => setPicking(null)} />
@@ -305,12 +333,14 @@ function ProduceGrid({
   month,
   allItems,
   onPick,
+  hasPicking,
 }: {
   inSeason: ProduceItem[];
   offSeason: ProduceItem[];
   month: number;
   allItems: ProduceItem[];
   onPick: (target: PickingTarget) => void;
+  hasPicking: (item: ProduceItem) => boolean;
 }) {
   const t = useTranslations("Produce");
   const monthLabel = useMonthLabel();
@@ -329,7 +359,7 @@ function ProduceGrid({
         ) : (
           <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4">
             {inSeason.map((item) => (
-              <ProduceCard key={item.name} item={item} month={month} photo={photos[item.name]} onPick={onPick} />
+              <ProduceCard key={item.name} item={item} month={month} photo={photos[item.name]} onPick={hasPicking(item) ? onPick : undefined} />
             ))}
           </ul>
         )}
@@ -342,7 +372,7 @@ function ProduceGrid({
           </h2>
           <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 opacity-80 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4">
             {offSeason.map((item) => (
-              <ProduceCard key={item.name} item={item} month={month} photo={photos[item.name]} onPick={onPick} />
+              <ProduceCard key={item.name} item={item} month={month} photo={photos[item.name]} onPick={hasPicking(item) ? onPick : undefined} />
             ))}
           </ul>
         </section>
@@ -360,7 +390,7 @@ function ProduceCard({
   item: ProduceItem;
   month: number;
   photo: IngredientPhoto | null | undefined;
-  onPick: (target: PickingTarget) => void;
+  onPick?: (target: PickingTarget) => void;
 }) {
   const t = useTranslations("Produce");
   return (
@@ -433,13 +463,15 @@ function ProduceCard({
             <dt className="shrink-0 text-muted">{t("choose")}</dt>
             <dd>
               {item.howToChoose}
-              <button
-                type="button"
-                onClick={() => onPick({ name: item.name, englishName: item.englishName })}
-                className="ml-1 font-medium text-accent underline decoration-dotted underline-offset-4"
-              >
-                {t("pickingOpen")} →
-              </button>
+              {onPick && (
+                <button
+                  type="button"
+                  onClick={() => onPick({ name: item.name, englishName: item.englishName })}
+                  className="ml-1 font-medium text-accent underline decoration-dotted underline-offset-4"
+                >
+                  {t("pickingOpen")} →
+                </button>
+              )}
             </dd>
           </div>
         )}

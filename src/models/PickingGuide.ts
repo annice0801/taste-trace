@@ -7,11 +7,14 @@ import {
 } from "mongoose";
 import { SENSES } from "@/lib/picking";
 
-// 蔬果挑選標準的快取：同一種蔬果全站只請 AI 整理一次
+// 蔬果挑選標準：內容來自 data/picking-guides.json，用 npm run seed:picking 寫入
 const pickingGuideSchema = new Schema(
   {
     key: { type: String, required: true, unique: true }, // ingredientKey(名稱)，例：「西瓜」
     name: { type: String, required: true },
+    aliases: [{ type: String }], // 其他叫法的 ingredientKey
+    englishNames: [{ type: String }], // 小寫英文名
+    type: { type: String, enum: ["vegetable", "fruit"], required: true },
     summary: { type: String },
     senses: [
       {
@@ -34,6 +37,9 @@ const pickingGuideSchema = new Schema(
   },
   { timestamps: true },
 );
+
+pickingGuideSchema.index({ aliases: 1 });
+pickingGuideSchema.index({ englishNames: 1 });
 
 export type PickingGuideDoc = InferSchemaType<typeof pickingGuideSchema>;
 

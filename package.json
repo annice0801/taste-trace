@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seed:picking": "node --env-file=.env.local scripts/seed-picking-guides.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.3.1",

@@ -1,29 +1,36 @@
-import { getAIForRequest, openAIErrorResponse } from "@/lib/ai";
-import { pickingRequestSchema } from "@/lib/picking";
-import { getPickingGuide } from "@/lib/picking-guide";
+import { z } from "zod";
+import { MAX_PRODUCE_NAME_LENGTH } from "@/lib/picking";
+import { findPickingGuide, listPickingGuides } from "@/lib/picking-guide";
+import { logError } from "@/lib/error-log";
 
-// 蔬果挑選標準：POST { name: 蔬果名稱, englishName?: 英文名稱 }
-// 已整理過的蔬果直接從資料庫回傳；第一次查詢才呼叫 OpenAI
-export async function POST(request: Request) {
-  const parsed = pickingRequestSchema.safeParse(await request.json().catch(() => null));
-  if (!parsed.success) {
-    return Response.json({ error: "請求格式錯誤" }, { status: 400 });
-  }
+// 蔬果挑選標準（只讀資料庫，不呼叫 AI，不需要金鑰）
+// GET /api/picking                      → 所有收錄的蔬果名稱
+// GET /api/picking?name=西瓜&en=watermelon → 一種蔬果的挑選標準
+const querySchema = z.object({
+  name: z.string().trim().min(1).max(MAX_PRODUCE_NAME_LENGTH),
+  en: z.string().trim().max(40).optional(),
+});
 
-  let userKey = false;
+// 內容只在重新匯入時才會變，讓 CDN 快取 10 分鐘
+const CACHE_HEADERS = { "Cache-Control": "public, s-maxage=600, stale-while-revalidate=86400" };
+
+export async function GET(request: Request) {
+  const params = new URL(request.url).searchParams;
   try {
-    const result = await getPickingGuide(parsed.data, async () => {
-      const ai = await getAIForRequest(request);
-      if ("error" in ai) return ai.error;
-      userKey = ai.userKey;
-      return ai;
-    });
-    if (result instanceof Response) return result;
-    if (!result.ok) {
-      return Response.json({ error: result.error }, { status: result.status });
+    if (!params.has("name")) {
+      return Response.json({ items: await listPickingGuides() }, { headers: CACHE_HEADERS });
     }
-    return Response.json({ ...result.guide, fromCache: result.fromCache });
+    const parsed = querySchema.safeParse({ name: params.get("name"), en: params.get("en") ?? undefined });
+    if (!parsed.success) {
+      return Response.json({ error: "請求格式錯誤" }, { status: 400 });
+    }
+    const guide = await findPickingGuide(parsed.data.name, parsed.data.en);
+    if (!guide) {
+      return Response.json({ error: "還沒有收錄這種蔬果的挑選方法" }, { status: 404 });
+    }
+    return Response.json(guide, { headers: CACHE_HEADERS });
   } catch (error) {
-    return openAIErrorResponse("picking", error, userKey);
+    await logError("database", "picking", error);
+    return Response.json({ error: "暫時無法載入，請稍後再試" }, { status: 500 });
   }
 }

@@ -28,6 +28,13 @@ https://taste-trace.vercel.app/api/mcp
 
 程式在 `src/lib/mcp-server.ts`（工具）與 `src/app/api/mcp/route.ts`（端點）。
 
+## 蔬果挑選標準
+
+當季蔬果頁的「完整挑選標準」與搜尋框，內容只從資料庫讀取，不呼叫 AI、不需要金鑰。
+
+- 內容寫在 `data/picking-guides.json`（名稱、其他叫法、英文名、依感官與目的的挑法、後熟、保存、迷思）
+- 修改後執行 `npm run seed:picking` 寫入資料庫；先用 `npm run seed:picking -- --dry-run` 檢查格式、重複名稱，以及當季蔬果是否都有對應
+
 ## Getting Started
 
 First, run the development server:

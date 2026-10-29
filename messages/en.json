@@ -748,7 +748,7 @@
     "peakMonths": "Peak months: {months}",
     "pickingOpen": "Full picking guide",
     "pickingTitle": "How to pick {name}",
-    "pickingLoading": "Putting together the picking guide… the first lookup for an item takes about 10 seconds.",
+    "pickingLoading": "Loading…",
     "pickingSenses": "Use your senses",
     "pickingGood": "Pick",
     "pickingAvoid": "Avoid",
@@ -756,7 +756,7 @@
     "pickingRipening": "After you buy",
     "pickingStorage": "Storage",
     "pickingMyth": "Common myth",
-    "pickingNote": "Compiled by AI from common shopping experience; varieties and growing regions vary.",
+    "pickingNote": "Based on common shopping know-how; varieties, growing regions and seasons vary.",
     "pickingClose": "Close",
     "pickingSearchLabel": "Look up how to pick any produce",
     "pickingSearchPlaceholder": "e.g. watermelon, avocado",
@@ -767,7 +767,8 @@
       "sound": "Listen",
       "smell": "Smell",
       "weight": "Heft"
-    }
+    },
+    "pickingNotFound": "We don't have a picking guide for \"{name}\" yet. Pick from the suggestions in the search box to see the produce we cover."
   },
   "Cuts": {
     "title": "Meat cuts",

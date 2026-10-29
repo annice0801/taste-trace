@@ -748,7 +748,7 @@
     "peakMonths": "盛產月份：{months}",
     "pickingOpen": "完整挑選標準",
     "pickingTitle": "{name}怎麼挑",
-    "pickingLoading": "整理挑選方法中…第一次查詢這種蔬果大約需要 10 秒。",
+    "pickingLoading": "載入中…",
     "pickingSenses": "用感官判斷",
     "pickingGood": "挑",
     "pickingAvoid": "避開",
@@ -756,7 +756,7 @@
     "pickingRipening": "買回家後",
     "pickingStorage": "保存",
     "pickingMyth": "常見迷思",
-    "pickingNote": "由 AI 依常見採買經驗整理，實際仍以品種與產地為準。",
+    "pickingNote": "整理自常見的採買經驗，實際仍以品種、產地與季節為準。",
     "pickingClose": "關閉",
     "pickingSearchLabel": "查任何蔬果怎麼挑",
     "pickingSearchPlaceholder": "例：西瓜、酪梨",
@@ -767,7 +767,8 @@
       "sound": "聽",
       "smell": "聞",
       "weight": "掂重"
-    }
+    },
+    "pickingNotFound": "還沒有收錄「{name}」的挑選方法，可以從搜尋框的建議清單挑選已收錄的蔬果。"
   },
   "Cuts": {
     "title": "肉品部位",

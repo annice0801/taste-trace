@@ -1,0 +1,2546 @@
+[
+  {
+    "name": "西瓜",
+    "aliases": [],
+    "englishNames": [
+      "watermelon"
+    ],
+    "type": "fruit",
+    "summary": "拍起來聲音清脆、底部黃斑呈奶油黃、拿起來沉手的，熟度與水分通常都夠。",
+    "senses": [
+      {
+        "sense": "sound",
+        "good": "用指節輕敲，聲音清脆像「咚咚」，另一手托著能感覺到震動",
+        "avoid": "聲音悶悶的「噗噗」可能過熟；聲音又尖又硬可能還沒熟"
+      },
+      {
+        "sense": "look",
+        "good": "條紋清楚、深淺對比明顯；底部接觸地面的黃斑呈奶油黃",
+        "avoid": "黃斑偏白或沒有黃斑，可能太早採收"
+      },
+      {
+        "sense": "touch",
+        "good": "表皮光滑堅實，按壓不凹陷",
+        "avoid": "有軟爛處或裂痕"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小拿起來比較重的，水分較多",
+        "avoid": ""
+      }
+    ],
+    "goals": [
+      {
+        "goal": "想要甜",
+        "tips": [
+          "挑黃斑明顯、蒂頭附近略乾的",
+          "買切片的就選果肉顏色深、籽黑而飽滿的"
+        ]
+      },
+      {
+        "goal": "想要脆",
+        "tips": [
+          "挑敲起來聲音清脆、有彈性的",
+          "避開敲起來悶聲的，果肉容易沙軟"
+        ]
+      }
+    ],
+    "ripening": "西瓜採收後不會再變甜，放著只會越來越軟。",
+    "storage": "整顆放陰涼處約一週；切開後包保鮮膜冷藏，2 到 3 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "蘋果",
+    "aliases": [],
+    "englishNames": [
+      "apple"
+    ],
+    "type": "fruit",
+    "summary": "果實堅硬、拿起來沉、表皮光亮沒有碰傷的最新鮮。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "用手掌握住感覺堅實，不會一按就凹",
+        "avoid": "按壓有軟點或表皮皺縮"
+      },
+      {
+        "sense": "look",
+        "good": "表皮有光澤、果蒂完整不乾枯",
+        "avoid": "有碰傷、褐色凹陷或蟲孔"
+      },
+      {
+        "sense": "smell",
+        "good": "靠近果蒂聞得到淡淡果香",
+        "avoid": "有發酵的酒味"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，水分多、口感脆",
+        "avoid": ""
+      }
+    ],
+    "goals": [
+      {
+        "goal": "想要脆",
+        "tips": [
+          "挑最硬、最沉手的",
+          "避開表皮出現皺紋的，代表放久了、口感會變鬆"
+        ]
+      },
+      {
+        "goal": "想要甜",
+        "tips": [
+          "富士等品種切開看得到半透明的「蜜」，蜜多通常較甜",
+          "挑果香明顯、果蒂周圍顏色飽滿的"
+        ]
+      }
+    ],
+    "ripening": "蘋果會釋放乙烯，讓旁邊的蔬果熟得更快，但本身放久只會變鬆，不會更甜。",
+    "storage": "裝袋冷藏可放 1 到 3 週；和其他蔬果分開放。",
+    "myth": ""
+  },
+  {
+    "name": "香蕉",
+    "aliases": [
+      "芭蕉"
+    ],
+    "englishNames": [
+      "banana"
+    ],
+    "type": "fruit",
+    "summary": "依什麼時候要吃來挑：今天吃選全黃帶小黑點的，過幾天吃選兩端還帶綠的。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "果皮黃色均勻；出現細小黑點（俗稱梅花點）時最香甜",
+        "avoid": "大片黑褐、果柄發黑或發霉"
+      },
+      {
+        "sense": "touch",
+        "good": "微有彈性",
+        "avoid": "整根軟爛或一碰就凹"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "今天就要吃",
+        "tips": [
+          "挑全黃、帶少量黑點的"
+        ]
+      },
+      {
+        "goal": "放幾天再吃",
+        "tips": [
+          "挑兩端還帶青綠色的，放室溫 2 到 4 天會轉黃"
+        ]
+      }
+    ],
+    "ripening": "買回家會繼續變熟變甜；和蘋果放在一起會熟得更快。",
+    "storage": "室溫吊起來或放通風處；熟了可以冷藏，果皮會變黑但果肉不受影響。",
+    "myth": "果皮出現黑點不代表壞掉，那是熟透的訊號，反而最甜。"
+  },
+  {
+    "name": "鳳梨",
+    "aliases": [
+      "菠蘿",
+      "旺來"
+    ],
+    "englishNames": [
+      "pineapple"
+    ],
+    "type": "fruit",
+    "summary": "底部聞得到明顯香甜味、拿起來沉手、果目飽滿的最好。",
+    "senses": [
+      {
+        "sense": "smell",
+        "good": "底部聞得到明顯的鳳梨香甜味",
+        "avoid": "有酒味或酸臭味，代表過熟發酵"
+      },
+      {
+        "sense": "look",
+        "good": "果目大而飽滿、排列整齊，冠芽葉片新鮮",
+        "avoid": "果目乾縮、底部發黑或有汁液滲出"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果汁較多",
+        "avoid": ""
+      },
+      {
+        "sense": "touch",
+        "good": "整顆堅實，輕壓微有彈性",
+        "avoid": "某處明顯軟陷"
+      }
+    ],
+    "goals": [],
+    "ripening": "鳳梨採收後不會再變甜，放著只會變軟、變酸，買回來盡快吃。",
+    "storage": "整顆室溫 1 到 2 天；切開後裝盒冷藏 3 到 4 天。",
+    "myth": "冠芽的葉子很容易拔起來不一定代表熟，聞底部的香氣比較準。"
+  },
+  {
+    "name": "芒果",
+    "aliases": [
+      "愛文芒果",
+      "土芒果"
+    ],
+    "englishNames": [
+      "mango"
+    ],
+    "type": "fruit",
+    "summary": "靠近果蒂聞得到濃郁果香、輕壓微軟的就是熟了；顏色依品種不同，不能只看紅不紅。",
+    "senses": [
+      {
+        "sense": "smell",
+        "good": "果蒂附近有濃郁的芒果香",
+        "avoid": "有酒味或酸味"
+      },
+      {
+        "sense": "touch",
+        "good": "輕壓微軟、有彈性，像熟的桃子",
+        "avoid": "軟爛或有凹陷黑斑"
+      },
+      {
+        "sense": "look",
+        "good": "果皮飽滿有光澤，果蒂周圍略為隆起",
+        "avoid": "果皮皺縮、大片黑斑"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "今天就要吃",
+        "tips": [
+          "挑香氣明顯、輕壓微軟的"
+        ]
+      },
+      {
+        "goal": "放幾天再吃",
+        "tips": [
+          "挑堅實但已有淡淡果香的，放室溫 2 到 4 天"
+        ]
+      }
+    ],
+    "ripening": "買回家放室溫會繼續變熟變香，熟了再冷藏。",
+    "storage": "未熟放室溫；熟了冷藏 2 到 3 天內吃完。",
+    "myth": "果皮紅不代表比較熟，紅色多寡主要看品種與日照，聞香氣與摸軟硬比較準。"
+  },
+  {
+    "name": "芭樂",
+    "aliases": [
+      "番石榴",
+      "拔仔"
+    ],
+    "englishNames": [
+      "guava"
+    ],
+    "type": "fruit",
+    "summary": "想吃脆的挑硬而青綠的，想吃軟香的挑表皮開始泛黃、聞得到香氣的。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表皮光滑、顏色均勻，凹凸不平的果瘤較少",
+        "avoid": "有黑斑、碰傷或蟲咬痕跡"
+      },
+      {
+        "sense": "touch",
+        "good": "依口味挑軟硬：硬的脆、微軟的香甜",
+        "avoid": "某處特別軟爛"
+      },
+      {
+        "sense": "smell",
+        "good": "軟熟的芭樂有明顯香氣",
+        "avoid": "有酒味"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "想要脆",
+        "tips": [
+          "挑整顆堅硬、表皮青綠有光澤的"
+        ]
+      },
+      {
+        "goal": "想要軟、香",
+        "tips": [
+          "挑表皮泛黃、輕壓微軟、香氣明顯的"
+        ]
+      }
+    ],
+    "ripening": "放室溫會繼續變軟變香；想保持脆度就冷藏。",
+    "storage": "裝袋冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "木瓜",
+    "aliases": [],
+    "englishNames": [
+      "papaya"
+    ],
+    "type": "fruit",
+    "summary": "果皮大半轉黃橘、輕壓微軟、沒有大片凹陷黑斑的最好吃。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "果皮大部分轉為黃橘色、有光澤",
+        "avoid": "大片凹陷的黑斑或發霉"
+      },
+      {
+        "sense": "touch",
+        "good": "輕壓微軟，像熟的酪梨",
+        "avoid": "整顆軟爛"
+      },
+      {
+        "sense": "smell",
+        "good": "聞得到淡淡甜香",
+        "avoid": "有發酵味"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "今天就要吃",
+        "tips": [
+          "挑幾乎全黃、輕壓微軟的"
+        ]
+      },
+      {
+        "goal": "放幾天再吃",
+        "tips": [
+          "挑青黃各半的，放室溫 2 到 3 天"
+        ]
+      },
+      {
+        "goal": "煮湯或做涼拌",
+        "tips": [
+          "料理用的青木瓜要挑全綠、堅硬的"
+        ]
+      }
+    ],
+    "ripening": "放室溫會繼續變熟變甜。",
+    "storage": "熟了冷藏 2 到 3 天；切開後去籽包好冷藏。",
+    "myth": ""
+  },
+  {
+    "name": "蓮霧",
+    "aliases": [
+      "黑珍珠蓮霧"
+    ],
+    "englishNames": [
+      "wax apple",
+      "rose apple"
+    ],
+    "type": "fruit",
+    "summary": "顏色深而有光澤、底部臍部張開、拿起來沉的較成熟清甜。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "顏色深紅有光澤，底部的臍部張開",
+        "avoid": "表皮有裂口、褐色碰傷"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，水分多",
+        "avoid": ""
+      },
+      {
+        "sense": "touch",
+        "good": "果實飽滿堅實",
+        "avoid": "軟塌或表皮皺縮"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜，買回來盡快吃。",
+    "storage": "用紙包好裝袋冷藏，3 到 5 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "龍眼",
+    "aliases": [
+      "桂圓"
+    ],
+    "englishNames": [
+      "longan"
+    ],
+    "type": "fruit",
+    "summary": "連枝販賣、殼完整乾淨、顆粒飽滿的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "果殼呈黃褐色、完整沒有破裂，枝葉還新鮮",
+        "avoid": "殼有裂縫、發霉或滲汁"
+      },
+      {
+        "sense": "touch",
+        "good": "顆粒飽滿、捏起來有彈性",
+        "avoid": "軟塌或一捏就破"
+      },
+      {
+        "sense": "smell",
+        "good": "有清甜的果香",
+        "avoid": "有酒味或酸味"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜，放久會變乾、變酸。",
+    "storage": "連枝裝袋冷藏，3 到 5 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "荔枝",
+    "aliases": [
+      "玉荷包",
+      "黑葉荔枝"
+    ],
+    "englishNames": [
+      "lychee",
+      "litchi"
+    ],
+    "type": "fruit",
+    "summary": "果殼紅潤、表面的龜裂片較平、捏起來微有彈性的最熟甜。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "果殼鮮紅或紅中帶綠（依品種），表面完整",
+        "avoid": "殼轉黑褐、有裂口或滲汁"
+      },
+      {
+        "sense": "touch",
+        "good": "輕捏微有彈性",
+        "avoid": "太硬可能未熟，太軟可能放久了"
+      },
+      {
+        "sense": "smell",
+        "good": "有清甜香氣",
+        "avoid": "有酒味"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜，殼很快就會變褐，盡快吃。",
+    "storage": "連枝裝袋冷藏 2 到 3 天。",
+    "myth": "殼變褐色不一定壞掉，但代表放比較久，果肉風味會變淡。"
+  },
+  {
+    "name": "葡萄",
+    "aliases": [
+      "巨峰葡萄"
+    ],
+    "englishNames": [
+      "grape"
+    ],
+    "type": "fruit",
+    "summary": "果粒牢牢連在青綠的果梗上、表面有白色果粉、粒粒飽滿的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "果梗青綠、果粒表面有一層白色果粉",
+        "avoid": "果梗乾枯發黑、果粒皺縮或發霉"
+      },
+      {
+        "sense": "touch",
+        "good": "果粒飽滿、有彈性",
+        "avoid": "軟爛或破皮流汁"
+      },
+      {
+        "sense": "weight",
+        "good": "輕輕提起整串，果粒不太會掉",
+        "avoid": "一提就掉很多粒，代表放久了"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜。",
+    "storage": "不要先洗，裝袋冷藏約一週；吃之前再洗。",
+    "myth": "表面的白粉是葡萄本身的果粉，不是農藥，用清水沖洗即可。"
+  },
+  {
+    "name": "柿子",
+    "aliases": [
+      "甜柿",
+      "紅柿",
+      "軟柿"
+    ],
+    "englishNames": [
+      "persimmon"
+    ],
+    "type": "fruit",
+    "summary": "先分清楚種類：甜柿是硬的時候吃，紅柿（澀柿）要等完全軟熟才能吃。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "顏色橘紅均勻有光澤，果蒂完整緊貼果實",
+        "avoid": "果蒂脫落、表皮有黑斑或裂口"
+      },
+      {
+        "sense": "touch",
+        "good": "甜柿要堅硬；紅柿要軟到像果凍",
+        "avoid": "甜柿已經變軟，口感會差"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "想吃脆的",
+        "tips": [
+          "買甜柿，挑硬實、顏色深橘的"
+        ]
+      },
+      {
+        "goal": "想吃軟甜的",
+        "tips": [
+          "買紅柿，挑整顆軟透、果皮半透明的"
+        ]
+      }
+    ],
+    "ripening": "紅柿放室溫會繼續變軟；還沒軟透時吃會很澀。",
+    "storage": "甜柿裝袋冷藏約一週；軟熟的紅柿冷藏 1 到 2 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "柚子",
+    "aliases": [
+      "文旦",
+      "文旦柚",
+      "柚"
+    ],
+    "englishNames": [
+      "pomelo"
+    ],
+    "type": "fruit",
+    "summary": "拿起來沉、表皮細緻、底部寬平能站穩的文旦，放幾天「辭水」後最好吃。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果汁多",
+        "avoid": "拿起來輕飄飄，可能果肉乾"
+      },
+      {
+        "sense": "look",
+        "good": "表皮細緻、油胞細密，底部寬平能站穩",
+        "avoid": "表皮粗糙、有碰傷或發霉"
+      },
+      {
+        "sense": "touch",
+        "good": "表皮緊實；放幾天後外皮變軟是正常的",
+        "avoid": "某處軟爛"
+      }
+    ],
+    "goals": [],
+    "ripening": "剛採收的文旦果肉較酸硬，放室溫通風處約一週「辭水」，外皮微軟後會更甜潤。",
+    "storage": "室溫通風處可放 2 到 3 週。",
+    "myth": ""
+  },
+  {
+    "name": "草莓",
+    "aliases": [],
+    "englishNames": [
+      "strawberry"
+    ],
+    "type": "fruit",
+    "summary": "從尖端紅到蒂頭、蒂頭翠綠、聞得到香氣的最好；盒底也要檢查。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "整顆紅到靠近蒂頭的地方，蒂頭翠綠新鮮、表面有光澤",
+        "avoid": "蒂頭附近還發白、蒂頭乾枯，或盒底有發霉壓爛的"
+      },
+      {
+        "sense": "smell",
+        "good": "聞得到明顯草莓香",
+        "avoid": "沒有香氣或有發酵味"
+      },
+      {
+        "sense": "touch",
+        "good": "果實飽滿堅挺",
+        "avoid": "軟爛出水"
+      }
+    ],
+    "goals": [],
+    "ripening": "草莓採收後不會再變甜，白色的部分不會轉紅變甜。",
+    "storage": "不要洗、不要去蒂，鋪紙巾裝盒冷藏，1 到 3 天內吃完。",
+    "myth": "顆粒大不代表比較甜，看顏色是否紅到蒂頭、香氣是否明顯比較準。"
+  },
+  {
+    "name": "藍莓",
+    "aliases": [],
+    "englishNames": [
+      "blueberry"
+    ],
+    "type": "fruit",
+    "summary": "顆粒飽滿、顏色深藍、表面有一層白霜的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "深藍到紫黑色、表面有白色果粉，大小均勻",
+        "avoid": "偏紅或偏綠（未熟）、皺縮、發霉，或盒子有汁液染色"
+      },
+      {
+        "sense": "touch",
+        "good": "飽滿有彈性",
+        "avoid": "軟爛或乾癟"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜。",
+    "storage": "不要先洗，冷藏約一週；吃之前再洗。",
+    "myth": ""
+  },
+  {
+    "name": "櫻桃",
+    "aliases": [
+      "車厘子"
+    ],
+    "englishNames": [
+      "cherry"
+    ],
+    "type": "fruit",
+    "summary": "果梗翠綠有彈性、果實硬挺有光澤、顏色深的最新鮮甜美。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "果梗翠綠、果皮光亮，深色品種顏色越深越熟",
+        "avoid": "果梗乾枯發黑、果實皺縮或裂開"
+      },
+      {
+        "sense": "touch",
+        "good": "果實硬挺有彈性",
+        "avoid": "軟爛或破皮出汁"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜。",
+    "storage": "不要先洗，裝袋冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "桃子",
+    "aliases": [
+      "水蜜桃",
+      "桃"
+    ],
+    "englishNames": [
+      "peach"
+    ],
+    "type": "fruit",
+    "summary": "聞得到濃郁桃香、靠近果蒂處輕壓微軟、底色偏黃或乳白的最熟。",
+    "senses": [
+      {
+        "sense": "smell",
+        "good": "有濃郁的桃子香",
+        "avoid": "沒香味或有發酵味"
+      },
+      {
+        "sense": "look",
+        "good": "果蒂周圍的底色偏黃或乳白，不帶青綠",
+        "avoid": "果蒂周圍還青綠，或有碰傷褐斑"
+      },
+      {
+        "sense": "touch",
+        "good": "靠近果蒂處輕壓微軟",
+        "avoid": "整顆硬邦邦或一壓就凹"
+      }
+    ],
+    "goals": [],
+    "ripening": "放室溫會繼續變軟變香，但甜度增加有限，挑香氣明顯的比較保險。",
+    "storage": "未熟放室溫；熟了冷藏 2 到 3 天。水蜜桃很嬌嫩，拿取要小心。",
+    "myth": ""
+  },
+  {
+    "name": "油桃",
+    "aliases": [],
+    "englishNames": [
+      "nectarine"
+    ],
+    "type": "fruit",
+    "summary": "表皮光亮、香氣明顯、輕壓微有彈性的最好吃。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表皮光亮、顏色飽滿，底色偏黃",
+        "avoid": "底色青綠、有碰傷"
+      },
+      {
+        "sense": "smell",
+        "good": "有明顯果香",
+        "avoid": "沒有香氣"
+      },
+      {
+        "sense": "touch",
+        "good": "輕壓微有彈性",
+        "avoid": "太軟或有凹陷"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "想要脆",
+        "tips": [
+          "挑較硬、剛有香氣的"
+        ]
+      },
+      {
+        "goal": "想要多汁",
+        "tips": [
+          "挑輕壓微軟、香氣濃的"
+        ]
+      }
+    ],
+    "ripening": "放室溫會繼續變軟。",
+    "storage": "熟了冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "李子",
+    "aliases": [
+      "李"
+    ],
+    "englishNames": [
+      "plum"
+    ],
+    "type": "fruit",
+    "summary": "顏色飽滿、表面有果粉、輕壓微有彈性的較熟甜。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "顏色飽滿均勻、表面有一層白色果粉",
+        "avoid": "表皮皺縮、裂開或有褐斑"
+      },
+      {
+        "sense": "touch",
+        "good": "輕壓微有彈性",
+        "avoid": "太硬多半偏酸；軟爛就是放久了"
+      },
+      {
+        "sense": "smell",
+        "good": "有果香",
+        "avoid": "有發酵味"
+      }
+    ],
+    "goals": [],
+    "ripening": "放室溫會繼續變軟，酸味會稍微降低。",
+    "storage": "熟了冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "杏桃",
+    "aliases": [
+      "杏"
+    ],
+    "englishNames": [
+      "apricot"
+    ],
+    "type": "fruit",
+    "summary": "顏色金黃到橘色、香氣明顯、輕壓微軟的最熟。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "顏色金黃到深橘、均勻",
+        "avoid": "帶青綠或有褐斑"
+      },
+      {
+        "sense": "smell",
+        "good": "有明顯果香",
+        "avoid": "沒有香氣"
+      },
+      {
+        "sense": "touch",
+        "good": "輕壓微軟",
+        "avoid": "太硬或軟爛"
+      }
+    ],
+    "goals": [],
+    "ripening": "放室溫會繼續變軟。",
+    "storage": "熟了冷藏 2 到 3 天。",
+    "myth": ""
+  },
+  {
+    "name": "梨",
+    "aliases": [
+      "水梨",
+      "梨子",
+      "雪梨"
+    ],
+    "englishNames": [
+      "pear",
+      "asian pear"
+    ],
+    "type": "fruit",
+    "summary": "水梨挑拿起來沉、表皮細緻沒有碰傷的，口感最脆多汁。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，水分多",
+        "avoid": ""
+      },
+      {
+        "sense": "look",
+        "good": "表皮細緻、斑點細小均勻，果梗完整",
+        "avoid": "有碰傷、褐色凹陷"
+      },
+      {
+        "sense": "touch",
+        "good": "整顆堅實",
+        "avoid": "有軟點，代表碰傷或放太久"
+      }
+    ],
+    "goals": [],
+    "ripening": "台灣常見的水梨採收時就熟了，放著不會更甜，只會變鬆。",
+    "storage": "包紙或套網袋冷藏，可放 1 到 2 週。",
+    "myth": ""
+  },
+  {
+    "name": "柳橙",
+    "aliases": [
+      "柳丁",
+      "柑橘",
+      "橙"
+    ],
+    "englishNames": [
+      "orange"
+    ],
+    "type": "fruit",
+    "summary": "拿起來沉、表皮細緻有光澤、摸起來緊實的果汁最多。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果汁多",
+        "avoid": "拿起來輕，可能果肉乾"
+      },
+      {
+        "sense": "look",
+        "good": "表皮細緻、油胞細密有光澤",
+        "avoid": "表皮粗厚、有黴斑"
+      },
+      {
+        "sense": "touch",
+        "good": "緊實有彈性",
+        "avoid": "某處軟爛或整顆鬆軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜。",
+    "storage": "室溫通風處約一週，冷藏可放更久。",
+    "myth": "表皮帶綠不一定沒熟，有些柳橙熟了表皮仍是綠色或會回青，掂重量比較準。"
+  },
+  {
+    "name": "橘子",
+    "aliases": [
+      "蜜柑",
+      "椪柑",
+      "桶柑",
+      "砂糖橘"
+    ],
+    "englishNames": [
+      "mandarin",
+      "mandarin orange",
+      "tangerine"
+    ],
+    "type": "fruit",
+    "summary": "拿起來沉、表皮有光澤、顏色橘紅均勻的較甜多汁。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果汁多",
+        "avoid": ""
+      },
+      {
+        "sense": "look",
+        "good": "顏色橘紅均勻有光澤，果蒂新鮮",
+        "avoid": "有黴斑或碰傷"
+      },
+      {
+        "sense": "touch",
+        "good": "表皮與果肉貼合、有彈性；椪柑的皮本來就比較鬆",
+        "avoid": "某處軟爛"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜。",
+    "storage": "室溫通風處約一週，冷藏可放更久。",
+    "myth": ""
+  },
+  {
+    "name": "哈密瓜",
+    "aliases": [
+      "洋香瓜",
+      "網紋瓜"
+    ],
+    "englishNames": [
+      "melon",
+      "cantaloupe",
+      "muskmelon"
+    ],
+    "type": "fruit",
+    "summary": "網紋立體明顯、底部（花朵那端）聞得到甜香、輕壓微有彈性的最熟。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "網紋立體、分布均勻",
+        "avoid": "表皮有軟爛凹陷或裂口"
+      },
+      {
+        "sense": "smell",
+        "good": "底部（和果蒂相對的那端）有明顯甜香",
+        "avoid": "沒有香味，或有發酵味"
+      },
+      {
+        "sense": "touch",
+        "good": "底部輕壓微有彈性",
+        "avoid": "整顆很軟"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的",
+        "avoid": ""
+      }
+    ],
+    "goals": [],
+    "ripening": "放室溫會變軟變香，但甜度不太會再增加，挑香氣明顯的比較保險。",
+    "storage": "整顆室溫 1 到 2 天；切開後去籽包好冷藏 3 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "無花果",
+    "aliases": [],
+    "englishNames": [
+      "fig"
+    ],
+    "type": "fruit",
+    "summary": "摸起來柔軟、果頸微微下垂、表皮略有細裂的最熟甜。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "柔軟有彈性",
+        "avoid": "硬的多半還沒熟，買回去也不太會變甜"
+      },
+      {
+        "sense": "look",
+        "good": "果頸微微下垂，表皮出現細小裂紋",
+        "avoid": "發霉、滲汁或底部裂開太大"
+      },
+      {
+        "sense": "smell",
+        "good": "有淡淡甜香",
+        "avoid": "有酸味或酒味"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後幾乎不會再變甜，要挑已經熟軟的。",
+    "storage": "非常容易壞，冷藏 1 到 2 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "黑莓",
+    "aliases": [],
+    "englishNames": [
+      "blackberry"
+    ],
+    "type": "fruit",
+    "summary": "整顆黑亮、飽滿、沒有紅色部分的才熟。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "整顆黑亮、顆粒飽滿",
+        "avoid": "還帶紅色（未熟）、發霉，或盒子有汁液染色"
+      },
+      {
+        "sense": "touch",
+        "good": "飽滿但不軟爛",
+        "avoid": "壓扁出汁"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜。",
+    "storage": "不要先洗，冷藏 2 到 3 天。",
+    "myth": ""
+  },
+  {
+    "name": "火龍果",
+    "aliases": [
+      "紅龍果"
+    ],
+    "englishNames": [
+      "dragon fruit",
+      "pitaya"
+    ],
+    "type": "fruit",
+    "summary": "果皮顏色鮮豔均勻、鱗片翠綠不乾枯、拿起來沉的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "果皮顏色鮮豔均勻，鱗片尖端翠綠",
+        "avoid": "鱗片乾枯變黃、表皮有黑斑或皺縮"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果肉飽滿多汁",
+        "avoid": ""
+      },
+      {
+        "sense": "touch",
+        "good": "輕壓微有彈性",
+        "avoid": "軟爛"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變甜。",
+    "storage": "裝袋冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "菠蘿蜜",
+    "aliases": [
+      "波羅蜜"
+    ],
+    "englishNames": [
+      "jackfruit"
+    ],
+    "type": "fruit",
+    "summary": "聞得到濃郁甜香、外皮刺變得平鈍、輕壓微軟的整顆才熟；買剝好的挑果肉金黃飽滿的。",
+    "senses": [
+      {
+        "sense": "smell",
+        "good": "有濃郁的甜香",
+        "avoid": "有酒味或腐敗味"
+      },
+      {
+        "sense": "look",
+        "good": "外皮轉黃綠或黃褐、刺變得較平鈍；剝好的果肉金黃飽滿",
+        "avoid": "果肉顏色暗沉、出水"
+      },
+      {
+        "sense": "touch",
+        "good": "整顆輕壓微軟",
+        "avoid": "硬邦邦代表還沒熟"
+      }
+    ],
+    "goals": [],
+    "ripening": "整顆放室溫會繼續變熟。",
+    "storage": "剝好的果肉裝盒冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "酪梨",
+    "aliases": [
+      "牛油果"
+    ],
+    "englishNames": [
+      "avocado"
+    ],
+    "type": "fruit",
+    "summary": "依什麼時候要吃來挑：輕壓靠近果蒂處微軟就是今天能吃，硬的放幾天再吃。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "用整個手掌握住輕壓，靠近果蒂處微微下陷",
+        "avoid": "按出明顯凹洞，或有軟爛處"
+      },
+      {
+        "sense": "look",
+        "good": "拔掉果蒂小頭，底下是綠色；外皮會變深色的品種，轉深綠到深紫就快熟了",
+        "avoid": "果蒂底下已經變褐，代表過熟"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "今天就要吃",
+        "tips": [
+          "挑輕壓微軟、果蒂底下還是綠色的"
+        ]
+      },
+      {
+        "goal": "放幾天再吃",
+        "tips": [
+          "挑整顆堅硬的，放室溫 2 到 5 天，和蘋果、香蕉放一起熟得更快"
+        ]
+      }
+    ],
+    "ripening": "酪梨要採收後才會變軟，買回家放室溫會繼續變熟。",
+    "storage": "未熟放室溫；熟了冷藏 2 到 3 天。切開沒吃完的留著籽、抹檸檬汁包緊冷藏。",
+    "myth": ""
+  },
+  {
+    "name": "奇異果",
+    "aliases": [
+      "獼猴桃"
+    ],
+    "englishNames": [
+      "kiwi",
+      "kiwifruit"
+    ],
+    "type": "fruit",
+    "summary": "輕壓微軟就可以吃；硬的買回家和蘋果放一起幾天就會變熟。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "輕壓微有彈性",
+        "avoid": "太硬會很酸；軟爛就是過熟"
+      },
+      {
+        "sense": "look",
+        "good": "表皮完整、顏色均勻",
+        "avoid": "表皮皺縮、有凹陷或發霉"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "今天就要吃",
+        "tips": [
+          "挑輕壓微軟的"
+        ]
+      },
+      {
+        "goal": "放幾天再吃",
+        "tips": [
+          "挑硬的，和蘋果裝同一個袋子放室溫 3 到 5 天"
+        ]
+      }
+    ],
+    "ripening": "放室溫會繼續變熟變甜。",
+    "storage": "未熟放室溫；熟了冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "檸檬",
+    "aliases": [
+      "萊姆",
+      "綠檸檬"
+    ],
+    "englishNames": [
+      "lemon",
+      "lime"
+    ],
+    "type": "fruit",
+    "summary": "表皮薄而光滑、拿起來沉的檸檬，汁比較多。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果汁多",
+        "avoid": ""
+      },
+      {
+        "sense": "look",
+        "good": "表皮光滑有光澤、油胞細",
+        "avoid": "表皮粗厚凹凸、有黴斑或乾皺"
+      },
+      {
+        "sense": "touch",
+        "good": "輕壓有彈性",
+        "avoid": "硬邦邦的通常皮厚汁少"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後不會再變熟。",
+    "storage": "裝袋冷藏可放 2 到 3 週。",
+    "myth": ""
+  },
+  {
+    "name": "百香果",
+    "aliases": [
+      "西番蓮"
+    ],
+    "englishNames": [
+      "passion fruit"
+    ],
+    "type": "fruit",
+    "summary": "拿起來沉、表皮開始出現皺紋的比較熟甜；表皮光滑的通常比較酸。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果汁多",
+        "avoid": "拿起來很輕，可能果肉乾"
+      },
+      {
+        "sense": "look",
+        "good": "顏色深紫，表皮微皺",
+        "avoid": "發霉或破裂"
+      },
+      {
+        "sense": "smell",
+        "good": "香氣濃郁",
+        "avoid": "有酒味"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "想要甜",
+        "tips": [
+          "挑表皮已經皺起來、香氣濃的"
+        ]
+      },
+      {
+        "goal": "想要酸香（做飲料）",
+        "tips": [
+          "表皮光滑的也可以，酸味較明顯"
+        ]
+      }
+    ],
+    "ripening": "光滑的放室溫幾天，表皮起皺後會比較甜。",
+    "storage": "室溫可放約一週；挖出果肉可以冷凍保存。",
+    "myth": "表皮皺皺的不是壞掉，反而是熟了。"
+  },
+  {
+    "name": "釋迦",
+    "aliases": [
+      "番荔枝",
+      "鳳梨釋迦"
+    ],
+    "englishNames": [
+      "sugar apple",
+      "custard apple",
+      "atemoya"
+    ],
+    "type": "fruit",
+    "summary": "釋迦多半買硬的回家放軟；整顆輕壓變軟、鱗目之間的縫隙變寬、露出乳白色時就能吃。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "要吃的時候，整顆輕壓都微軟",
+        "avoid": "只有局部軟，可能是碰傷"
+      },
+      {
+        "sense": "look",
+        "good": "鱗目飽滿；熟了鱗目之間的縫隙變寬、露出乳白色",
+        "avoid": "表皮大片發黑或發霉"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "今天就要吃",
+        "tips": [
+          "挑整顆已經微軟、鱗目縫隙變寬的"
+        ]
+      },
+      {
+        "goal": "放幾天再吃",
+        "tips": [
+          "挑堅硬、鱗目飽滿的，放室溫 2 到 4 天"
+        ]
+      }
+    ],
+    "ripening": "放室溫會變軟變甜；還沒軟之前不要冷藏，會軟不了。",
+    "storage": "軟熟後冷藏 1 到 2 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "椰子",
+    "aliases": [
+      "椰青"
+    ],
+    "englishNames": [
+      "coconut",
+      "young coconut"
+    ],
+    "type": "fruit",
+    "summary": "喝椰子水的椰青挑拿起來沉、搖起來有水聲的。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，椰子水多",
+        "avoid": ""
+      },
+      {
+        "sense": "sound",
+        "good": "靠近耳邊搖一搖，聽得到水晃動的聲音",
+        "avoid": "搖起來沒有聲音，水可能很少或已經乾了"
+      },
+      {
+        "sense": "look",
+        "good": "外殼乾淨、沒有裂縫",
+        "avoid": "有裂縫、發霉或滲水"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "整顆冷藏約一週；打開後的椰子水當天喝完。",
+    "myth": ""
+  },
+  {
+    "name": "高麗菜",
+    "aliases": [
+      "甘藍",
+      "捲心菜",
+      "包心菜"
+    ],
+    "englishNames": [
+      "cabbage"
+    ],
+    "type": "vegetable",
+    "summary": "拿起來沉、葉片包得緊實、外葉翠綠、切口新鮮的最好。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，葉片緊實",
+        "avoid": ""
+      },
+      {
+        "sense": "look",
+        "good": "外葉翠綠有光澤，底部切口白淨濕潤",
+        "avoid": "外葉枯黃、切口變黑或裂開"
+      },
+      {
+        "sense": "touch",
+        "good": "按壓結實有彈性",
+        "avoid": "鬆垮或有軟爛處"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "整顆用報紙或保鮮膜包好冷藏 1 到 2 週；挖掉菜心、塞入濕紙巾可以放更久。",
+    "myth": ""
+  },
+  {
+    "name": "空心菜",
+    "aliases": [
+      "蕹菜"
+    ],
+    "englishNames": [
+      "water spinach"
+    ],
+    "type": "vegetable",
+    "summary": "莖一折就斷、葉片翠綠不發黃的最嫩。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "莖脆，一折就斷",
+        "avoid": "莖折不斷、軟塌，代表老了或放久了"
+      },
+      {
+        "sense": "look",
+        "good": "葉片翠綠挺立，莖粗細適中",
+        "avoid": "葉片發黃、腐爛或萎軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用報紙包好冷藏，1 到 2 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "地瓜葉",
+    "aliases": [
+      "番薯葉"
+    ],
+    "englishNames": [
+      "sweet potato leaves"
+    ],
+    "type": "vegetable",
+    "summary": "葉片翠綠、莖嫩一折就斷的嫩葉最好吃。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "葉片翠綠完整、挺立",
+        "avoid": "葉片發黃、萎軟或有黑斑"
+      },
+      {
+        "sense": "touch",
+        "good": "莖一折就斷",
+        "avoid": "莖粗硬、有纖維"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用報紙包好冷藏，1 到 2 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "青江菜",
+    "aliases": [
+      "湯匙菜",
+      "青梗白菜"
+    ],
+    "englishNames": [
+      "bok choy",
+      "pak choi",
+      "shanghai bok choy"
+    ],
+    "type": "vegetable",
+    "summary": "葉片深綠、葉柄肥厚翠綠、整株緊實的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "葉片深綠有光澤，葉柄肥厚、淺綠",
+        "avoid": "葉片發黃、有黑斑，或底部切口變黑"
+      },
+      {
+        "sense": "touch",
+        "good": "整株緊實、葉柄脆",
+        "avoid": "萎軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用報紙包好冷藏 2 到 3 天。",
+    "myth": ""
+  },
+  {
+    "name": "小白菜",
+    "aliases": [],
+    "englishNames": [],
+    "type": "vegetable",
+    "summary": "葉片翠綠挺立、葉柄白淨脆嫩的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "葉片翠綠挺立，葉柄白淨",
+        "avoid": "葉片發黃、腐爛或萎軟"
+      },
+      {
+        "sense": "touch",
+        "good": "葉柄脆嫩",
+        "avoid": "葉柄軟塌"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用報紙包好冷藏，1 到 2 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "芥菜",
+    "aliases": [
+      "刈菜",
+      "大芥菜",
+      "長年菜"
+    ],
+    "englishNames": [
+      "mustard greens"
+    ],
+    "type": "vegetable",
+    "summary": "拿起來沉、葉柄肥厚脆嫩、葉片翠綠的最好。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，水分多",
+        "avoid": ""
+      },
+      {
+        "sense": "look",
+        "good": "葉片翠綠，葉柄肥厚飽滿",
+        "avoid": "葉片發黃、葉柄有空心或裂開"
+      },
+      {
+        "sense": "touch",
+        "good": "葉柄脆",
+        "avoid": "萎軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用報紙包好冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "小松菜",
+    "aliases": [],
+    "englishNames": [
+      "komatsuna"
+    ],
+    "type": "vegetable",
+    "summary": "葉片深綠、莖挺直脆嫩的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "葉片深綠有光澤、挺立",
+        "avoid": "葉片發黃或萎軟"
+      },
+      {
+        "sense": "touch",
+        "good": "莖脆嫩",
+        "avoid": "莖軟塌"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用濕紙巾包好裝袋，立著冷藏 2 到 3 天。",
+    "myth": ""
+  },
+  {
+    "name": "菠菜",
+    "aliases": [
+      "菠薐菜"
+    ],
+    "englishNames": [
+      "spinach"
+    ],
+    "type": "vegetable",
+    "summary": "葉片深綠挺立、沒有發黃或黏滑的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "葉片深綠有光澤、挺立",
+        "avoid": "葉片發黃、萎軟，或爛成黏滑"
+      },
+      {
+        "sense": "touch",
+        "good": "葉片與莖脆挺",
+        "avoid": "摸起來濕軟黏滑"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用濕紙巾包好裝袋冷藏 2 到 3 天。",
+    "myth": ""
+  },
+  {
+    "name": "大白菜",
+    "aliases": [
+      "山東白菜",
+      "結球白菜"
+    ],
+    "englishNames": [
+      "napa cabbage",
+      "chinese cabbage"
+    ],
+    "type": "vegetable",
+    "summary": "拿起來沉、葉片包得緊實、葉柄白淨脆挺的最好。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，葉片緊實",
+        "avoid": ""
+      },
+      {
+        "sense": "look",
+        "good": "葉柄白淨、葉片淡綠，切口新鮮",
+        "avoid": "外葉腐爛、切口發黑"
+      },
+      {
+        "sense": "touch",
+        "good": "整顆結實",
+        "avoid": "鬆垮"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "整顆用報紙包好放陰涼處或冷藏，可放 1 到 2 週。",
+    "myth": "葉柄上的小黑點多半是生長時產生的斑點，不是發霉，可以安心吃。"
+  },
+  {
+    "name": "萵苣",
+    "aliases": [
+      "生菜",
+      "美生菜",
+      "蘿蔓",
+      "A菜",
+      "大陸妹"
+    ],
+    "englishNames": [
+      "lettuce",
+      "romaine"
+    ],
+    "type": "vegetable",
+    "summary": "葉片脆挺、沒有褐邊、切口白淨的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "葉片翠綠脆挺，底部切口白淨",
+        "avoid": "葉緣變褐、切口變紅褐色或腐爛"
+      },
+      {
+        "sense": "touch",
+        "good": "葉片挺立有彈性；結球的美生菜包得緊實",
+        "avoid": "萎軟濕爛"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用紙巾包好裝袋冷藏 3 到 5 天；不要和蘋果、香蕉放一起，葉片會變褐。",
+    "myth": ""
+  },
+  {
+    "name": "香菜",
+    "aliases": [
+      "芫荽"
+    ],
+    "englishNames": [
+      "cilantro",
+      "coriander"
+    ],
+    "type": "vegetable",
+    "summary": "葉片翠綠不發黃、香氣濃的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "葉片翠綠挺立",
+        "avoid": "葉片發黃、萎軟或爛掉"
+      },
+      {
+        "sense": "smell",
+        "good": "香氣濃郁",
+        "avoid": "香氣淡或有腐味"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "根部插在裝水的杯子裡、套袋冷藏，可以放約一週。",
+    "myth": ""
+  },
+  {
+    "name": "青蔥",
+    "aliases": [
+      "蔥",
+      "長蔥",
+      "大蔥",
+      "日本大蔥"
+    ],
+    "englishNames": [
+      "scallion",
+      "green onion",
+      "spring onion",
+      "negi"
+    ],
+    "type": "vegetable",
+    "summary": "蔥白長而緊實、蔥綠挺直不發黃的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "蔥白潔白、蔥綠鮮綠挺直",
+        "avoid": "葉尖發黃、萎軟或腐爛"
+      },
+      {
+        "sense": "touch",
+        "good": "蔥白緊實有彈性",
+        "avoid": "蔥白鬆軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用報紙包好冷藏約一週；也可以切好冷凍。",
+    "myth": ""
+  },
+  {
+    "name": "韭菜",
+    "aliases": [],
+    "englishNames": [
+      "garlic chive",
+      "chinese chive"
+    ],
+    "type": "vegetable",
+    "summary": "葉片挺直、顏色深綠、葉尖不發黃的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "葉片深綠挺直、切口整齊",
+        "avoid": "葉尖發黃、萎軟或腐爛"
+      },
+      {
+        "sense": "touch",
+        "good": "葉片挺立有彈性",
+        "avoid": "軟塌"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "想吃嫩的",
+        "tips": [
+          "挑葉片較窄、細嫩的"
+        ]
+      }
+    ],
+    "ripening": "",
+    "storage": "用報紙包好冷藏 2 到 3 天。",
+    "myth": ""
+  },
+  {
+    "name": "韭蔥",
+    "aliases": [],
+    "englishNames": [
+      "leek"
+    ],
+    "type": "vegetable",
+    "summary": "白色部分長而緊實、綠葉挺直不枯黃的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "白色部分長而潔白，綠葉挺直",
+        "avoid": "葉片枯黃、萎軟"
+      },
+      {
+        "sense": "touch",
+        "good": "白色部分緊實",
+        "avoid": "鬆軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用報紙包好冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "綠花椰菜",
+    "aliases": [
+      "西蘭花",
+      "青花菜"
+    ],
+    "englishNames": [
+      "broccoli"
+    ],
+    "type": "vegetable",
+    "summary": "花蕾緊密、顏色深綠、沒有開黃花的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "花蕾細密緊實、深綠色，莖的切口新鮮濕潤",
+        "avoid": "花蕾變黃或開花，切口乾裂發黑"
+      },
+      {
+        "sense": "touch",
+        "good": "花球結實、莖硬挺",
+        "avoid": "花球鬆散、莖軟"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的",
+        "avoid": ""
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "裝袋冷藏 3 到 5 天，放久花蕾會轉黃。",
+    "myth": ""
+  },
+  {
+    "name": "白花椰菜",
+    "aliases": [
+      "花菜",
+      "花椰菜"
+    ],
+    "englishNames": [
+      "cauliflower"
+    ],
+    "type": "vegetable",
+    "summary": "花球乳白緊密、沒有褐斑、外葉翠綠的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "花球乳白、緊密，外葉翠綠",
+        "avoid": "花球有褐斑、黑點，或鬆散"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的",
+        "avoid": ""
+      },
+      {
+        "sense": "touch",
+        "good": "花球結實",
+        "avoid": "鬆軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "裝袋冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "蘆筍",
+    "aliases": [],
+    "englishNames": [
+      "asparagus"
+    ],
+    "type": "vegetable",
+    "summary": "筍尖緊閉、莖挺直、切口濕潤不乾裂的最嫩。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "筍尖緊閉、莖挺直有光澤，切口濕潤",
+        "avoid": "筍尖散開、切口乾裂或變白"
+      },
+      {
+        "sense": "touch",
+        "good": "莖脆挺，一折就斷",
+        "avoid": "彎軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "切口包濕紙巾，或像插花一樣立在水裡冷藏，2 到 3 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "玉米",
+    "aliases": [
+      "甜玉米"
+    ],
+    "englishNames": [
+      "corn",
+      "sweet corn"
+    ],
+    "type": "vegetable",
+    "summary": "外葉翠綠包緊、玉米鬚呈褐色微濕、顆粒飽滿的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "外葉翠綠緊包，玉米鬚褐色、末端微濕",
+        "avoid": "外葉乾黃、玉米鬚發黑乾枯或發霉"
+      },
+      {
+        "sense": "touch",
+        "good": "隔著外葉摸，顆粒飽滿排列緊密",
+        "avoid": "摸得到缺粒或乾癟"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後甜度會逐漸下降，買回來越快煮越甜。",
+    "storage": "保留外葉冷藏，1 到 2 天內煮完。",
+    "myth": ""
+  },
+  {
+    "name": "玉米筍",
+    "aliases": [],
+    "englishNames": [
+      "baby corn"
+    ],
+    "type": "vegetable",
+    "summary": "顏色淡黃、筍身飽滿、沒有乾枯的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "淡黃色、顆粒排列整齊",
+        "avoid": "變褐、乾枯或發霉"
+      },
+      {
+        "sense": "touch",
+        "good": "筍身結實",
+        "avoid": "軟塌"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "裝袋冷藏 2 到 3 天。",
+    "myth": ""
+  },
+  {
+    "name": "毛豆",
+    "aliases": [],
+    "englishNames": [
+      "edamame"
+    ],
+    "type": "vegetable",
+    "summary": "豆莢翠綠、有細絨毛、豆仁飽滿的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "豆莢翠綠、表面有細絨毛",
+        "avoid": "豆莢發黃、有黑斑"
+      },
+      {
+        "sense": "touch",
+        "good": "豆莢飽滿，摸得到豆仁",
+        "avoid": "扁塌"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後甜味會很快流失，買回來盡早煮。",
+    "storage": "冷藏 1 到 2 天；燙熟後冷凍可以放更久。",
+    "myth": ""
+  },
+  {
+    "name": "四季豆",
+    "aliases": [
+      "敏豆"
+    ],
+    "englishNames": [
+      "green bean"
+    ],
+    "type": "vegetable",
+    "summary": "顏色翠綠、一折就清脆斷開、豆仁不明顯凸起的最嫩。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "一折就「啪」一聲斷開",
+        "avoid": "彎軟折不斷"
+      },
+      {
+        "sense": "look",
+        "good": "翠綠有光澤、粗細均勻",
+        "avoid": "有褐斑、豆仁明顯凸起（老了）"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "裝袋冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "秋葵",
+    "aliases": [],
+    "englishNames": [
+      "okra"
+    ],
+    "type": "vegetable",
+    "summary": "長度約手指長、翠綠有絨毛、尖端一折就斷的最嫩。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "翠綠、表面有細絨毛，長度約 5 到 10 公分",
+        "avoid": "太大支、有黑斑"
+      },
+      {
+        "sense": "touch",
+        "good": "尖端輕輕一折就斷",
+        "avoid": "尖端折不斷，代表纖維粗老"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "裝袋冷藏 2 到 3 天。",
+    "myth": ""
+  },
+  {
+    "name": "茄子",
+    "aliases": [],
+    "englishNames": [
+      "eggplant",
+      "aubergine"
+    ],
+    "type": "vegetable",
+    "summary": "表皮深紫有光澤、蒂頭翠綠、摸起來有彈性的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表皮深紫光亮，蒂頭翠綠、尖刺明顯",
+        "avoid": "表皮暗沉皺縮、蒂頭乾枯"
+      },
+      {
+        "sense": "touch",
+        "good": "按壓有彈性",
+        "avoid": "太硬或太軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用紙包好放陰涼處或冷藏，2 到 3 天內吃完；太冷容易凍傷變褐。",
+    "myth": ""
+  },
+  {
+    "name": "小黃瓜",
+    "aliases": [
+      "黃瓜",
+      "胡瓜",
+      "澳洲青瓜",
+      "大黃瓜"
+    ],
+    "englishNames": [
+      "cucumber"
+    ],
+    "type": "vegetable",
+    "summary": "表皮翠綠、表面小刺扎手、整條堅挺的最新鮮。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "整條堅挺；表面有小刺的品種，刺摸起來扎手",
+        "avoid": "軟彎、兩端變軟"
+      },
+      {
+        "sense": "look",
+        "good": "翠綠有光澤、粗細均勻",
+        "avoid": "表皮發黃、有皺紋或爛斑"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用紙包好冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "櫛瓜",
+    "aliases": [
+      "夏南瓜"
+    ],
+    "englishNames": [
+      "zucchini",
+      "courgette"
+    ],
+    "type": "vegetable",
+    "summary": "中小型、表皮光亮、拿起來沉的最嫩；太大支籽多水分也多。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表皮光亮、顏色均勻，中小型",
+        "avoid": "有碰傷、軟爛處"
+      },
+      {
+        "sense": "touch",
+        "good": "整條堅實",
+        "avoid": "軟彎"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的",
+        "avoid": ""
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "裝袋冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "絲瓜",
+    "aliases": [
+      "菜瓜"
+    ],
+    "englishNames": [
+      "luffa",
+      "loofah",
+      "sponge gourd"
+    ],
+    "type": "vegetable",
+    "summary": "拿起來沉、表皮翠綠、摸起來結實的最嫩。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，水分多",
+        "avoid": "拿起來輕，可能已經老了、纖維粗"
+      },
+      {
+        "sense": "look",
+        "good": "表皮翠綠",
+        "avoid": "表皮發黃、有黑斑"
+      },
+      {
+        "sense": "touch",
+        "good": "整條結實有彈性",
+        "avoid": "軟塌"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "用報紙包好放陰涼處或冷藏，3 到 4 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "苦瓜",
+    "aliases": [
+      "白玉苦瓜",
+      "山苦瓜"
+    ],
+    "englishNames": [
+      "bitter melon",
+      "bitter gourd"
+    ],
+    "type": "vegetable",
+    "summary": "表面顆粒飽滿有光澤、整條堅實、沒有轉黃的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表面的顆粒飽滿有光澤，顏色均勻",
+        "avoid": "轉黃或轉橘，代表過熟"
+      },
+      {
+        "sense": "touch",
+        "good": "整條堅實",
+        "avoid": "軟塌"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "怕苦",
+        "tips": [
+          "白色品種（白玉苦瓜）苦味通常比綠色的淡",
+          "料理前把內側白膜刮乾淨"
+        ]
+      }
+    ],
+    "ripening": "",
+    "storage": "用紙包好冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "冬瓜",
+    "aliases": [],
+    "englishNames": [
+      "winter melon",
+      "wax gourd"
+    ],
+    "type": "vegetable",
+    "summary": "多半切塊販賣：挑果肉白淨緊實、切面濕潤、外皮有白粉的。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "切面白淨濕潤、果肉緊密；外皮深綠帶白色果粉",
+        "avoid": "切面發乾、變透明或發黏"
+      },
+      {
+        "sense": "touch",
+        "good": "果肉結實",
+        "avoid": "軟爛"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "整顆放陰涼處可以放很久；切塊包保鮮膜冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "南瓜",
+    "aliases": [
+      "栗子南瓜",
+      "金瓜"
+    ],
+    "englishNames": [
+      "kabocha",
+      "pumpkin",
+      "squash"
+    ],
+    "type": "vegetable",
+    "summary": "拿起來沉、外皮硬、果蒂乾燥像木頭的最成熟鬆甜。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果肉紮實",
+        "avoid": ""
+      },
+      {
+        "sense": "look",
+        "good": "果蒂乾燥、呈木質化，外皮顏色深而均勻",
+        "avoid": "果蒂還是綠的（太早採收），或有軟爛處"
+      },
+      {
+        "sense": "touch",
+        "good": "外皮堅硬，指甲掐不進去",
+        "avoid": "外皮軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "整顆放陰涼通風處一兩週，澱粉會轉成糖，吃起來更甜。",
+    "storage": "整顆陰涼處可放 1 到 2 個月；切開後去籽包好冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "番茄",
+    "aliases": [
+      "蕃茄",
+      "西紅柿",
+      "小番茄",
+      "聖女番茄"
+    ],
+    "englishNames": [
+      "tomato",
+      "cherry tomato"
+    ],
+    "type": "vegetable",
+    "summary": "顏色均勻、拿起來沉、靠近果蒂聞得到番茄香的最好。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "顏色均勻有光澤，果蒂翠綠",
+        "avoid": "有裂口、碰傷或發霉"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的",
+        "avoid": ""
+      },
+      {
+        "sense": "smell",
+        "good": "靠近果蒂聞得到番茄香",
+        "avoid": "沒有味道"
+      },
+      {
+        "sense": "touch",
+        "good": "輕壓微有彈性",
+        "avoid": "太軟"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "今天要煮",
+        "tips": [
+          "挑全紅、微軟的"
+        ]
+      },
+      {
+        "goal": "放幾天再吃",
+        "tips": [
+          "挑還帶點綠的，放室溫會繼續轉紅"
+        ]
+      }
+    ],
+    "ripening": "放室溫會繼續轉紅變熟。",
+    "storage": "未熟放室溫，熟了再冷藏；太早冷藏香氣會變淡。",
+    "myth": ""
+  },
+  {
+    "name": "甜椒",
+    "aliases": [
+      "彩椒"
+    ],
+    "englishNames": [
+      "bell pepper",
+      "capsicum",
+      "sweet pepper"
+    ],
+    "type": "vegetable",
+    "summary": "表皮光亮緊繃、拿起來沉、果蒂翠綠的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表皮光亮、顏色飽滿，果蒂翠綠",
+        "avoid": "表皮皺縮、有軟斑"
+      },
+      {
+        "sense": "touch",
+        "good": "整顆硬挺",
+        "avoid": "按壓凹陷"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，果肉厚",
+        "avoid": ""
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "裝袋冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "青椒",
+    "aliases": [],
+    "englishNames": [
+      "green pepper"
+    ],
+    "type": "vegetable",
+    "summary": "表皮翠綠光亮、果肉厚實硬挺的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "翠綠有光澤，果蒂新鮮",
+        "avoid": "表皮皺縮、有黑斑"
+      },
+      {
+        "sense": "touch",
+        "good": "硬挺有彈性",
+        "avoid": "軟塌"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "裝袋冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "白蘿蔔",
+    "aliases": [
+      "蘿蔔",
+      "菜頭"
+    ],
+    "englishNames": [
+      "daikon",
+      "radish",
+      "white radish"
+    ],
+    "type": "vegetable",
+    "summary": "拿起來沉、表皮光滑白淨、按起來堅實的水分多不空心。",
+    "senses": [
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，水分多",
+        "avoid": "拿起來輕，可能已經空心"
+      },
+      {
+        "sense": "look",
+        "good": "表皮光滑白淨，鬚根少",
+        "avoid": "表皮有裂痕、鬚根多"
+      },
+      {
+        "sense": "touch",
+        "good": "堅實",
+        "avoid": "按起來軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "切掉葉子，用報紙包好冷藏 1 到 2 週。",
+    "myth": ""
+  },
+  {
+    "name": "胡蘿蔔",
+    "aliases": [
+      "紅蘿蔔"
+    ],
+    "englishNames": [
+      "carrot"
+    ],
+    "type": "vegetable",
+    "summary": "顏色深橘、表皮光滑、整條堅硬沒有裂痕的最好。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "顏色深橘均勻、表皮光滑",
+        "avoid": "有裂痕、發芽或軟爛"
+      },
+      {
+        "sense": "touch",
+        "good": "整條堅硬",
+        "avoid": "彎軟"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "切掉葉子，擦乾後裝袋冷藏 2 到 3 週。",
+    "myth": ""
+  },
+  {
+    "name": "馬鈴薯",
+    "aliases": [
+      "洋芋",
+      "土豆"
+    ],
+    "englishNames": [
+      "potato"
+    ],
+    "type": "vegetable",
+    "summary": "表皮完整、沒有發綠也沒有發芽、摸起來堅硬的最好。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表皮完整、沒有發綠",
+        "avoid": "表皮發綠或已經發芽（含有天然毒素茄鹼）"
+      },
+      {
+        "sense": "touch",
+        "good": "整顆堅硬",
+        "avoid": "軟皺或有軟爛處"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "放陰涼、通風、不照光的地方，和洋蔥分開放；不需要冷藏。",
+    "myth": "發綠或發芽的部分不能只靠煮熟解決，要把綠皮與芽眼挖乾淨，大面積發綠就別吃。"
+  },
+  {
+    "name": "地瓜",
+    "aliases": [
+      "番薯",
+      "甘藷"
+    ],
+    "englishNames": [
+      "sweet potato"
+    ],
+    "type": "vegetable",
+    "summary": "表皮完整光滑、整條堅硬、沒有黑斑和發芽的最好。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表皮光滑完整、顏色均勻",
+        "avoid": "有黑斑、蟲孔或發芽"
+      },
+      {
+        "sense": "touch",
+        "good": "堅硬",
+        "avoid": "有軟爛處"
+      }
+    ],
+    "goals": [],
+    "ripening": "剛採收的地瓜放在陰涼處一兩週，澱粉會轉成糖，烤起來更甜。",
+    "storage": "放陰涼通風處，不要冷藏（容易變質）。",
+    "myth": ""
+  },
+  {
+    "name": "芋頭",
+    "aliases": [
+      "芋"
+    ],
+    "englishNames": [
+      "taro"
+    ],
+    "type": "vegetable",
+    "summary": "表皮乾燥、沒有軟爛；切開的芋頭挑切面粉白、紫色紋路明顯的口感較鬆。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "表皮乾燥；切面粉白、帶紫色紋路、看起來有粉感",
+        "avoid": "切面濕黏、有褐色斑點，或表皮發霉"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小偏輕的，通常比較鬆粉",
+        "avoid": ""
+      },
+      {
+        "sense": "touch",
+        "good": "整顆堅硬",
+        "avoid": "有軟爛處"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "整顆放陰涼通風處；去皮切塊後可以冷凍保存。",
+    "myth": ""
+  },
+  {
+    "name": "竹筍",
+    "aliases": [
+      "綠竹筍",
+      "麻竹筍"
+    ],
+    "englishNames": [
+      "bamboo shoot"
+    ],
+    "type": "vegetable",
+    "summary": "筍尖沒有變綠、外形彎曲像牛角、底部切口白嫩濕潤的最甜不苦。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "筍尖淡黃、沒有冒出綠色；外形短胖、彎曲像牛角；底部切口白嫩濕潤",
+        "avoid": "筍尖已經變綠（曬到太陽，容易苦），或切口乾硬"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的，水分多",
+        "avoid": ""
+      },
+      {
+        "sense": "touch",
+        "good": "底部切口按起來細嫩",
+        "avoid": "切口粗硬、纖維多"
+      }
+    ],
+    "goals": [],
+    "ripening": "採收後放越久越容易變苦，買回來當天煮最好。",
+    "storage": "不剝殼直接冷藏，或先帶殼煮熟再冷藏，2 到 3 天內吃完。",
+    "myth": ""
+  },
+  {
+    "name": "洋蔥",
+    "aliases": [],
+    "englishNames": [
+      "onion"
+    ],
+    "type": "vegetable",
+    "summary": "外皮乾燥完整、整顆堅硬、頭部沒有發芽變軟的最好。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "外皮乾燥有光澤，頸部緊閉",
+        "avoid": "發芽、發霉或有黑斑"
+      },
+      {
+        "sense": "touch",
+        "good": "整顆堅硬，頸部不軟",
+        "avoid": "頸部或底部變軟"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的",
+        "avoid": ""
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "整顆放陰涼通風處，和馬鈴薯分開；切開後包好冷藏 3 到 5 天。",
+    "myth": ""
+  },
+  {
+    "name": "蒜頭",
+    "aliases": [
+      "大蒜",
+      "蒜"
+    ],
+    "englishNames": [
+      "garlic"
+    ],
+    "type": "vegetable",
+    "summary": "蒜球飽滿堅實、外皮乾燥、沒有發芽的最好。",
+    "senses": [
+      {
+        "sense": "touch",
+        "good": "整顆堅實，蒜瓣飽滿",
+        "avoid": "按起來空空的或有軟瓣"
+      },
+      {
+        "sense": "look",
+        "good": "外皮乾燥完整",
+        "avoid": "發芽、發霉或有黑斑"
+      },
+      {
+        "sense": "weight",
+        "good": "同樣大小比較沉的",
+        "avoid": ""
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "整顆放陰涼通風處，可以放 1 到 2 個月。",
+    "myth": ""
+  },
+  {
+    "name": "薑",
+    "aliases": [
+      "老薑",
+      "嫩薑",
+      "生薑",
+      "粉薑"
+    ],
+    "englishNames": [
+      "ginger"
+    ],
+    "type": "vegetable",
+    "summary": "先分用途：生吃、醃漬用嫩薑，燉補、驅寒用老薑；兩種都挑堅實不乾皺的。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "嫩薑皮薄、帶粉紅色芽尖；老薑外皮乾燥完整",
+        "avoid": "表皮乾皺、發霉或有軟爛處"
+      },
+      {
+        "sense": "touch",
+        "good": "堅實",
+        "avoid": "軟爛"
+      },
+      {
+        "sense": "smell",
+        "good": "辛香味明顯",
+        "avoid": "有霉味"
+      }
+    ],
+    "goals": [
+      {
+        "goal": "生吃、醃漬",
+        "tips": [
+          "挑嫩薑，皮薄、纖維少、口感脆"
+        ]
+      },
+      {
+        "goal": "燉補、薑母鴨",
+        "tips": [
+          "挑老薑，辣味和香氣比較重"
+        ]
+      }
+    ],
+    "ripening": "",
+    "storage": "老薑放陰涼通風處；嫩薑用紙包好冷藏約一週。",
+    "myth": ""
+  },
+  {
+    "name": "香菇",
+    "aliases": [
+      "鮮香菇"
+    ],
+    "englishNames": [
+      "shiitake",
+      "shiitake mushroom"
+    ],
+    "type": "vegetable",
+    "summary": "菇傘厚實、邊緣向內捲、菌褶白淨的最新鮮。",
+    "senses": [
+      {
+        "sense": "look",
+        "good": "菇傘厚實、邊緣向內捲，菌褶白淨整齊",
+        "avoid": "菌褶變褐、菇傘完全攤平或有黏液"
+      },
+      {
+        "sense": "touch",
+        "good": "乾爽有彈性",
+        "avoid": "濕黏軟爛"
+      },
+      {
+        "sense": "smell",
+        "good": "有菇類香氣",
+        "avoid": "有酸味或霉味"
+      }
+    ],
+    "goals": [],
+    "ripening": "",
+    "storage": "不要洗，用紙巾包好裝袋冷藏 3 到 5 天；吃之前再清理。",
+    "myth": ""
+  }
+]

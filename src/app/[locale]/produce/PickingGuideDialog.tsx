@@ -1,18 +1,17 @@
 "use client";
 
 // 蔬果挑選標準的彈出視窗：依感官與目的列出怎麼挑
-// 第一次查詢某種蔬果會由 AI 整理，之後全站共用資料庫裡的結果
+// 內容從資料庫讀取，不呼叫 AI，不需要金鑰
 
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
-import { KEY_ERROR_CODES } from "@/lib/openai-key";
-import { openAIKeyHeaders, requestOpenAIKeyPanel } from "@/lib/openai-key-store";
 import type { PickingGuide, Sense } from "@/lib/picking";
 
 export type PickingTarget = { name: string; englishName?: string };
 
 type LoadResult =
-  | { status: "error"; error: string; needsKey: boolean }
+  | { status: "error"; error: string }
+  | { status: "missing" }
   | { status: "done"; guide: PickingGuide };
 
 const SENSE_ICONS: Record<Sense, string> = { look: "👀", touch: "✋", sound: "👂", smell: "👃", weight: "⚖️" };
@@ -35,21 +34,16 @@ export function PickingGuideDialog({ target, onClose }: { target: PickingTarget 
     if (!target) return;
     let cancelled = false;
     const finish = (value: LoadResult) => !cancelled && setResult({ key: requestKey, value });
-    fetch("/api/picking", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", ...openAIKeyHeaders() },
-      body: JSON.stringify(target),
-    })
+    const query = new URLSearchParams({ name: target.name });
+    if (target.englishName) query.set("en", target.englishName);
+    fetch(`/api/picking?${query}`)
       .then(async (res) => {
+        if (res.status === 404) return finish({ status: "missing" });
         const data = await res.json().catch(() => ({}));
-        if (!res.ok) {
-          const needsKey = Object.values(KEY_ERROR_CODES).includes(data.code);
-          finish({ status: "error", error: data.error ?? t("loadError"), needsKey });
-          return;
-        }
+        if (!res.ok) return finish({ status: "error", error: data.error ?? t("loadError") });
         finish({ status: "done", guide: data as PickingGuide });
       })
-      .catch(() => finish({ status: "error", error: t("networkError"), needsKey: false }));
+      .catch(() => finish({ status: "error", error: t("networkError") }));
     return () => {
       cancelled = true;
     };
@@ -84,14 +78,13 @@ export function PickingGuideDialog({ target, onClose }: { target: PickingTarget 
 
           {!state && <p className="mt-6 animate-pulse text-sm text-muted">{t("pickingLoading")}</p>}
 
+          {state?.status === "missing" && (
+            <p className="mt-6 text-sm leading-relaxed text-muted">{t("pickingNotFound", { name: target.name })}</p>
+          )}
+
           {state?.status === "error" && (
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-red-700 dark:text-red-300">
               <span>{state.error}</span>
-              {state.needsKey && (
-                <button type="button" onClick={requestOpenAIKeyPanel} className="btn-primary !py-1.5 !text-[13px]">
-                  {t("setKey")}
-                </button>
-              )}
               <button type="button" onClick={() => setReloadKey((key) => key + 1)} className="font-medium underline underline-offset-4">
                 {t("retry")}
               </button>
