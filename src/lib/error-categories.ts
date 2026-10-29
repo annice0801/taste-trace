@@ -7,6 +7,7 @@ export const ERROR_CATEGORIES = {
   database: "資料庫",
   weather: "天氣",
   auth: "登入",
+  mcp: "MCP",
   unhandled: "未處理例外",
 } as const;
 export type ErrorCategory = keyof typeof ERROR_CATEGORIES;
